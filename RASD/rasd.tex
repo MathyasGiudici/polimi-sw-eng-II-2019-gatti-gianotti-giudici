@@ -1,0 +1,111 @@
+\documentclass[a4paper,12pt]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{lmodern}
+
+%hyperref for interactive PDF index
+\usepackage[bookmarks, colorlinks, breaklinks]{hyperref}
+\hypersetup{linkcolor=black, citecolor=black, filecolor=black, urlcolor=black}
+
+%Package required to use special symbols
+\usepackage{amsmath, amssymb}
+
+%tPackage for tables
+\usepackage{tabu}
+\usepackage{tabularx}
+\usepackage{ltablex}
+\usepackage{longtable}
+\usepackage{float} % To allow the use of H modifier in long tables
+
+%Package required to use figures
+\usepackage{graphicx}
+%Include the bibliography in the table of contents
+\usepackage{tocbibind}
+
+%Package used to insert figures at the specified position
+\usepackage{float}
+
+%Packages for Alloy code listing
+\usepackage{listings}
+\usepackage{alloy}
+\usepackage{color}
+\definecolor{alloy-keyword}{rgb}{0.23, 0.23, 0.7}
+\definecolor{alloy-comment}{rgb}{0.18, 0.64, 0.18}
+\definecolor{alloy-string}{rgb}{0.71, 0.18, 0.71}
+
+%To call Chapters -> Sections
+\addto\captionsenglish{\renewcommand{\chaptername}{Section}}
+
+\begin{document}
+
+%Title page
+\begin{titlepage}
+\centering
+	\begin{center}{
+		\begin{figure}[h]
+		\large
+		\centering
+		{\includegraphics[width=.60\linewidth]{img/logo_poli}}
+        \end{figure}
+    	}
+	\end{center}
+	\vspace{1 cm}
+	{\Large {\textbf{TrackMe} \\
+		Software Engineering II - Prof. Elisabetta Di Nitto} \par}
+	\vspace{1.5cm}
+	{\LARGE \textbf{Requirements Analysis and Specification Document} \par}
+	\vspace{1.5cm}
+	{\Large\itshape Michele Gatti, Federica Gianotti, Mathyas Giudici\par}
+	\vspace{2cm}
+	\vfill
+	% Bottom of the page
+	{\large Document version: 1.0\par}
+	{\large \today \par}
+\end{titlepage}
+
+{
+\begin{table}[h!]
+\begin{tabu} to \textwidth { X[0.3,r,p] X[0.7,l,p] }
+\textbf{Deliverable:} & RASD\\
+\textbf{Title:} & Requirement Analysis and Verification Document \\
+\textbf{Authors:} & Michele Gatti, Federica Gianotti, Mathyas Giudici \\
+\textbf{Version:} & 1.0 \\
+\textbf{Date:} & \today \\
+\textbf{Download page:} & https://github.com/MathyasGiudici/GattiGianottiGiudici \\
+\textbf{Copyright:} & Copyright © 2018, Michele Gatti, Federica Gianotti, Mathyas Giudici – All rights reserved \\
+\end{tabu}
+\end{table}
+
+\setcounter{page}{2}
+}
+
+%Make the table of contents
+\tableofcontents
+
+%Introduction
+\chapter{Introduction} \label{ch:Introduction}
+\input{./files/introduction.tex}
+\clearpage
+
+%Overall Description
+\chapter{Overall Description}
+%\input{./files/overallDescription.tex}
+\clearpage
+
+%Specific Requirements
+\chapter{Specific Requirements}
+%\input{./files/specificRequirements.tex}
+\clearpage
+
+%Specific Requirements
+\chapter{Effort Spent}
+\input{./files/effort.tex}
+\clearpage
+
+\appendix
+\chapter{Appendix}
+
+%\input{./bibliography.tex}
+
+\end{document}
