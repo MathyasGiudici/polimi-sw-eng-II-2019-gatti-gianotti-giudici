@@ -1,4 +1,42 @@
 \section{Purpose}
+The  goal of the Requirement Analysis and Specification Document (RASD) is to give a clear description of the system that is going to be developed, its functional and non-functional requirements, its constraints and its domain. Moreover, it provides information about the relationship between the system taken into account and the external world by providing use cases and scenarios. Finally it gives a more formal specification of the most relevant features of the system to be using the Alloy language.
+Generally this type of document is mainly addressed to developers, programmers, testers, project managers and system analysists, but it can be useful also for final users.
+Track Me is a company that wants to develop three different but connected software-based services:
+\begin{itemize}
+  \item \textbf{Data4Help}: a service that allows third parties to monitor the location and health status of individuals. Through this service third parties can request the access both to the data of some specific individuals, who can accept or refuse sharing their information , and to anonymized data of group of individuals, which will be given only if the number of the members of the group is higher than 1000, according to privacy rules.
+  \item \textbf{AutomatedSoS}: a service addressed to elderly people which monitors the health status of the subscribed customers and, when such parameters are below a certain threshold (personalized for every user using the data from Data4Help), sends to the location of the customer an ambulance, guaranteeing a reaction time less than 5 second from the time the parameters are below the threshold.
+  \clearpage
+  \item \textbf{Track4Run}: a service to track athletes participating in a run. It allows organizers to define the path for a run, participants to enroll to a run and spectators to see on a map the position of all runners during the run. This service will exploit the features offered by Data4Help.
+\end{itemize}
+
+\subsection{Goals}
+The description given above can be summarized as a list of goals:
+\paragraph{Data4Help:}
+\begin{itemize}
+  \item \textbf{[G.1]}: Allow individual unregistered user to sign up to access to the application;
+  \item \textbf{[G.2]}: Allow individual registered user to log in and access to the application;
+  \item \textbf{[G.3]}: Allow individual registered user to manage his/her profile;
+  \item \textbf{[G.4]}: Allow unregistered third parties to sign up to access to the application;
+  \item \textbf{[G.5]}: Allow registered third parties to log in and access to the application;
+  \item \textbf{[G.6]}: Allow registered third parties to request data of a single individual;
+  \item \textbf{[G.7]}: Allow individual registered user to accept or refuse the request of sharing his/her data with a third party;
+  \item \textbf{[G.8]}: Allow data acquisition through smart watches (or similar);
+\end{itemize}
+
+\paragraph{AutomatedSoS:}
+\begin{itemize}
+  \item \textbf{[G.9]}: Allow monitoring the health status of an individual registered user;
+  \item \textbf{[G.10]}: Allow sending location of an individual registered user to an ambulance if his/her parameters are below a certain threshold;
+\end{itemize}
+
+\paragraph{Track4Run:}
+\begin{itemize}
+  \item \textbf{[G.11]}: Allow Data4Help registered user to become organizers or athletes of a run;
+  \item \textbf{[G.12]}: Allow organizers to define the path for a new run;
+  \item \textbf{[G.13]}: Allow registered athletes to enroll to a run;
+  \item \textbf{[G.14]}: Allow Data4Help unregistered user to access as spectator;
+  \item \textbf{[G.15]}: Allow Data4Help registered/unregistered user to see on a map the position of all runners during a run;
+\end{itemize}
 
 \section{Scope}
 
