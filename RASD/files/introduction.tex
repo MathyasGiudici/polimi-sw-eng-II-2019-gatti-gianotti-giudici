@@ -10,32 +10,34 @@ Track Me is a company that wants to develop three different but connected softwa
 \end{itemize}
 
 \subsection{Goals}
-The description given above can be summarized as a list of goals:
+The three applications of the system have in common the following goals:
+\begin{itemize}
+  \item \textbf{[G.1]}: Allow unregistered user to sign up to access to the application;
+  \item \textbf{[G.2]}: Allow registered user to log in and access to the application;
+  \item \textbf{[G.3]}: Allow registered user to manage his/her profile;
+\end{itemize}
+
+The description given above can be summarized as a list of goals, specific for each service.
 \paragraph{Data4Help:}
 \begin{itemize}
-  \item \textbf{[G.1]}: Allow individual unregistered user to sign up to access to the application;
-  \item \textbf{[G.2]}: Allow individual registered user to log in and access to the application;
-  \item \textbf{[G.3]}: Allow individual registered user to manage his/her profile;
-  \item \textbf{[G.4]}: Allow unregistered third parties to sign up to access to the application;
-  \item \textbf{[G.5]}: Allow registered third parties to log in and access to the application;
-  \item \textbf{[G.6]}: Allow registered third parties to request data of a single individual;
-  \item \textbf{[G.7]}: Allow individual registered user to accept or refuse the request of sharing his/her data with a third party;
-  \item \textbf{[G.8]}: Allow data acquisition through smart watches (or similar);
+  \item \textbf{[G.4]}: Allow registered third parties to request data of a single individual;
+  \item \textbf{[G.5]}: Allow registered third parties to request data of a group of people;
 \end{itemize}
 
 \paragraph{AutomatedSOS:}
 \begin{itemize}
-  \item \textbf{[G.9]}: Allow monitoring the health status of an individual registered user;
-  \item \textbf{[G.10]}: Allow sending location of an individual registered user to an ambulance if his/her parameters are below a certain threshold;
+  \item \textbf{[G.6]}: Allow data acquisition through smart watches (or similar);
+  \item \textbf{[G.7]}: Allow monitoring the health status of an individual registered user;
+  \item \textbf{[G.8]}: Allow sending location of an individual registered user to an ambulance if his/her parameters are below a certain threshold;
 \end{itemize}
 
 \paragraph{Track4Run:}
 \begin{itemize}
-  \item \textbf{[G.11]}: Allow Data4Help registered user to become organizers or athletes of a run;
-  \item \textbf{[G.12]}: Allow organizers to define the path for a new run;
-  \item \textbf{[G.13]}: Allow registered athletes to enroll to a run;
-  \item \textbf{[G.14]}: Allow Data4Help unregistered user to access as spectator;
-  \item \textbf{[G.15]}: Allow Data4Help registered/unregistered user to see on a map the position of all runners during a run;
+  \item \textbf{[G.9]}: Allow registered user to become organizers or athletes of a run;
+  \item \textbf{[G.10]}: Allow organizers to define the date and the path for a new run;
+  \item \textbf{[G.11]}: Allow registered athletes to enroll to a run;
+  \item \textbf{[G.12]}: Allow unregistered user to access as spectator;
+  \item \textbf{[G.13]}: Allow registered/unregistered user to see on a map the position of all runners during a run;
 \end{itemize}
 
 \section{Scope}
@@ -89,7 +91,7 @@ Below we give an analysis of world and shared phenomena:
   \item[] \textbf{System}: The software system-to-be, including all of its services;
   \item[] \textbf{Third party}: Any external organization that wants to access to data acquired by Data4Help;
   \item[] \textbf{UML}: Unified Modeling Language;
-  \item[] \textbf{User}: Any person, registered or not, who accesses to one of the applications;
+  \item[] \textbf{User}: Any person, registered or not, who accesses to one of the applications (for Data4Help there is a special user called \textit{Third party});
 \end{itemize}
 \section{Reference documents}
 \section{Overview}

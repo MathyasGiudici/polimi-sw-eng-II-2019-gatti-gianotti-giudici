@@ -37,6 +37,10 @@
 %To call Chapters -> Sections
 \addto\captionsenglish{\renewcommand{\chaptername}{Section}}
 
+%To have a new line after a \paragraph
+\newcommand{\myparagraph}[1]{\paragraph{#1}\mbox{}\\}
+
+
 \begin{document}
 
 %Title page
@@ -96,7 +100,7 @@
 
 %Specific Requirements
 \chapter{Specific Requirements}
-%\input{./files/specificRequirements.tex}
+\input{./files/specificRequirements.tex}
 \clearpage
 
 %Specific Requirements
