@@ -29,6 +29,8 @@ The wearable device must also integrate a reasonably precise heartbeat sensor.
 \item	Mobile apps for standard users must be available for both iOS and Android devices and must be compatible with most of the smartwatch and other health devices available on the market regardless of the operating system used by the device (using the API made available to programmers by producers).
 \item	Application backends store data collected in a relational DBMS.
 \item	 Web applications access and show data by accessing the relational DBMS.
+\item	 Web applications for third parties has to interface also with a payments broker in order to receive money from companies who want to get data from the system.
+\item Web application and Track4Run have to interface also with Maps in order to generate the path for the run and to virtually follow a run.
 \end{itemize}
 
 \section{Product Functions}
@@ -151,7 +153,7 @@ In order to use the service, user’s hardware should comply to these minimum re
 The system must guarantee the simultaneous use of the mobile app by at least 100,000 users and the simultaneous use of the web app by at least 10,000 users.
 Consequently, the DBMS must be able to process a large number of simultaneous transactions.
 
-\subsection{Reliability requirementn}
+\subsection{Reliability requirement}
 The system reliability, seen as the probability that components and performances will meet the requirement during a specified period of time, must be at least 95\%, considering a period of one month.
 
 \subsection{Availability requirement}
@@ -196,11 +198,3 @@ The addition of new features will be evaluated in the future. The possible propo
   \item The creation of a new application with the purpose of collecting user data, without offering services such as \textit{AutomatedSOS} and \textit{Track4Run}. Users will be paid to use the application consistently. This operation considerably increases the number of users and also collects data from those subjects that are currently excluded (people who are not elderly and do not practice sports).
   \item The possibility for the user to share their sanitary facilities for free with their doctor.
 \end{enumerate}
-
-\section{The World and the Machine}
-Here it will be descripted the system using the model created by M. Jackson and P. Zave.
-In this model the machine is the portion of system to be developed and the world is the environment (Portion of the world involved in the changes made by the machine).
-In particular, this model highlights actions that involve only the real world, those involving only the machine and events that involve both (shared phenomena).
-
-\vspace{1cm}
------ ADD SCHEMA THE WORLD AND THE MACHINE-----

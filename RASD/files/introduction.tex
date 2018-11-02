@@ -55,12 +55,12 @@ As a consequence we can classify phenomena in three different types:
 Below we give an analysis of world and shared phenomena:
 \paragraph{World phenomena}
 \begin{itemize}
-  \item A user doesn't turn on data connection;
-  \item A user forgot wearing his smartwatch during a day;
+  \item A user turns on data connection;
+  \item A user wears his smartwatch during a day;
   \item The batteries of the smartwatch of a user run out;
-  \item A user doesn't turn on the GPS;
-  \item An enrolled runner for a run doesn't take part in it;
-  \item A runner doesn't wear his smartwach during a run.
+  \item A user turns on the GPS;
+  \item An enrolled runner for a run takes part in it;
+  \item A runner wears his smartwach during a run.
 \end{itemize}
 \paragraph{Shared phenomena}
 \begin{itemize}
@@ -77,6 +77,21 @@ Below we give an analysis of world and shared phenomena:
   \item A Track4Run user enrols for a run;
   \item An unregistered user access as a spectator to a run.
 \end{itemize}
+\paragraph{Machine phenomena}
+\begin{itemize}
+  \item The machine interfaces with external software and hardware systems;
+  \item The machine manages database queries;
+  \item The machine manages the 3G/4G Internet connection;
+  \item The machine manages the Bluetooth connection;
+  \item The machine manages GPS tracking.
+\end{itemize}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=15cm]{img/WorldMachine.png}
+\caption{World and Machine model}
+\end{figure}
+
 \section{Definitions, Acronyms and Abbreviations}
 \begin{itemize}
   \setlength{\itemindent}{-.4in}
