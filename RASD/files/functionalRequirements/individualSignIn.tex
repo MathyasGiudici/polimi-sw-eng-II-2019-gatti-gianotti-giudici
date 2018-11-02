@@ -5,7 +5,7 @@ The process requires exactly the same steps regardless the platform through whic
   \item The new user is required to fill in all the fields in which she/he is asked for his name, his surname, his date of birth, his city of birth, his city of residence and a valid e-mail address;
   \item The user must accept the conditions regarding his privacy, in particular the collection of his data by \textit{Data4Help} and the sharing of them in anonymous way with third parties.
 \end{enumerate}
-After that the system will check the correctness of the inserted data, in particular it will check that the user it isn't already registerd and that the inserted e-mail isn't already used by someone else. If the result of this control is positive the registration is authorized and the user will recive a confermation e-mail to the specified e-mail address with the password she/he has to use to access to all \textit{Data4Help} services.
+After that the system will check the correctness of the inserted data, in particular it will check that the user isn't already registerd and that the inserted e-mail isn't already used by someone else. If the result of this control is positive the registration is authorized and the user will recive a confermation e-mail to the specified e-mail address with the password she/he has to use to access to all \textit{Data4Help} services.
 
 \myparagraph{Scenario 1}
 Sara would like to register her grandmother to \textit{AutomatedSos} to not worry about her helth status when they are not together. She opens the browser on his personal computer and search for \textit{Data4Help} web site, then she clicks on the "\textit{Sign In}" button, which is located in the main page. She passes through the steps of the registration process, inserting his grandmother data and accepting the required conditions. Finally, if the inserted data are accepted by the system, she recives the confirmation e-mail.
@@ -35,6 +35,7 @@ The Individual Sign In is analyzed in Table \ref{table:individualSignInTable}.
     Event Flow & \begin{minipage}[t]{0.7\textwidth}
       \begin{enumerate}
         \item The \textbf{Individual user to be} opens the main page of \textit{Data4Help} web site from his personal computer or of \textit{AutomatedSos} or \textit{Track4Run} apps from his smartphone;
+        \item The \textbf{Individual user to be} clicks on "\textit{Sign in}" button;
         \item The system shows the form the \textbf{Individual user to be} has to fill up;
         \item The \textbf{Individual user to be} fills up the form with his name, his surname, his date of birth, his city of birth, his city of residence and an e-mail address;
         \item The \textbf{Individual user to be} accepts the required conditions;
@@ -44,12 +45,12 @@ The Individual Sign In is analyzed in Table \ref{table:individualSignInTable}.
       \end{enumerate}
     \smallskip
   \end{minipage} \\ \hline
-  Output Condition & The system the \textbf{Individual user to be} that his registration is completed \\ \hline
+  Output Condition & The system tells the \textbf{Individual user to be} that his registration is completed \\ \hline
   Exceptions & \begin{minipage}[t]{0.7\textwidth}
     \begin{itemize}
       \smallskip
-      \item If functional requirements 1 or 2 are not satisfied the process goes back to step 3;
-      \item If functional requirement 3 is not satisfied the process goes back to step 4;
+      \item If functional requirements 1 or 2 are not satisfied the process goes back to step 4;
+      \item If functional requirement 3 is not satisfied the process goes back to step 5;
       \item If the \textbf{Individual user to be} decides to leave the registration process this one is aborted.
     \end{itemize}
     \smallskip
