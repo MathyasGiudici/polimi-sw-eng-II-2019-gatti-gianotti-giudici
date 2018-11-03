@@ -1,0 +1,167 @@
+\myparagraph{Purpose}
+Any user can manage his personal profile both from \textit{Data4Help} web site and from \textit{AutomatedSOS} or \textit{Track4Run} applications. In particular:
+\begin{itemize}
+  \item The user can change some of his personal informations: his city of residence and his occupation.
+  \item The user can see the data acquired on him until this moment;
+  \item The user can see the past received requests about seeing his personal data;
+  \item The user can see the pending received requests about seeing his personal data;
+  \item The user can change his password;
+  \item The user can delete his profile.
+\end{itemize}
+
+\myparagraph{Scenario 1}
+Chiara has just finished her studies and has just found a new job, so she wants to update the occupation field on her profile. She opens \textit{Data4Help} web site from her personal computer, she logs in and goes in her personal area. Then she clicks on "\textit{Edit profile}" button and the system gives her the possibility to change either her city of residence or her occupation. She changes her occupation from student to emplyed and she clicks on "\textit{Submit changes}" button.
+
+\myparagraph{Scenario 2}
+Matteo has just finished the registration process, but he doesn't like the password he was given by the system and he wants to change it. He opens \textit{AutomatedSOS} application on his smartphone, logs in and accesses to his personal profile. Now he clicks on "\textit{Change password}" button and inserts the old password and the new password twice as required by the system. Finally he clicks on "\textit{Submit changes}" button.
+
+\myparagraph{Scenario 3}
+Aldo moved to USA and so he decides to delete his profile on \textit{Track4Run} because he was used to use it to organize amateur runs with his friends, but now he won't be able to do it anymore. He opens \textit{Track4Run} application on his smartphone, logs in and accesses to his personal profile. Now he clicks on "\textit{Delete profile}" button and confirm his choice. The system removes all Aldo's information from the database.
+
+\myparagraph{Scenario 4}
+CONNECT A DEVICE
+
+\myparagraph{Use Case}
+The Profile visualization use case is analyzed in Table \ref{table:profileVisualizationTable}. \\
+The Modify personal information use case is analyzed in Table \ref{table:modifyPersonalInformationTable}. \\
+The Change password use case is analyzed in Table \ref{table:changePassowrdTable}. \\
+The Delete profile use case is analyzed in Table \ref{table:deleteProfileTable} \\
+
+\myparagraph{Functional requirements}
+\begin{enumerate}
+  \item The system must let the user view his personal profile at anytime;
+  \item The system must let the user upload/change his personal information at anytime;
+  \item The system must let the user change his password only if the old one has been inserted correctly;
+  \item The system must not let the user change his password if the new one has not been inserted twice;
+  \item The system must let the user change the device connected to his profile at anytime;
+  \item The system must let the user delete his profile at anytime;
+  \item The system must require to confirm a deleting request;
+  \item The system must not delete a profile if the choice isn't confirmed by the user;
+  \item The system must let the user leave the editing profile process at anytime;
+  \item The system must delete all user's personal information from its database when the user decides to delete his profile;
+\end{enumerate}
+
+\begin{center}
+\begin{table}
+\begin{tabular}{ | l | p{0.75\linewidth} | }
+  \hline
+    Actor & \textbf{User} \\ \hline
+    Goal & \textbf{[G.3]} \\ \hline
+    Input Condition & A \textbf{User} wants to view his personal profile\\ \hline
+    Event Flow & \begin{minipage}[t]{0.7\textwidth}
+      \begin{enumerate}
+        \item The \textbf{User} opens \textit{Data4Help} web site or \textit{AutomatedSOS} or \textit{Track4Run} applications;
+        \item The \textbf{User} logs in;
+        \item The \textbf{User} accesses to his personal area;
+        \item The system shows the user the data acquired on him and his pending and past requests.
+      \end{enumerate}
+    \smallskip
+  \end{minipage} \\ \hline
+  Output Condition & The \textbf{User} views his personal profile with all the related information\\ \hline
+  Exceptions & None \\ \hline
+\end{tabular}
+\caption{Profile visualization use case}
+\label{table:profileVisualizationTable}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}
+\begin{tabular}{ | l | p{0.75\linewidth} | }
+  \hline
+    Actor & \textbf{User} \\ \hline
+    Goal & \textbf{[G.3]} \\ \hline
+    Input Condition & A \textbf{User} wants to modify his personal information\\ \hline
+    Event Flow & \begin{minipage}[t]{0.7\textwidth}
+      \begin{enumerate}
+        \item The \textbf{User} opens \textit{Data4Help} web site or \textit{AutomatedSOS} or \textit{Track4Run} applications;
+        \item The \textbf{User} logs in;
+        \item The \textbf{User} accesses to his personal area;
+        \item The \textbf{User} clicks on "\textit{Edit profile}" button;
+        \item The system shows the \textbf{User} the modifiable information;
+        \item The \textbf{User} modifies what he wants;
+        \item The \textbf{User} click on "\textit{Submit changes}" button;
+      \end{enumerate}
+    \smallskip
+  \end{minipage} \\ \hline
+  Output Condition & The \textbf{User}'s information are modified\\ \hline
+  Exceptions & \begin{minipage}[t]{0.7\textwidth}
+    \begin{itemize}
+      \smallskip
+      \item If the \textbf{User} decides to leave the editing process this one is aborted.
+    \end{itemize}
+    \smallskip
+  \end{minipage}  \\ \hline
+\end{tabular}
+\caption{Modify personal information use case}
+\label{table:modifyPersonalInformationTable}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}
+\begin{tabular}{ | l | p{0.75\linewidth} | }
+  \hline
+    Actor & \textbf{User} \\ \hline
+    Goal & \textbf{[G.3]} \\ \hline
+    Input Condition & A \textbf{User} wants to change his password\\ \hline
+    Event Flow & \begin{minipage}[t]{0.7\textwidth}
+      \begin{enumerate}
+        \item The \textbf{User} opens \textit{Data4Help} web site or \textit{AutomatedSOS} or \textit{Track4Run} applications;
+        \item The \textbf{User} logs in;
+        \item The \textbf{User} accesses to his personal area;
+        \item The \textbf{User} clicks on "\textit{Change password}" button;
+        \item The system shows the \textbf{User} the fields in which he has to insert the old and the new password;
+        \item The \textbf{User} inserts the old password;
+        \item The \textbf{User} inserts the new password twice;
+        \item The \textbf{User} click on "\textit{Submit changes}" button;
+      \end{enumerate}
+    \smallskip
+  \end{minipage} \\ \hline
+  Output Condition & The \textbf{User}'s password is modified\\ \hline
+  Exceptions & \begin{minipage}[t]{0.7\textwidth}
+    \begin{itemize}
+      \smallskip
+      \item If functional requirement 3 is not satisfied the system goes back to step 6;
+      \item If functional requirement 4 is not satisfied the system goes back to step 7;
+      \item If the \textbf{User} decides to leave the editing process this one is aborted.
+    \end{itemize}
+    \smallskip
+  \end{minipage}  \\ \hline
+\end{tabular}
+\caption{Change password use case}
+\label{table:changePassowrdTable}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}
+\begin{tabular}{ | l | p{0.75\linewidth} | }
+  \hline
+    Actor & \textbf{User} \\ \hline
+    Goal & \textbf{[G.3]} \\ \hline
+    Input Condition & A \textbf{User} wants to delete his profile\\ \hline
+    Event Flow & \begin{minipage}[t]{0.7\textwidth}
+      \begin{enumerate}
+        \item The \textbf{User} opens \textit{Data4Help} web site or \textit{AutomatedSOS} or \textit{Track4Run} applications;
+        \item The \textbf{User} logs in;
+        \item The \textbf{User} accesses to his personal area;
+        \item The \textbf{User} clicks on "\textit{Delete profile}" button;
+        \item The \textbf{User} confirms his choice;
+      \end{enumerate}
+    \smallskip
+  \end{minipage} \\ \hline
+  Output Condition & The \textbf{User}'s  profile is deleted\\ \hline
+  Exceptions & \begin{minipage}[t]{0.7\textwidth}
+    \begin{itemize}
+      \smallskip
+      \item If functional requirement 8 is not satisfied the deleting process is aborted;
+      \item If the \textbf{User} decides to leave the deleting process this one is aborted.
+    \end{itemize}
+    \smallskip
+  \end{minipage}  \\ \hline
+\end{tabular}
+\caption{Delete profile use case}
+\label{table:deleteProfileTable}
+\end{table}
+\end{center}

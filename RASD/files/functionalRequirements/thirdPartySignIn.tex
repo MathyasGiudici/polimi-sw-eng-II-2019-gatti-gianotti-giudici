@@ -3,6 +3,7 @@ Any third party who wants to subscribe to \textit{Data4Help} must go through the
 \begin{enumerate}
   \item The third party which aim to become a new member is required to fill in all the fields in which it is asked for informations about the company itself like: its business name, its VAT number, its legal address, its billing address, its corporate e-mail address and the sector in which it operates;
   \item The third party must also provide the data of its legal representative, in particular his name, his surname, his office address, his phone number, his e-mail address and his fiscal code;
+  \item The third party must select the preferred payment method;
   \item The third party must accept different conditions:
     \begin{itemize}
       \item It must assume responsibility in case of unauthorized disclosure of user data;
@@ -24,6 +25,7 @@ The Third Party Sign In is analyzed in Table \ref{table:thirdPartySignInTable}.
   \item The system must not accept a business name that is already used by an already registered third party;
   \item The system must not accept a VAT number that is already used by an already registered third party;
   \item The system must not authorize the registration untill all the fields are filled up;
+  \item The system must not authorize the registration untill the preferred payment method has been selected;
   \item The system must not authorize the registration untill the required conditions aren't accepted;
   \item The system must send the confirmation e-mail to the inserted e-mail address with the password when "\textit{Submit}" button is clicked only if all the inserted data are acceptable and the required conditions has been accepted;
   \item The system must let the \textbf{Special user to be} leave the registration process at anytime.
@@ -42,6 +44,7 @@ The Third Party Sign In is analyzed in Table \ref{table:thirdPartySignInTable}.
         \item The \textbf{Special user to be} clicks on "\textit{Sign in (Third party)}" button;
         \item The system shows the form the \textbf{Special user to be} has to fill up;
         \item The \textbf{Special user to be} fills up the form with its business name, its VAT number, its legal address, its billing address, its corporate e-mail address and the sector in which it operates;
+        \item The \textbf{Special user to be} selects the preferred payment method;
         \item The \textbf{Special user to be} accepts the required conditions;
         \item The \textbf{Special user to be} clicks on "\textit{Submit}" button;
         \item The system checks wheter the inserted information are acceptable or not;
@@ -55,6 +58,7 @@ The Third Party Sign In is analyzed in Table \ref{table:thirdPartySignInTable}.
       \smallskip
       \item If functional requirements 1,2,3 or 4 are not satisfied the process goes back to step 4;
       \item If functional requirement 5 is not satisfied the process goes back to step 5;
+      \item If functional requirement 6 is not satisfied the process goes back to step 6;
       \item If the \textbf{Special user to be} decides to leave the registration process this one is aborted.
     \end{itemize}
     \smallskip
