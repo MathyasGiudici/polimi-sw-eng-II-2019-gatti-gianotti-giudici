@@ -1,0 +1,52 @@
+\myparagraph{Purpose}
+The main goal of the login feature is to allow the access to one of the services of \textit{Data4Help} to any registered user (\textit{Individual User} or \textit{Third Party User}). To access to an application the user has to fill out the credential form where e-mail and password are required. Moreover, there is a \textit{Forgot password?} section where a user could recover his/her password via e-mail. An e-mail is sended to the user with a temporary password that user will change once logged in.
+
+\myparagraph{Scenario 1}
+Francesca loves running. When she has heard about \textit{Track4Run} application she downloaded it immediately. Her friend Clara told her about a charity run for the following weekend, so Francesca opened \textit{Track4Run}, she clicked on \textit{Log in}. She inserted her e-mail address and password and clicked on the login button. Everything was correct, so she entered in the system and could enroll the run.
+
+\myparagraph{Scenario 2}
+One year ago Tommaso, Aldo's grandchild, installed on Aldo’s phone \textit{AutomatedSOS}. Yesterday, Aldo bought a new phone, he downloaded the app but he forgot his password so he couldn’t log in the application. He clicked on \textit{Forgot password?} he inserted his e-mail address and clicked on \textit{Recover my password}. He received a mail with the provisional password and he became able to access to the system. After the access he was forced to change his provisional password into a new one.
+
+\myparagraph{Use Case}
+The Log In is analyzed in Table \ref{table:logInInTable}.
+
+\myparagraph{Functional requirements}
+\begin{enumerate}
+  \item The \textbf{User} (that could be \textit{Individual User} or \textit{Third Party User}) must be already registered in the system in order to log in successfully;
+  \item The \textbf{User} has to remember his/her e-mail address and password in order to log in successfully;
+  \item The password inserted by the \textbf{User} must correspond with the e-mail address;
+  \item If the \textbf{User} inserts wrong credential could not be able to access to the system;
+  \item If the \textbf{User} clicks on \textit{Recover my password}, the system sends a new password to the \textbf{User} e-mail address if and only if the e-mail address is valid and registered to the system;
+  \item After a password restoring through \textit{Forgot password?} operations, the system must allow the access with the temporary password and then it has to force the \textbf{User} to change the temporary password into a new one.
+\end{enumerate}
+
+\begin{center}
+\begin{table}
+\begin{tabular}{ | l | p{0.75\linewidth} | }
+  \hline
+    Actor & \textbf{User} that could be \textit{Individual User} or \textit{Third Party User} \\ \hline
+    Goal & \textbf{[G.2]} \\ \hline
+    Input Condition & The \textbf{User} is already registered to the system and want to log in \\ \hline
+    Event Flow & \begin{minipage}[t]{0.7\textwidth}
+      \begin{enumerate}
+        \item The \textbf{User} open one of the applications (\textit{Data4Help}, \textit{AutomatedSOS} or \textit{Track4Run});
+        \item The \textbf{User} clicks on \textit{Log In} button;
+        \item The \textbf{User} fills up the fields with the e-mail address, provided in the registration phase) and password;
+        \item The \textbf{User} clicks on the login button.
+      \end{enumerate}
+    \smallskip
+  \end{minipage} \\ \hline
+  Output Condition & The system allows the login of the \textbf{User} and loads the dashboard of the \textbf{User}. \\ \hline
+  Exceptions & \begin{minipage}[t]{0.7\textwidth}
+    \begin{itemize}
+      \smallskip
+      \item If functional requirements 1 or 3 are not satisfied the system notifies the \textbf{User} with an error message and the process goes back to step 3;
+      \item If the \textbf{User} inserts wrong credentials for three times the system notifies him/her with an e-mail.
+    \end{itemize}
+    \smallskip
+  \end{minipage}  \\ \hline
+\end{tabular}
+\caption{Log In use case}
+\label{table:logInInTable}
+\end{table}
+\end{center}
