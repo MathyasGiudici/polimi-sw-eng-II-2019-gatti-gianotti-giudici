@@ -24,7 +24,7 @@ The \textit{First Individual Log In} use case is analyzed in Table \ref{table:fi
   \item If the \textbf{Individual User} inserts wrong credential could not be able to access to the system;
   \item If the \textbf{Individual User} clicks on \textit{Forgot password?}, the system sends a new password to the \textbf{Individual User} e-mail address if and only if the e-mail address is valid and registered to the system;
   \item After a password restoring through \textit{Forgot password?} operations, the system must allow the access with the temporary password and then it has to force the \textbf{Individual User} to change the temporary password into a new one;
-  \item The inserted matching number by the \textbf{Individual User} must correspond with the visualized on the device's screen.
+  \item (First access only) The inserted matching number by the \textbf{Individual User} must correspond with the visualized on the device's screen.
 \end{enumerate}
 
 \begin{center}
@@ -67,6 +67,7 @@ The \textit{First Individual Log In} use case is analyzed in Table \ref{table:fi
     Input Condition & The \textbf{Individual User} is already registered to the system and want to log in \\ \hline
     Event Flow & \begin{minipage}[t]{0.7\textwidth}
       The first part of the event flow is already explained in Table \ref{table:genericIndividualLogInInTable}.
+      \smallskip
       \begin{enumerate}
         \item The \textbf{Individual User} has to match a device to \textit{AutomatedSOS} or \textit{Track4Run} application;
         \item The \textbf{Individual User} switchs on the bluetooth in each devices;

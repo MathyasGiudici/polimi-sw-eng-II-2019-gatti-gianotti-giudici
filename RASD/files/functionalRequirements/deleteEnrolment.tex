@@ -1,0 +1,48 @@
+\myparagraph{Purpose}
+As we have the possibilty in \textit{Track4Run} for a runner to be able to enrol a \textit{Run}. The system must be able to manage the decision of a runner to delete his/her enrolment.
+
+\myparagraph{Scenario}
+Giulia is enrolled for the annual \textit{Run} of her neighborhood. The enrolment management was made through \textit{Track4Run} application. Unfortunately for the day of the \textit{Run} Giulia will be in Florence for an important work meeting.
+When Giulia received the meeting mail she took her phone, she opened \textit{Track4Run} app and she clicked on \textit{Enrolled Run}.
+The only row in the table was the annual \textit{Run}, Giulia clicked on it and the she clicked on \textit{Delete Enrolment} button.
+After that Giulia received a confirmation e-mail.
+
+\myparagraph{Use Case}
+The \textit{Delete an Enrolment of a Run} use case is analyzed in Table \ref{table:deleteEnrolmentTable}.
+
+\myparagraph{Functional requirements}
+\begin{enumerate}
+  \item The system must not show \textit{Run}, in \textit{Enrolled Run} section, in which a \textbf{Runner} is not enrolled.
+\end{enumerate}
+
+\begin{center}
+\begin{table}
+\begin{tabular}{ | l | p{0.75\linewidth} | }
+  \hline
+    Actor & \textbf{Runner} \\ \hline
+    Goal & \textbf{[G.13]} \\ \hline
+    Input Condition & The \textbf{Runner} want to delete an enrolment of \textit{Run} \\ \hline
+    Event Flow & \begin{minipage}[t]{0.7\textwidth}
+      \begin{enumerate}
+        \item The \textbf{Runner} open \textit{Track4Run} service through mobile application and he/she log in;
+        \item The \textbf{Runner} clicks on \textit{Enrolled Run} button;
+        \item The \textbf{Runner} looks for a \textit{Run} through the search bar or looking to the proposed;
+        \item The \textbf{Runner} clicks on the \textit{Run} he/she wants to delete the enrolment;
+        \item The \textbf{Runner} clicks on the \textit{Delete Enrolment}.
+      \end{enumerate}
+    \smallskip
+  \end{minipage} \\ \hline
+  Output Condition & The system deletes the enrolment registration of the \textbf{Runner} and it notifies him/her with a confirmation e-mail. \\ \hline
+  Exceptions & \begin{minipage}[t]{0.7\textwidth}
+    \begin{itemize}
+      \smallskip
+      \item The \textbf{Runner} looks for a \textit{Run} that is not present in the system, the system notifies the \textbf{Runner} with a warning message;
+      \item If the \textbf{Runner} decides to leave the elimination process this one is aborted.
+    \end{itemize}
+    \smallskip
+  \end{minipage}  \\ \hline
+\end{tabular}
+\caption{\textit{Delete an Enrolment to a Run} use case}
+\label{table:deleteEnrolmentTable}
+\end{table}
+\end{center}

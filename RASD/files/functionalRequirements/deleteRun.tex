@@ -1,0 +1,48 @@
+\myparagraph{Purpose}
+As we have the possibilty in \textit{Track4Run} for an organizer to be able to create a new \textit{Run}. The system must be able to manage the decision of an organizer to delete a \textit{Run}.
+
+\myparagraph{Scenario}
+Alice want to delete a \textit{Run} that she had organized for the next month, because the weather forecast are not the optimal.
+In order to avoid a rainy day Alice opened \textit{Track4Run} web-site, she logged in and she clicked on \textit{Manage a Run}.
+On top of the table there was the \textit{Run} that she was looking for, she clicked on it and when the \textit{Run} was opened she clicked on \textit{Delete}.
+After that a mail arrived in Alice mailbox, it was the confirmation of the elimination of the \textit{Run}.
+
+\myparagraph{Use Case}
+The \textit{Delete a Run} use case is analyzed in Table \ref{table:deleteRunTable}.
+
+\myparagraph{Functional requirements}
+\begin{enumerate}
+  \item The system must not show \textit{Run}, in \textit{Manage a Run} section, in which an \textbf{Organizer} is not the owner.
+\end{enumerate}
+
+\begin{center}
+\begin{table}
+\begin{tabular}{ | l | p{0.75\linewidth} | }
+  \hline
+    Actor & \textbf{Organizer} \\ \hline
+    Goal & \textbf{[G.11]} \\ \hline
+    Input Condition & The \textbf{Organizer} want to delete a \textit{Run} \\ \hline
+    Event Flow & \begin{minipage}[t]{0.7\textwidth}
+      \begin{enumerate}
+        \item The \textbf{Organizer} open \textit{Track4Run} service through web application and he/she log in;
+        \item The \textbf{Organizer} clicks on \textit{Manage a Run} button;
+        \item The \textbf{Organizer} looks for a \textit{Run} through the search bar or looking to the proposed;
+        \item The \textbf{Organizer} clicks on the \textit{Run} he/she wants to delete;
+        \item The \textbf{Organizer} clicks on the \textit{Delete}.
+      \end{enumerate}
+    \smallskip
+  \end{minipage} \\ \hline
+  Output Condition & The system delete the \textit{Run} and it notifies him/her with a confirmation e-mail. Moreover the system must notify all enrolled people in the \textit{Run} with a e-mail and delete his/her enrolment. \\ \hline
+  Exceptions & \begin{minipage}[t]{0.7\textwidth}
+    \begin{itemize}
+      \smallskip
+      \item The \textbf{Organizer} looks for a \textit{Run} that is not present in the system or he/she is not the owner, the system notifies the \textbf{Organizer} with a warning message;
+      \item If the \textbf{Organizer} decides to leave the elimination process this one is aborted.
+    \end{itemize}
+    \smallskip
+  \end{minipage}  \\ \hline
+\end{tabular}
+\caption{\textit{Delete a Run} use case}
+\label{table:deleteRunTable}
+\end{table}
+\end{center}
