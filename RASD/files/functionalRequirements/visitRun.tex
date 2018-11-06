@@ -1,23 +1,26 @@
 \myparagraph{Purpose}
-For each \textit{Run}, that is present in the system, a \textit{Specator} or an \textit{User} must be able to watch it.
-The \textit{Spectator} or the \textit{User} could follow the positon, on the \textit{Run} path, of any person that has enrolled the \textit{Run} and also he/she must be able to look at the placing table of the runners.
+For each \textit{Run} that is present in the system, a \textit{Specator} or an \textit{User} must be able to watch it.
+The \textit{Spectator} or the \textit{User} can follow the positon on the \textit{Run} path of any person that is enrolled in it and can see the placing table of the runners.
 
 \myparagraph{Scenario 1}
-Marco is a professional runner and play for a team, unfortunately one month ago he broke his leg. Today there is an important \textit{Run} and his teammates are enrolled. At 4 p.m., Marco will open \textit{Track4Run} app on his mobile phone, in the dashboard he will look for the today's \textit{Run},he will click on it and immediately he will be "in the \textit{Run}";
-he could follow his friend on the path (watching the position on the map) and clicking on the \textit{Placings} button he could see the current placing table.
+Marco is a professional runner and plays for a team, unfortunately one month ago he broke his leg. Today there is an important \textit{Run} and his teammates are enrolled in. At 4 p.m., Marco opens \textit{Track4Run} app on his mobile phone, looks for the today's \textit{Run} in the dashboard, clicks on it and immediately he finds himself "in the \textit{Run}";
+he follows his friend on the path (watching the position on the map) and clicking on the \textit{Placings} button he also sees the current placing table.
 
 \myparagraph{Scenario 2}
-Andrea is a sport event planner. With his coworker Luca, they planned the "HOLI FUN Run" of the 7\textsuperscript{th} of July in Cremona. In the \textit{Run}'s day, Andrea was in France for a meeting so when the meeting ends he went back to his hotel, he opend his laptop and he went to \textit{Track4Run} web page, he searched, through the search bar, the \textit{Run} that unfortunately was just ended, however he was very happy because looking at the placing table he saw that his friend Marta won.
+Andrea is a sport event planner. He planned with his coworker Luca the "HOLI FUN Run" of the 7\textsuperscript{th} of July in Cremona. On the \textit{Run}'s day, Andrea was in France for a meeting so when the meeting ends he went back to his hotel, opened his laptop and went to \textit{Track4Run} web page, searched through the search bar the \textit{Run} that unfortunately was just ended. However he was very happy because looking at the placing table he saw that his friend Marta won.
 
 \myparagraph{Use Case}
 The \textit{Run Watching} use case is analyzed in Table \ref{table:visitRunTable}.
 
+\myparagraph{Mockup}
+The \textit{Run Watching} mockup is shown in Figure \ref{img:runWatchingMockup}.
+
 \myparagraph{Functional requirements}
 \begin{enumerate}
-  \item \textbf{Generic User} (that could be \textit{Specator} or \textit{User}) must be able to watch a \textit{Run} that is still in progress or ended;
+  \item A \textbf{Generic user} (that could be \textit{Specator} or \textit{User}) must be able to watch a \textit{Run} that is still in progress or ended;
   \item The system must continuously check the positon of the runner in order to keep the map and the placing table updated;
-  \item The system must be able to show all the runners that enrolled the \textit{Run} and their GPS position is enabled and nearby the path;
-  \item The system must notify the end of a \textit{Run} to a \textbf{Specator} or an \textbf{User} that is watching it;
+  \item The system must be able to show all the runners enrolled in the \textit{Run} thanks to their GPS position;
+  \item The system must notify the end of a \textit{Run} to a \textbf{Generic user};
   \item The system must be able to compute the placing table through the GPS position of the runner enrolled in the \textit{Run}.
 \end{enumerate}
 
@@ -25,14 +28,14 @@ The \textit{Run Watching} use case is analyzed in Table \ref{table:visitRunTable
 \begin{table}
 \begin{tabular}{ | l | p{0.75\linewidth} | }
   \hline
-    Actor & \textbf{Generic User} that could be \textit{Specator} or \textit{User} \\ \hline
+    Actor & \textbf{Generic User} (that could be \textit{Specator} or \textit{User}) \\ \hline
     Goal & \textbf{[G.14]} and \textbf{[G.15]} \\ \hline
-    Input Condition & The \textbf{Generic User} want to watch a \textit{Run} \\ \hline
+    Input Condition & A \textbf{Generic User} wants to watch a \textit{Run} \\ \hline
     Event Flow & \begin{minipage}[t]{0.7\textwidth}
       \begin{enumerate}
-        \item The \textbf{Generic User} open \textit{Track4Run} service through mobile application or web application;
-        \item The \textbf{Generic User} clicks on \textit{Watch a Run} button;
-        \item The \textbf{Generic User} looks for a \textit{Run} through the search bar or looking to the proposed;
+        \item The \textbf{Generic User} opens \textit{Track4Run} service through mobile application or web application;
+        \item The \textbf{Generic User} clicks on the \textit{Watch a Run} button;
+        \item The \textbf{Generic User} looks for a \textit{Run} through the search bar or looking to the proposed ones;
         \item The \textbf{Generic User} clicks on the \textit{Run} he/she wants to watch.
       \end{enumerate}
     \smallskip
@@ -41,7 +44,7 @@ The \textit{Run Watching} use case is analyzed in Table \ref{table:visitRunTable
   Exceptions & \begin{minipage}[t]{0.7\textwidth}
     \begin{itemize}
       \smallskip
-      \item The \textbf{Generic User} looks for a \textit{Run} that is not present in the system, the system notifies the \textbf{Generic User} with a warning message;
+      \item If the \textbf{Generic User} looks for a \textit{Run} that is not present in the system, the system notifies the \textbf{Generic User} with a warning message;
       \item If the connection of the \textbf{Generic User} application is lost and the system couldn't be able to recover it the process goes back to step 3.
     \end{itemize}
     \smallskip
@@ -51,3 +54,13 @@ The \textit{Run Watching} use case is analyzed in Table \ref{table:visitRunTable
 \label{table:visitRunTable}
 \end{table}
 \end{center}
+
+\begin{figure}
+\begin{center}
+  \includegraphics[width=\textwidth]{img/mockup/VisitRun.png}
+  \hspace{0.05\linewidth}
+  \centering
+  \caption{\textit{Run Watching} mockup}
+  \label{img:runWatchingMockup}
+\end{center}
+\end{figure}

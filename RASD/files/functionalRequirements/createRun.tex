@@ -1,27 +1,30 @@
 \myparagraph{Purpose}
-Very important feature of \textit{Track4Run} is the possibility for a \textit{Organizer} to be able to create a new \textit{Run}.
-To create a \textit{Run} an \textit{Organizer} must define:
+A very important feature of \textit{Track4Run} is the possibility for an \textit{Organizer} to create a new \textit{Run} defining:
 \begin{itemize}
+  \item The name of the \textit{Run};
   \item The path of the \textit{Run} through an intercative tool;
   \item The date of the \textit{Run};
   \item The maximum number of participants to the \textit{Run};
-  \item The expiration date to enroll the \textit{Run};
+  \item The expiration date to enroll in the \textit{Run};
 \end{itemize}
 
 \myparagraph{Scenario}
-Massimo want to organize a charity \textit{Run} in his little town. He is already registered to \textit{Track4Run} as a Runner. After he has done all permission he goes to \textit{Track4Run} web site.
-With the same credential of the mobile application he logged in the system and in the dashboard he clicked on \textit{Create a Run}. Massimo set the path trought the intercative tool, he fixed the date of the \textit{Run} and the missing fields. When everything was correct he clicked on the \textit{Create} button and the \textit{Run} went on-line.
-
+Massimo wants to organize a charity \textit{Run} in his little town. He is already registered to \textit{Track4Run} as a Runner. After he has recived all bureaucratic permissions he went to \textit{Track4Run} web site.
+With the same credential of the mobile application he logged in the system and in the dashboard he clicked on the "\textit{Create a Run}" button. Massimo set the path through the intercative tool, fixed the date of the \textit{Run} and the missing fields. When everything was completed he clicked on the "\textit{Create}" button and the \textit{Run} went on-line.
 
 \myparagraph{Use Case}
-The \textit{Create a Run} use case is analyzed in Table \ref{table:createRunTable}.
+The \textit{Create A Run} use case is analyzed in Table \ref{table:createRunTable}.
+
+\myparagraph{Mockup}
+The \textit{Create A Run} mockup is shown in Figure \ref{img:createRunMockup}.
 
 \myparagraph{Functional requirements}
 \begin{enumerate}
-  \item The system must not accept \textit{Run} with date less than or equal to the current one;
-  \item The system must not accept \textit{Run} with expiration date less than or equal to the current one;
-  \item The system must not accept \textit{Run} with maximum nuber of participants less than or equal to 1.
-  \item The system must not accept \textit{Run} with a path duplication greater or equal to the 80 percent in the same date of the new one;
+  \item The system must not accept a \textit{Run} with date less than or equal to the current one;
+  \item The system must not accept a \textit{Run} with expiration date less than or equal to the current one;
+  \item The system must not accept a \textit{Run} with maximum number of participants less than or equal to 1.
+  \item The system must not accept a \textit{Run} with a path duplication greater or equal to the 50 percent in the same date of an existent one;
+  \item The system must let the \textbf{Organizer} leave the creation process at anytime.
 \end{enumerate}
 
 \begin{center}
@@ -30,28 +33,38 @@ The \textit{Create a Run} use case is analyzed in Table \ref{table:createRunTabl
   \hline
     Actor & \textbf{Organizer} \\ \hline
     Goal & \textbf{[G.10]} \\ \hline
-    Input Condition & The \textbf{Organizer} want to create a new \textit{Run} \\ \hline
+    Input Condition & The \textbf{Organizer} wants to create a new \textit{Run} \\ \hline
     Event Flow & \begin{minipage}[t]{0.7\textwidth}
       \begin{enumerate}
-        \item The \textbf{Organizer} open \textit{Track4Run} service through web application and he/she log in;
-        \item The \textbf{Organizer} clicks on \textit{Create a Run} button;
-        \item The \textbf{Organizer} inserts path, date, expiration date and maximum number of participants;
-        \item The \textbf{Organizer} clicks on the \textit{Create} button;
+        \item The \textbf{Organizer} opens \textit{Track4Run} service through web application and he/she log in;
+        \item The \textbf{Organizer} clicks on the "\textit{Create a Run}" button;
+        \item The \textbf{Organizer} inserts path, date, expiration date and maximum number of participants of the \textit{Run};
+        \item The \textbf{Organizer} clicks on the "\textit{Create}" button;
       \end{enumerate}
     \smallskip
   \end{minipage} \\ \hline
-  Output Condition & The system registers the new \textit{Run} and it notifies him/her with a confirmation e-mail. \\ \hline
+  Output Condition & The system registers the new \textit{Run} and it notifies the \textbf{Organizer} with a confirmation e-mail. \\ \hline
   Exceptions & \begin{minipage}[t]{0.7\textwidth}
     \begin{itemize}
       \smallskip
-      \item If functional requirements 1, 2, 3 or 4 are not satisfied the system notifies the \textbf{Organizer} with an error message and the process goes back to step 3;
+      \item If functional requirements 1, 2, or 3 are not satisfied the system notifies the \textbf{Organizer} with an error message and the process goes back to step 3;
       \item In order to prevent functional requirements 4 failure, during the building phase of the path the system continuously checks satisfaction and when the functional requirement is not satisfied it notifies the \textbf{Organizer} with a warning;
       \item If the \textbf{Organizer} decides to leave the creation process this one is aborted.
     \end{itemize}
     \smallskip
   \end{minipage}  \\ \hline
 \end{tabular}
-\caption{\textit{Create a Run} use case}
+\caption{\textit{Create A Run} use case}
 \label{table:createRunTable}
 \end{table}
 \end{center}
+
+\begin{figure}
+\begin{center}
+  \includegraphics[width=\textwidth]{img/mockup/CreateRun.png}
+  \hspace{0.05\linewidth}
+  \centering
+  \caption{\textit{Create A Run} mockup}
+  \label{img:createRunMockup}
+\end{center}
+\end{figure}
