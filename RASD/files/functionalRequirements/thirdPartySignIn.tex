@@ -19,6 +19,9 @@ PharmaAnalisi SPA wants to acquire data of a group of young people in order to d
 \myparagraph{Use Case}
 The \textit{Third Party Sign In} use case is analyzed in Table \ref{table:thirdPartySignInTable}.
 
+\myparagraph{Activity Diagram}
+The \textit{Third Party Sign In} activity diagram is shown in Figure \ref{img:specialSignInActivityDiagram}.
+
 \myparagraph{Mockup}
 The \textit{Third Party Sign In} mocukp is shown in Figure \ref{img:thirdPartySignInMockup}.
 
@@ -34,10 +37,9 @@ The \textit{Third Party Sign In} mocukp is shown in Figure \ref{img:thirdPartySi
   \item The system must let the \textbf{Special user to be} leave the registration process at anytime.
 \end{enumerate}
 
-\clearpage
-\thispagestyle{empty}
 \begin{center}
-\begin{table}
+\begin{table}[H]
+  \scalebox{0.9}{
 \begin{tabular}{ | l | p{0.75\linewidth} | }
   \hline
     Actor & \textbf{Special user to be} \\ \hline
@@ -68,14 +70,23 @@ The \textit{Third Party Sign In} mocukp is shown in Figure \ref{img:thirdPartySi
     \end{itemize}
     \smallskip
   \end{minipage}  \\ \hline
-\end{tabular}
+\end{tabular}}
 \caption{\textit{Third Party Sign In} use case}
 \label{table:thirdPartySignInTable}
 \end{table}
 \end{center}
-\clearpage
 
-\begin{figure}
+\begin{figure}[H]
+\begin{center}
+  \includegraphics[height=0.6\paperheight]{img/activity/SpecialSignIn.png}
+  \hspace{0.05\linewidth}
+  \centering
+  \caption{\textit{Third Party Sign In} activity diagram}
+  \label{img:specialSignInActivityDiagram}
+\end{center}
+\end{figure}
+
+\begin{figure}[H]
 \begin{center}
   \includegraphics[width=\textwidth]{img/mockup/ThirdParty_SingIn.png}
   \hspace{0.05\linewidth}

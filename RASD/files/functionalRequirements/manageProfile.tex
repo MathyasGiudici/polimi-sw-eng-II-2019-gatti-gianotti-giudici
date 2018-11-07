@@ -29,6 +29,16 @@ The \textit{Change Password} use case is analyzed in Table \ref{table:changePass
 The \textit{Change Device} use case is analyzed in Table \ref{table:changeDeviceTable}. \\
 The \textit{Delete Profile} use case is analyzed in Table \ref{table:deleteProfileTable} \\
 
+\myparagraph{Activity Diagram}
+The \textit{Profile Visualization} activity diagram is shown in Figure \ref{img:profileVisualizationActivityDiagram}. \\
+The \textit{Modify Personal Informations} activity diagram is shown in Figure \ref{img:modifyPersonalInformationsActivityDiagram}. \\
+The \textit{Change Password} activity diagram is shown in Figure \ref{img:changePasswordActivityDiagram}. \\
+The \textit{Change Device} activity diagram is similar to the one shown in Figure \ref{img:firstIndividualLoginActivityDiagram}. \\
+The \textit{Delete Profile} activity diagram is shown in Figure \ref{img:deleteProfileActivityDiagram}.
+
+\myparagraph{Mockup}
+The \textit{Manage Profile} mocukp is shown in Figure \ref{img:manageProfileMockup}.
+
 \myparagraph{Functional requirements}
 \begin{enumerate}
   \item The system must let the user view his/her personal profile at anytime;
@@ -43,9 +53,6 @@ The \textit{Delete Profile} use case is analyzed in Table \ref{table:deleteProfi
   \item The system must delete all user's personal information from its database when the user decides to delete his/her profile;
   \item The system must let the user change the connected device only if he/she inserts correctly on his/her smartphone the six digits number that is required;
 \end{enumerate}
-
-\myparagraph{Mockup}
-The \textit{Manage Profile} mocukp is shown in Figure \ref{img:manageProfileMockup}.
 
 \begin{center}
 \begin{table}[H]
@@ -70,6 +77,16 @@ The \textit{Manage Profile} mocukp is shown in Figure \ref{img:manageProfileMock
 \label{table:profileVisualizationTable}
 \end{table}
 \end{center}
+
+\begin{figure}[H]
+\begin{center}
+  \includegraphics{img/activity/ProfileVisualization.png}
+  \hspace{0.05\linewidth}
+  \centering
+  \caption{\textit{Profile visualization} activity diagram from user's point of view}
+  \label{img:profileVisualizationActivityDiagram}
+\end{center}
+\end{figure}
 
 \begin{center}
 \begin{table}[H]
@@ -99,10 +116,20 @@ The \textit{Manage Profile} mocukp is shown in Figure \ref{img:manageProfileMock
     \smallskip
   \end{minipage}  \\ \hline
 \end{tabular}
-\caption{\textit{Modify personal information} use case}
+\caption{\textit{Modify Personal Information} use case}
 \label{table:modifyPersonalInformationTable}
 \end{table}
 \end{center}
+
+\begin{figure}[H]
+\begin{center}
+  \includegraphics[height=0.6\paperheight]{img/activity/ModifyPersonalInformations.png}
+  \hspace{0.05\linewidth}
+  \centering
+  \caption{\textit{Modify Personal Information} activity diagram from user's point of view}
+  \label{img:modifyPersonalInformationsActivityDiagram}
+\end{center}
+\end{figure}
 
 \begin{center}
 \begin{table}[H]
@@ -136,10 +163,20 @@ The \textit{Manage Profile} mocukp is shown in Figure \ref{img:manageProfileMock
     \smallskip
   \end{minipage}  \\ \hline
 \end{tabular}
-\caption{\textit{Change password} use case}
+\caption{\textit{Change Password} use case}
 \label{table:changePassowrdTable}
 \end{table}
 \end{center}
+
+\begin{figure}[H]
+\begin{center}
+  \includegraphics[height=0.6\paperheight]{img/activity/ChangePassword.png}
+  \hspace{0.05\linewidth}
+  \centering
+  \caption{\textit{Change Password} activity diagram}
+  \label{img:changePasswordActivityDiagram}
+\end{center}
+\end{figure}
 
 \begin{center}
 \begin{table}[H]
@@ -207,12 +244,22 @@ The \textit{Manage Profile} mocukp is shown in Figure \ref{img:manageProfileMock
     \smallskip
   \end{minipage}  \\ \hline
 \end{tabular}
-\caption{\textit{Delete profile} use case}
+\caption{\textit{Delete Profile} use case}
 \label{table:deleteProfileTable}
 \end{table}
 \end{center}
 
-\begin{figure}
+\begin{figure}[H]
+\begin{center}
+  \includegraphics[height=0.6\paperheight]{img/activity/DeleteProfile.png}
+  \hspace{0.05\linewidth}
+  \centering
+  \caption{\textit{Delete Profile} activity diagram from user's point of view}
+  \label{img:deleteProfileActivityDiagram}
+\end{center}
+\end{figure}
+
+\begin{figure}[H]
 \begin{center}
   \includegraphics[width=\textwidth]{img/mockup/Manage_Profile.png}
   \hspace{0.05\linewidth}
