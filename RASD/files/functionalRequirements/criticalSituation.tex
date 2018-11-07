@@ -13,7 +13,10 @@ One day, while he was running, \textit{AutomatedSOS} went in an alerted status b
 Probably it was an abnormal device measure of life value, so \textit{AutomatedSOS} did not call the ambulance.
 
 \myparagraph{Use Case}
-The \textit{Critical Situation} use case is analyzed in Table \ref{table:criticalSituation}.
+The \textit{Critical Situation} use case is analyzed in Table \ref{table:criticalSituationTable}.
+
+\myparagraph{Activity Diagram}
+The \textit{Critical Situation} activity diagram is shown in Figure \ref{img:criticalSituationActivityDiagram}.
 
 \myparagraph{Mockup}
 The \textit{Critical Situation} mockup is shown in Figure \ref{img:criticalSituationMockup}.
@@ -28,7 +31,7 @@ The \textit{Critical Situation} mockup is shown in Figure \ref{img:criticalSitua
 \end{enumerate}
 
 \begin{center}
-\begin{table}
+\begin{table}[H]
 \begin{tabular}{ | l | p{0.75\linewidth} | }
   \hline
     Actor & \textbf{User} \\ \hline
@@ -47,17 +50,27 @@ The \textit{Critical Situation} mockup is shown in Figure \ref{img:criticalSitua
     \begin{itemize}
       \smallskip
       \item If functional requirement 2 is not satisfied the system notifies the ambulance about the detected position error and sends the last detected position;
-      \item If functional requirements 3 and 4 are not satisfied the system notifies the \textbf{User} with a warning message and invites the him/her to check the status and the conncetion of his/her devices.
+      \item If the system could not detect life parameters of the \textbf{User}, it invites him/her to check the status and the conncetion of his/her device with a warning message.
     \end{itemize}
     \smallskip
   \end{minipage}  \\ \hline
 \end{tabular}
 \caption{\textit{Critical Situation} use case}
-\label{table:criticalSituation}
+\label{table:criticalSituationTable}
 \end{table}
 \end{center}
 
-\begin{figure}
+\begin{figure}[H]
+\begin{center}
+  \includegraphics[height=0.6\paperheight]{img/activity/Alert.png}
+  \hspace{0.05\linewidth}
+  \centering
+  \caption{\textit{Critical Situation} activity diagram from system's point of view}
+  \label{img:criticalSituationActivityDiagram}
+\end{center}
+\end{figure}
+
+\begin{figure}[H]
 \begin{center}
   \includegraphics[width=\textwidth]{img/mockup/Critical_Situation.png}
   \hspace{0.05\linewidth}

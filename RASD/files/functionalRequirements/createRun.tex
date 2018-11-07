@@ -8,12 +8,15 @@ A very important feature of \textit{Track4Run} is the possibility for an \textit
   \item The expiration date to enroll in the \textit{Run};
 \end{itemize}
 
-\myparagraph{Scenario}
+\myparagraph{Scenario 1}
 Massimo wants to organize a charity \textit{Run} in his little town. He is already registered to \textit{Track4Run} as a Runner. After he has recived all bureaucratic permissions he went to \textit{Track4Run} web site.
 With the same credential of the mobile application he logged in the system and in the dashboard he clicked on the "\textit{Create a Run}" button. Massimo set the path through the intercative tool, fixed the date of the \textit{Run} and the missing fields. When everything was completed he clicked on the "\textit{Create}" button and the \textit{Run} went on-line.
 
 \myparagraph{Use Case}
 The \textit{Create A Run} use case is analyzed in Table \ref{table:createRunTable}.
+
+\myparagraph{Activity Diagram}
+The \textit{Create A Run} activity diagram is shown in Figure \ref{img:createRunActivityDiagram}.
 
 \myparagraph{Mockup}
 The \textit{Create A Run} mockup is shown in Figure \ref{img:createRunMockup}.
@@ -28,7 +31,7 @@ The \textit{Create A Run} mockup is shown in Figure \ref{img:createRunMockup}.
 \end{enumerate}
 
 \begin{center}
-\begin{table}
+\begin{table}[H]
 \begin{tabular}{ | l | p{0.75\linewidth} | }
   \hline
     Actor & \textbf{Organizer} \\ \hline
@@ -59,7 +62,17 @@ The \textit{Create A Run} mockup is shown in Figure \ref{img:createRunMockup}.
 \end{table}
 \end{center}
 
-\begin{figure}
+\begin{figure}[H]
+\begin{center}
+  \includegraphics[height=0.6\paperheight]{img/activity/CreateRun.png}
+  \hspace{0.05\linewidth}
+  \centering
+  \caption{\textit{Create A Run} activity diagram from user's point of view}
+  \label{img:createRunActivityDiagram}
+\end{center}
+\end{figure}
+
+\begin{figure}[H]
 \begin{center}
   \includegraphics[width=\textwidth]{img/mockup/CreateRun.png}
   \hspace{0.05\linewidth}
