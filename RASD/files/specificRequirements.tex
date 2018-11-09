@@ -1,15 +1,40 @@
 \section{External Interface Requirements}
 
 \subsection{User Interfaces}
-The user interfaces of \textit{AutomatedSOS} and \textit{Track4Run} must be intuitive and user-friendly in order to permit an easy interaction with all the services offered by the systems.\\
-Moreover both the application and the web site must support multiple languages.
+The user interfaces of \textit{AutomatedSOS} and \textit{Track4Run} must be intuitive and user-friendly in order to permit an easy interaction with all the services offered by the systems. The UI must be developed according to the three-click rule.\\
+Moreover both the application and the web site must support multiple languages.\\
+
+The Standard User and Special Users experiences are explained in Section \ref{userInterfaces}.
+
+\begin{figure}[H]
+\begin{minipage}{.3\textwidth}
+\centering
+\includegraphics[scale=.3]{img/mockup/d4h.png}
+\end{minipage}
+\begin{minipage}{.3\textwidth}
+\centering
+\includegraphics[scale=.3]{img/mockup/sos.png}
+\end{minipage}
+\begin{minipage}{.3\textwidth}
+\centering
+\includegraphics[scale=.3]{img/mockup/t4r.png}
+\end{minipage}
+\hspace{0.05\linewidth}
+\centering
+\caption{\textit{Data4Help}, \textit{AutomatedSOS} and \textit{Track4Run} logo}
+\label{img:logos}
+\end{figure}
+
 
 \subsection{Hardware Interfaces}
 The hardware interfaces of the system are huge explained in Section \ref{hardwareInterfaces}.
 
 \subsection{Software Interfaces}
+The software interfaces of the system are huge explained in Section \ref{softwareInterfaces}.
 
 \subsection{Communication Interfaces}
+The connection between clients and server and also the connection between server and payment handler must be done with the HTTPS protocol.\\
+In order to manage and visualize \textit{Run}, the system must be connected with Google API to use GoogleMaps services.
 
 \clearpage
 \section{Functional Requirements}
