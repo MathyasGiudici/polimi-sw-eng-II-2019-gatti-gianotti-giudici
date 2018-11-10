@@ -1,6 +1,7 @@
 open util/boolean
 
-//As in UNIX, time is represented as an offset in seconds from midnight (UTC) on January 1, 1970.
+//As in UNIX, time is represented as an offset in seconds
+//from midnight (UTC) on January 1, 1970.
 
 //String abstraction
 sig StringTM {}
@@ -8,7 +9,8 @@ sig StringTM {}
 //SIGNATURES
 
 //Standard user
-sig StandardUser {
+sig StandardUser
+{
 	email: one StringTM,
 	name: one StringTM,
 	surname: one StringTM,
@@ -19,7 +21,8 @@ sig StandardUser {
 }
 
 //Special user
-sig SpecialUser {
+sig SpecialUser
+{
 	corporateEmail: one StringTM,
 	businessName: one StringTM,
 	vat: one Int,
@@ -31,35 +34,41 @@ sig SpecialUser {
 }
 
 //Position
-sig Position {
+sig Position
+{
 	latitude: one Int,
 	longitude: one Int,
 }
 
-//Request for single user data
-sig SingleUserDataRequest {
+//Abstract data request
+abstract sig DataRequest
+{
 	accepted: one Bool,
-	user: one StandardUser,
-	specialUser: one SpecialUser,
+	date: one Int,
+	nDownload: one Int,
+	applicant: one SpecialUser,
 	payment: lone Payment,
 }
 {
 	one payment implies accepted=True
+	nDownload>=0
 }
 
-//Request for group users data
-sig GroupDataRequest {
-	user: some StandardUser,
-	specialUser: one SpecialUser,
-	accepted: one Bool,
-	payment: lone Payment,
-}
+//Request for single user data
+sig SingleUserDataRequest extends DataRequest
 {
-	one payment implies accepted=True
+	target: one StandardUser,
+}
+
+//Request for group data
+sig GroupDataRequest extends DataRequest
+{
+	target: some StandardUser,
 }
 
 //Address
-sig Address {
+sig Address
+{
 	country: one StringTM,
 	province: one StringTM,
 	city: one StringTM,
@@ -71,15 +80,32 @@ sig Address {
 }
 
 //Data of a run
-sig Run {
+sig Run
+{
+	runID: one Int,
 	name: one StringTM,
 	organizer: one StandardUser,
 	partecipants: set StandardUser,
 	route: set Position,
+	city: one StringTM,
+	date: one Int,
+	regDeadline: one Int,
+}
+{
+	regDeadline<=date
+}
+
+//Registration to a Run
+sig RunRegistration
+{
+	runner: one StandardUser,
+	registration: one Run,
+	date: one Int,
 }
 
 //Smartphone
-sig Smartphone {
+sig Smartphone
+{
 	smartphoneID: one Int,
 	bluetoothConnection: one Bool,
 	isWorking: one Bool,
@@ -98,13 +124,15 @@ sig Smartphone {
 }
 
 //SOSCall
-sig SOSCall {
+sig SOSCall
+{
 	callID: one Int,
 	date: one Int,
 }
 
 //Device
-sig Device {
+sig Device
+{
 	deviceID: one Int,
 	bluetoothConnection: one Bool,
 	isWorking: one Bool,
@@ -120,30 +148,37 @@ sig Device {
 }
 
 //Position Record
-sig PositionRecord {
+sig PositionRecord
+{
 	time: one Int,
 	position: one Position,
 }
 
 //Health Status Record
-sig HealthStatusRecord {
+sig HealthStatusRecord
+{
 	time: one Int,
 	healthStatus: one HealthStatus,
 }
 
 //Health Status
-sig HealthStatus {
+sig HealthStatus
+{
+	minPressure: one Int,
+	maxPressure: one Int,
 	heartbeat: one Int,
-	pulsation: one Int,
 	health: one Health,
 }
 {
+	maxPressure>=minPressure
+	maxPressure>=0
+	minPressure>=0
 	heartbeat>=0
-	pulsation>=0
 }
 
 //Payment
-sig Payment {
+sig Payment
+{
 	amount: one Int,
 	date: one Int,
 }
@@ -183,25 +218,37 @@ abstract sig Health {}
 
 //FACTS
 
+
 // Users can't have the same email address
 fact usersCannotHaveTheSameEmailAddress
 {
 	no u1, u2 : StandardUser | u1.email=u2.email and u1!=u2
-	no u1, u2 : SpecialUser | u1.corporateEmail=u2.corporateEmail and u1!=u2
-	no u1 : StandardUser, u2 : SpecialUser | u1.email = u2.corporateEmail
+	no u1, u2 : SpecialUser | u1.corporateEmail=u2.corporateEmail
+		and u1!=u2
+	no u1 : StandardUser, u2 : SpecialUser | 
+		u1.email = u2.corporateEmail
+}
+
+//No runs with same runID
+fact noRunsSameID
+{
+	no r1, r2 : Run | r1.runID=r2.runID and r1!=r2
 }
 
 //Bad health status implies a SOSCall within 5 seconds
 fact badHealthStatusImpliesASOSCallWithin5Seconds
 {
 	all h : HealthStatusRecord | h.healthStatus.health=Bad
-		implies (one c : SOSCall, u : StandardUser | c.date>=h.time and c.date<=h.time+5 and c in u.smartphone.sosCall)
+		implies (one c : SOSCall, u : StandardUser | c.date>=h.time
+			and c.date<=h.time+5 and c in u.smartphone.sosCall)
 }
 
 //No two SOSCall in the same moment for the same user
 fact noTwoSOSCallInSameMomentSameUser
 {
-	no c1, c2 : SOSCall, u1 : StandardUser | c1.date=c2.date and c1 in (u1.smartphone.sosCall) and c2 in (u1.smartphone.sosCall)
+	no c1, c2 : SOSCall, u1 : StandardUser | c1.date=c2.date
+		and c1 in (u1.smartphone.sosCall)
+			and c2 in (u1.smartphone.sosCall)
 }
 
 //No two or more SOSCall with same IDCAll
@@ -224,18 +271,20 @@ fact onlyAcceptedGroupRequestHaveaPayment
 		<=> (one s.payment)
 }
 
-//All SOSCalls have Bad health status record (no emergency call without need)
+//All SOSCalls have Bad health status record
 fact allSOSCallWithABadHealthStatusRecord
 {
 	all  c : SOSCall, u : StandardUser | c in u.smartphone.sosCall
-	implies (one h : HealthStatusRecord, u : StandardUser | h.healthStatus.health=Bad and c.date=h.time and h in u.smartphone.device.records)
+	implies (one h : HealthStatusRecord, u : StandardUser |
+		h.healthStatus.health=Bad and c.date=h.time
+			and h in u.smartphone.device.records)
 }
 
 //All group data request for less than 1000 users are not accepted
 fact allGroupRequestForBigNumberUsers
 {
 	all r : GroupDataRequest | r.accepted=True
-		implies (#r.user > 1000)
+		implies (#r.target > 1000)
 }
 
 //Only accepted group data request can be payed
@@ -255,55 +304,329 @@ fact OnlyAcceptedSingleUserDataRequestCanBePayed
 //All group data requests with more than 999 users are accepted
 fact allGroupDataRequest1000UsersOrMoreAreAccepted
 {
-	all r : GroupDataRequest | #r.user>=1000
+	all r : GroupDataRequest | #r.target>=1000
 		implies r.accepted=True
+}
+
+//All saved addresses refer to a user
+fact allSavedAddressesReferToAUser
+{
+	all a : Address, u1 : SpecialUser, u2 : StandardUser |
+		(a in u1.legalAddress) or (a in u1.billingAddress)
+			or (a in u2.address)
+}
+
+//All payments are made only after the request has been made
+fact paymentAfterRequest
+{
+	all p : Payment, r : DataRequest | r.payment=p
+		and p.date>=r.date
+}
+
+//All downloads are possible only if the request is accepted
+fact allDownloadsAfterRequestAcceptedAndPaid
+{
+	all r : DataRequest | r.nDownload>0
+		implies r.accepted=True
+}
+
+//All downloads are possible only if the request is paid
+fact allDownloadsAfterRequestAcceptedAndPaid
+{
+	all r : DataRequest, p : Payment | r.nDownload>0
+		implies r.payment=p
+}
+
+//Smartphone is working only if it has no empty battery
+fact smartphoneWorkingIfBatteryNotEmpty
+{
+	all s : Smartphone | s.isWorking=True
+		implies s.batteryLevel!=Empty
+}
+
+//Device is working only if it has no empty battery and 
+//smartphone has not empty battery
+//and bluetoothConnection is On
+fact deviceWorkingIfBatteryNotEmpty
+{
+	all d : Device, s : Smartphone | d.isWorking=True
+		implies (d in s.device and d.batteryLevel!=Empty
+			and s.batteryLevel!=Empty
+			and d.bluetoothConnection=True
+			and d.bluetoothConnection=True)
+}
+
+//Max pressure over 170 implies a Bad status
+fact maxPressureOver170
+{
+	all h : HealthStatus | h.maxPressure>170 implies h.health=Bad
+} 
+
+//Min pressure under 100 implies a Bad status
+fact minPressureOver170
+{
+	all h : HealthStatus | h.minPressure<100 implies h.health=Bad
+}
+
+//Hearthbeat over 120 implies a Bad status
+fact heartbeatUnder120
+{
+	all h : HealthStatus | h.heartbeat>120 implies h.health=Bad
+}
+
+//Hearthbeat under 45 implies a Bad status
+fact heartbeatUnder45
+{
+	all h : HealthStatus | h.heartbeat<45 implies h.health=Bad
+}
+
+//No runs with same name, date, city
+fact allRunsHaveSomerthindDifferent
+{
+	no r1, r2 : Run | r1.name=r2.name and r1.date=r2.date
+		and r1.city=r2.city and r1!=r2
+}
+
+//Registration before registration deadline
+fact registrationBeforeDeadline
+{
+	all r : RunRegistration, n : Run | r.registration=n
+		implies r.date<n.regDeadline
+}
+
+//All PositionRecords refer to a Smartphone
+fact positionRecordsReferToASmartphone
+{
+	all p : PositionRecord, s : Smartphone | p in s.records
+}
+
+//All payments refer to a request
+fact paymentsReferToARequest
+{
+	all p : Payment, r : DataRequest | p in r.payment
+}
+
+//All Smartphones refer to a StandardUser
+fact SmartphonesReferToAStandardUser
+{
+	all u : StandardUser, s : Smartphone | s in u.smartphone
+}
+
+//All Devices refer to a Smartphone
+fact positionRecordsReferToASmartphone
+{
+	all d : Device, s : Smartphone | d in s.device
+}
+
+//All Positions refer to a Run or to a PositionRecord
+fact positionReferToARunOrPositionRecord
+{
+	all p : Position, r : Run, pr : PositionRecord |
+		p in r.route or p in pr.position
+}
+
+//All SOSCall refer to a Smartphone
+fact SOSCallsReferToASmartphone
+{
+	all c : SOSCall, s : Smartphone | c in s.sosCall
+}
+
+
+//All run registration for a run are for different runners
+fact runRegistrationSameRunDifferentRunners
+{
+	all r1, r2 : RunRegistration | r1!=r2 and r1.runner=r2.runner
+		implies r1.registration!=r2.registration
 }
 
 
 // PREDICATES
 
+
 //Special users can make more than one request
 pred specialUsersCanMakeMoreThanOneDataRequest
 {
-	//some gr1, gr2 :  GroupDataRequest |  gr1.specialUser=gr2.specialUser and gr1!=gr2
-	some sr1, sr2 :  SingleUserDataRequest |  sr1.specialUser=sr2.specialUser and sr1!=sr2
-	//some sr :  SingleUserDataRequest, gr :  GroupDataRequest |  sr.specialUser=gr.specialUser
+	some r1, r2 :  DataRequest | 
+		r1.applicant=r2.applicant and r1!=r2
 }
+
+//A user can partecipate in more than one run
+pred usersCanPartecipateInMoreThanOneRun
+{
+	some r1, r2 :  RunRegistration | 
+		r1.runner=r2.runner and r1!=r2
+}
+
 
 //ASSERTIONS
 
-//No accepted group data request with less than 1000 special users
+
+//No accepted group data request with less
+//than 1000 special users
 assert noLessThan1000UsersInGroupDataRequests
 {
-	no r : GroupDataRequest | #r.user<1000 and r.accepted=True
+	no r : GroupDataRequest | #r.target<1000
+		and r.accepted=True
 }
 
 //No payment for not accepted requests
 assert noPaymentForNotAcceptedSingleUserDataRequests
 {
-	no p : Payment, r : SingleUserDataRequest | p in r.payment and p.accepted=False
+	no p : Payment, r : SingleUserDataRequest |
+		p in r.payment and r.accepted=False
 }
 
+//No SOSCall without a Bad status in previous 5 seconds
+assert noSOSCallWithoutBadStatus
+{
+	all c : SOSCall, u : StandardUser | c in u.smartphone.sosCall
+		implies (one h : HealthStatusRecord |
+			h in u.smartphone.device.records 
+			and c.date>=h.time and c.date<=h.time+5
+			and h.healthStatus.health=Bad)
+}
 
 //No group request for 1000 users or more not accepted
 assert noGroupRequestsMoreThan1000UsersNotAccepted
 {
-	no r : GroupDataRequest | #r.user>1000 and r.accepted=False
+	no r : GroupDataRequest | #r.target>1000
+		and r.accepted=False
 }
 
-//No Bad health status with no SOSCall within 5 seconds
-assert noBadHealthStatusWithNoSOSCallWithin5Seconds
+//No saved addresses not used
+assert noSavedAddressesNotUsed
 {
-	all h : HealthStatusRecord | h.healthStatus.health=Bad
-		implies (one c : SOSCall, u : StandardUser | c.date>=h.time and c.date<=h.time+5 and c in u.smartphone.sosCall)
+	no a : Address, u1 : SpecialUser, u2: StandardUser |
+		(a not in u1.legalAddress)
+		and (a not in u1.billingAddress)
+		and (a not in u2.address)
+}
+
+//No requests are paid before the data request
+assert noPaymentBeforeRequest
+{
+	no p : Payment, r : DataRequest |
+		r.payment=p and p.date<r.date
+}
+
+//No download before the request is accepted
+assert noDownloadBeforeRequestAcceptedAndPaid
+{
+	all r : DataRequest, p : Payment |
+		r.accepted=False or (p not in r.payment)
+		implies r.nDownload=0
+}
+
+//No device isWorking if smartphone has empty battery
+assert noDeviceIsWorkingIfSmartphoneHasEmptyBattery
+{
+	no d : Device, s : Smartphone | d in s.device
+		and d.isWorking=True and s.batteryLevel=Empty
+}
+
+//No health status with max pressure lower than min pressure
+assert noHealthStatusMaxPressureLowerThanMinPressure
+{
+	no h: HealthStatus | h.maxPressure<h.minPressure
+}
+
+//No Good health status with Bad values
+assert noGoodHealthStatusWithBadValues
+{
+	no h: HealthStatus | h.health=Good
+		and (h.maxPressure>170 or h.minPressure<100
+			or h.heartbeat>120 or h.heartbeat<45)
+}
+
+//No Bad health status with Good values
+assert noBadHealthStatusWithGoodValues
+{
+	no h: HealthStatus | h.health=Bad
+		and (h.maxPressure<=170 and h.minPressure>=100
+			and h.heartbeat<=120 and h.heartbeat>=45)
+}
+
+//No run registration after registration deadline
+assert noRegistrationAfterDeadline
+{
+	no r : RunRegistration, n : Run | r.registration=n
+		and r.date>n.regDeadline
+}
+
+//No HealthstatusRecord without a device
+assert noHealthStatusRecordWithoutDevice
+{
+	no h : HealthStatusRecord, d : Device | h not in d.records
 }
 
 
-//run specialUsersCanMakeMoreThanOneDataRequest
-//check noLessThan1000UsersInGroupDataRequests
-//check noPaymentForNotAcceptedSingleUserDataRequests
-//check noGroupRequestsMoreThan1000UsersNotAccepted
-//check noBadHealthStatusWithNoSOSCallWithin5Seconds
+//No Position Record without a smartphone
+assert noPositionRecordWithoutSmartphone
+{
+	no p : PositionRecord, s : Smartphone | p not in s.records
+}
+
+//No Payment without data request
+assert noPaymentWithoutDataRequest
+{
+	no p : Payment, r : DataRequest | p not in r.payment
+}
+
+//No smartphone without user
+assert noSmartphoneWithoutUser
+{
+	no s : Smartphone, u : StandardUser | s not in u.smartphone
+}
+
+//No SOSCall without smartphone
+assert noSOSCallWithoutSmartphone
+{
+	no s : Smartphone, c : SOSCall | c not in s.sosCall
+}
+
+//No device without smartphone
+assert noDeviceWithoutSmartphone
+{
+	no s : Smartphone, d : Device | d not in s.device
+}
+
+//No position without Run or PositionRecord
+assert noPositionWithoutRunOrPositionRecord
+{
+	no p : Position, r : Run, pr : PositionRecord |
+		p not in r.route and p not in pr.position
+}
+
+//No more than one registration for a run for the same user
+assert noTwoRegSameUserSameRun
+{
+	no r1, r2 : RunRegistration | r1.registration=r2.registration
+		and r1.runner=r2.runner and r1!=r2
+}
+
+
+run specialUsersCanMakeMoreThanOneDataRequest
+run usersCanPartecipateInMoreThanOneRun
+check noLessThan1000UsersInGroupDataRequests
+check noPaymentForNotAcceptedSingleUserDataRequests
+check noSOSCallWithoutBadStatus
+check noGroupRequestsMoreThan1000UsersNotAccepted
+check noSavedAddressesNotUsed
+check noPaymentBeforeRequest
+check noDownloadBeforeRequestAcceptedAndPaid
+check noDeviceIsWorkingIfSmartphoneHasEmptyBattery
+check noHealthStatusMaxPressureLowerThanMinPressure
+check noGoodHealthStatusWithBadValues
+check noBadHealthStatusWithGoodValues
+check noRegistrationAfterDeadline
+check noHealthStatusRecordWithoutDevice
+check noPositionRecordWithoutSmartphone
+check noPaymentWithoutDataRequest
+check noSmartphoneWithoutUser
+check noSOSCallWithoutSmartphone
+check noDeviceWithoutSmartphone
+check noPositionWithoutRunOrPositionRecord
+check noTwoRegSameUserSameRun
 
 
 
