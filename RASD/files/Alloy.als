@@ -63,7 +63,7 @@ sig SingleUserDataRequest extends DataRequest
 //Request for group data
 sig GroupDataRequest extends DataRequest
 {
-	target: some StandardUser,
+	target: set StandardUser,
 }
 
 //Address
@@ -257,20 +257,6 @@ fact noMoreSOSCallWithSameID
 	no c1, c2 : SOSCall | c1.callID=c2.callID and c1!=c2
 }
 
-//Only accepted single user request have a payment
-fact onlyAcceptedSingleRequestHaveaPayment
-{
-	no s: SingleUserDataRequest | s.accepted=False
-		<=> (one s.payment)
-}
-
-//Only accepted group request have a payment
-fact onlyAcceptedGroupRequestHaveaPayment
-{
-	no s: GroupDataRequest | s.accepted=False
-		<=> (one s.payment)
-}
-
 //All SOSCalls have Bad health status record
 fact allSOSCallWithABadHealthStatusRecord
 {
@@ -280,27 +266,6 @@ fact allSOSCallWithABadHealthStatusRecord
 			and h in u.smartphone.device.records)
 }
 
-//All group data request for less than 1000 users are not accepted
-fact allGroupRequestForBigNumberUsers
-{
-	all r : GroupDataRequest | r.accepted=True
-		implies (#r.target > 1000)
-}
-
-//Only accepted group data request can be payed
-fact OnlyAcceptedGroupDataRequestCanBePayed
-{
-	all p : Payment, r : GroupDataRequest | p in r.payment
-		implies r.accepted=True
-}
-
-//Only accepted single user request can be payed
-fact OnlyAcceptedSingleUserDataRequestCanBePayed
-{
-	all p : Payment, r : SingleUserDataRequest | p in r.payment
-		implies r.accepted=True
-}
-
 //All group data requests with more than 999 users are accepted
 fact allGroupDataRequest1000UsersOrMoreAreAccepted
 {
@@ -308,12 +273,39 @@ fact allGroupDataRequest1000UsersOrMoreAreAccepted
 		implies r.accepted=True
 }
 
+//All group data request for less than 1000 users are not accepted
+fact allGroupRequestForLessThan999UserNotAccepted
+{
+	all r : GroupDataRequest | #r.target<1000
+		implies r.accepted=False
+}
+
+//Only accepted group data request can be payed
+fact OnlyAcceptedGroupDataRequestCanBePayed
+{
+	all p : Payment, r : GroupDataRequest | r.payment=p
+		implies r.accepted=True
+}
+
+//Only accepted single user request can be payed
+fact OnlyAcceptedSingleUserDataRequestCanBePayed
+{
+	all p : Payment, r : SingleUserDataRequest | r.payment=p
+		implies r.accepted=True
+}
+
 //All saved addresses refer to a user
 fact allSavedAddressesReferToAUser
 {
 	all a : Address, u1 : SpecialUser, u2 : StandardUser |
-		(a in u1.legalAddress) or (a in u1.billingAddress)
-			or (a in u2.address)
+		a not in u1.legalAddress implies (a in u1.billingAddress 
+			or a in u2.address)
+	all a : Address, u1 : SpecialUser, u2 : StandardUser |
+		a not in u1.billingAddress implies (a in u1.legalAddress 
+			or a in u2.address)
+	all a : Address, u1 : SpecialUser, u2 : StandardUser |
+		a not in u2.address implies (a in u1.billingAddress 
+			or a in u1.legalAddress)
 }
 
 //All payments are made only after the request has been made
@@ -397,40 +389,46 @@ fact registrationBeforeDeadline
 //All PositionRecords refer to a Smartphone
 fact positionRecordsReferToASmartphone
 {
-	all p : PositionRecord, s : Smartphone | p in s.records
+	all p : PositionRecord | one s : Smartphone | p in s.records
+}
+
+//A PositionRecord refers to only one Smartphone
+fact positionRecordsReferToOnlyOneSmartphone
+{
+	no p : PositionRecord, s1, s2 : Smartphone |
+		p in s1.records and p in s2.records
 }
 
 //All payments refer to a request
 fact paymentsReferToARequest
 {
-	all p : Payment, r : DataRequest | p in r.payment
+	all p : Payment | one r : DataRequest | p=r.payment
 }
 
 //All Smartphones refer to a StandardUser
 fact SmartphonesReferToAStandardUser
 {
-	all u : StandardUser, s : Smartphone | s in u.smartphone
+	all s : Smartphone | one u : StandardUser | s in u.smartphone
 }
 
 //All Devices refer to a Smartphone
-fact positionRecordsReferToASmartphone
+fact deviceReferToASmartphone
 {
-	all d : Device, s : Smartphone | d in s.device
+	all d : Device | one s : Smartphone | d in s.device
+}
+
+//All SOSCalls refer to a Smartphone
+fact sosCallsReferToASmartphone
+{
+	all c : SOSCall | some s : Smartphone| c in s.sosCall
 }
 
 //All Positions refer to a Run or to a PositionRecord
-fact positionReferToARunOrPositionRecord
+fact positionsReferToARunOrToAPositionRecord
 {
-	all p : Position, r : Run, pr : PositionRecord |
-		p in r.route or p in pr.position
+	all p : Position | (some r : PositionRecord| p=r.position
+		or some r : Run | p in r.route)
 }
-
-//All SOSCall refer to a Smartphone
-fact SOSCallsReferToASmartphone
-{
-	all c : SOSCall, s : Smartphone | c in s.sosCall
-}
-
 
 //All run registration for a run are for different runners
 fact runRegistrationSameRunDifferentRunners
@@ -556,45 +554,45 @@ assert noRegistrationAfterDeadline
 //No HealthstatusRecord without a device
 assert noHealthStatusRecordWithoutDevice
 {
-	no h : HealthStatusRecord, d : Device | h not in d.records
+	no h : HealthStatusRecord | no d : Device | h in d.records
 }
 
 
 //No Position Record without a smartphone
 assert noPositionRecordWithoutSmartphone
 {
-	no p : PositionRecord, s : Smartphone | p not in s.records
+	no p : PositionRecord | no s : Smartphone | p in s.records
 }
 
 //No Payment without data request
 assert noPaymentWithoutDataRequest
 {
-	no p : Payment, r : DataRequest | p not in r.payment
+	no p : Payment | no r : DataRequest | p in r.payment
 }
 
 //No smartphone without user
 assert noSmartphoneWithoutUser
 {
-	no s : Smartphone, u : StandardUser | s not in u.smartphone
+	no s : Smartphone | no u : StandardUser | s in u.smartphone
 }
 
 //No SOSCall without smartphone
 assert noSOSCallWithoutSmartphone
 {
-	no s : Smartphone, c : SOSCall | c not in s.sosCall
+	no c : SOSCall | no s : Smartphone | c in s.sosCall
 }
 
 //No device without smartphone
 assert noDeviceWithoutSmartphone
 {
-	no s : Smartphone, d : Device | d not in s.device
+	no d : Device | no s : Smartphone | d in s.device
 }
 
 //No position without Run or PositionRecord
 assert noPositionWithoutRunOrPositionRecord
 {
-	no p : Position, r : Run, pr : PositionRecord |
-		p not in r.route and p not in pr.position
+	no p : Position | no r : Run, pr : PositionRecord |
+		p in r.route or p=pr.position
 }
 
 //No more than one registration for a run for the same user
@@ -629,7 +627,6 @@ check noPositionWithoutRunOrPositionRecord
 check noTwoRegSameUserSameRun
 
 
-
-pred show() {}
+pred show(){}
 
 run show
