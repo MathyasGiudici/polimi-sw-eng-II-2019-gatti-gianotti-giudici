@@ -225,7 +225,7 @@ fact usersCannotHaveTheSameEmailAddress
 	no u1, u2 : StandardUser | u1.email=u2.email and u1!=u2
 	no u1, u2 : SpecialUser | u1.corporateEmail=u2.corporateEmail
 		and u1!=u2
-	no u1 : StandardUser, u2 : SpecialUser | 
+	no u1 : StandardUser, u2 : SpecialUser |
 		u1.email = u2.corporateEmail
 }
 
@@ -298,13 +298,13 @@ fact OnlyAcceptedSingleUserDataRequestCanBePayed
 fact allSavedAddressesReferToAUser
 {
 	all a : Address, u1 : SpecialUser, u2 : StandardUser |
-		a not in u1.legalAddress implies (a in u1.billingAddress 
+		a not in u1.legalAddress implies (a in u1.billingAddress
 			or a in u2.address)
 	all a : Address, u1 : SpecialUser, u2 : StandardUser |
-		a not in u1.billingAddress implies (a in u1.legalAddress 
+		a not in u1.billingAddress implies (a in u1.legalAddress
 			or a in u2.address)
 	all a : Address, u1 : SpecialUser, u2 : StandardUser |
-		a not in u2.address implies (a in u1.billingAddress 
+		a not in u2.address implies (a in u1.billingAddress
 			or a in u1.legalAddress)
 }
 
@@ -336,7 +336,7 @@ fact smartphoneWorkingIfBatteryNotEmpty
 		implies s.batteryLevel!=Empty
 }
 
-//Device is working only if it has no empty battery and 
+//Device is working only if it has no empty battery and
 //smartphone has not empty battery
 //and bluetoothConnection is On
 fact deviceWorkingIfBatteryNotEmpty
@@ -352,7 +352,7 @@ fact deviceWorkingIfBatteryNotEmpty
 fact maxPressureOver170
 {
 	all h : HealthStatus | h.maxPressure>170 implies h.health=Bad
-} 
+}
 
 //Min pressure under 100 implies a Bad status
 fact minPressureOver170
@@ -360,17 +360,28 @@ fact minPressureOver170
 	all h : HealthStatus | h.minPressure<100 implies h.health=Bad
 }
 
-//Hearthbeat over 120 implies a Bad status
+//Heartbeat over 120 implies a Bad status
 fact heartbeatUnder120
 {
 	all h : HealthStatus | h.heartbeat>120 implies h.health=Bad
 }
 
-//Hearthbeat under 45 implies a Bad status
+//Heartbeat under 45 implies a Bad status
 fact heartbeatUnder45
 {
 	all h : HealthStatus | h.heartbeat<45 implies h.health=Bad
 }
+
+//Min pressure over 100 and max pressure under 170 and
+//heartbeat between 45 and 120 implies Good status
+fact pressureHeartbeatGoodStatus
+{
+	all h : HealthStatus | (h.maxPressure<=170
+		and h.minPressure>=100
+		and h.heartbeat>=45 and h.heartbeat<=170)
+			implies h.health=Good
+}
+
 
 //No runs with same name, date, city
 fact allRunsHaveSomerthindDifferent
@@ -444,14 +455,14 @@ fact runRegistrationSameRunDifferentRunners
 //Special users can make more than one request
 pred specialUsersCanMakeMoreThanOneDataRequest
 {
-	some r1, r2 :  DataRequest | 
+	some r1, r2 :  DataRequest |
 		r1.applicant=r2.applicant and r1!=r2
 }
 
 //A user can partecipate in more than one run
 pred usersCanPartecipateInMoreThanOneRun
 {
-	some r1, r2 :  RunRegistration | 
+	some r1, r2 :  RunRegistration |
 		r1.runner=r2.runner and r1!=r2
 }
 
@@ -479,7 +490,7 @@ assert noSOSCallWithoutBadStatus
 {
 	all c : SOSCall, u : StandardUser | c in u.smartphone.sosCall
 		implies (one h : HealthStatusRecord |
-			h in u.smartphone.device.records 
+			h in u.smartphone.device.records
 			and c.date>=h.time and c.date<=h.time+5
 			and h.healthStatus.health=Bad)
 }
