@@ -1,7 +1,7 @@
 This section includes Alloy code that describes the model and checks wether it is consistent or not.
 At the end of the code, Class Diagram and Alloy generated World are shown.
 
-\myparagraph{Alloy Code}
+\section{Code}
 % Settings for Alloy code listing.
 \lstset{
     language=alloy,
@@ -19,9 +19,7 @@ At the end of the code, Class Diagram and Alloy generated World are shown.
 \lstinputlisting{./files/Alloy.als}
 \vfill
 
-\vspace{1cm}
-
-Following are Alloy execution results: \\ \\
+\section{Results}
 
    Executing "Run specialUsersCanMakeMoreThanOneDataRequest" \\ \noindent
       Solver=sat4j Bitwidth=4 MaxSeq=4 SkolemDepth=1 Symmetry=20
@@ -182,11 +180,14 @@ Following are Alloy execution results: \\ \\
       16493 vars. 1515 primary vars. 41785 clauses. 53ms. \\ \noindent
       Instance found. Predicate is consistent. 78ms.
 
-   \vspace{1cm}
+
+\clearpage
+
+\section{Generated World}
 
    \begin{figure}[H]
    \begin{center}
-     \includegraphics[width=0.80\paperwidth]{./img/alloy/alloy2.png}
+     \includegraphics[width=\textwidth]{./img/alloy/alloy2.png}
      \hspace{0.05\linewidth}
      \centering
      \caption{An example of \textit{Generated World}}
@@ -196,43 +197,42 @@ Following are Alloy execution results: \\ \\
 
  \begin{figure}[H]
  \begin{center}
-   \includegraphics[width=0.80\paperwidth]{./img/alloy/alloy3.png}
+   \includegraphics[width=\textwidth]{./img/alloy/alloy3.png}
    \hspace{0.05\linewidth}
    \centering
    \caption{An other example of \textit{Generated World}}
-   \label{img:generatedWorld}
+   \label{img:generatedWorld2}
  \end{center}
  \end{figure}
 
  \begin{figure}[H]
  \begin{center}
-   \includegraphics[width=0.80\paperwidth]{./img/alloy/alloy5.png}
+   \includegraphics[width=\textwidth]{./img/alloy/alloy5.png}
    \hspace{0.05\linewidth}
    \centering
    \caption{An other example of \textit{Generated World}}
-   \label{img:generatedWorld}
+   \label{img:generatedWorld3}
  \end{center}
  \end{figure}
 
  \begin{figure}[H]
  \begin{center}
-   \includegraphics[width=0.80\paperwidth]{./img/alloy/alloy6.png}
+   \includegraphics[width=\textwidth]{./img/alloy/alloy6.png}
    \hspace{0.05\linewidth}
    \centering
    \caption{An other example of \textit{Generated World}. In this case in order to generate this World, due to computational and representation problems, the minimum number of Standard Users allowed for group data request has been changed from 1000 to 2.}
-   \label{img:generatedWorld}
+   \label{img:generatedWorld4}
  \end{center}
  \end{figure}
+ \clearpage
 
-
-\vspace{1cm}
-
+\section{Class Diagram}
 \begin{figure}[H]
   \begin{center}
-  	\includegraphics[height=0.68\paperheight]{./img/Class_Diagram.png}
+  	\includegraphics[width=\textwidth,height=0.60\paperheight]{./img/Class_Diagram.png}
 		\caption{\textit{Class diagram} of the structure of the system-to-be.}
     \hspace{0.05\linewidth}
     \centering
-		\label{classDiagram}
+		\label{img:classDiagram}
     \end{center}
 \end{figure}
