@@ -26,14 +26,6 @@
 %Package used to insert figures at the specified position
 \usepackage{float}
 
-%Packages for Alloy code listing
-\usepackage{listings}
-\usepackage{alloy}
-\usepackage{color}
-\definecolor{alloy-keyword}{rgb}{0.23, 0.23, 0.7}
-\definecolor{alloy-comment}{rgb}{0.18, 0.64, 0.18}
-\definecolor{alloy-string}{rgb}{0.71, 0.18, 0.71}
-
 %To call Chapters -> Sections
 \addto\captionsenglish{\renewcommand{\chaptername}{Section}}
 
@@ -61,23 +53,23 @@
 	{\Large {\textbf{\LARGE TrackMe} \\
 		Software Engineering II - Prof. Elisabetta Di Nitto} \par}
 	\vspace{1.5cm}
-	{\LARGE \textbf{Requirements Analysis and Specification Document} \par}
+	{\LARGE \textbf{Design Document} \par}
 	\vspace{1.5cm}
 	{\Large\itshape Michele Gatti, Federica Gianotti, Mathyas Giudici\par}
 	\vspace{2cm}
 	\vfill
 	% Bottom of the page
-	{\large Document version: 2.0\par}
+	{\large Document version: 1.0\par}
 	{\large \today \par}
 \end{titlepage}
 
 {
 \begin{table}[h!]
 \begin{tabu} to \textwidth { X[0.3,r,p] X[0.7,l,p] }
-\textbf{Deliverable:} & RASD\\
-\textbf{Title:} & Requirement Analysis and Specification Document \\
+\textbf{Deliverable:} & DD\\
+\textbf{Title:} & Design Document \\
 \textbf{Authors:} & Michele Gatti, Federica Gianotti, Mathyas Giudici \\
-\textbf{Version:} & 2.0 \\
+\textbf{Version:} & 1.0 \\
 \textbf{Date:} & \today \\
 \textbf{Download page:} & https://github.com/MathyasGiudici/GattiGianottiGiudici \\
 \textbf{Copyright:} & Copyright © 2018, Michele Gatti, Federica Gianotti, Mathyas Giudici – All rights reserved \\
@@ -89,31 +81,33 @@
 
 %Make the table of contents
 \setcounter{tocdepth}{1}
-{\small\tableofcontents}
+\tableofcontents
 
 %Introduction
 \chapter{Introduction}
 \input{./files/introduction.tex}
 \clearpage
 
-%Overall Description
-\chapter{Overall Description}
-\input{./files/overallDescription.tex}
+%Architectural Design
+\chapter{Architectural Design}
+\input{./files/architecturalDesign.tex}
 \clearpage
 
-%Specific Requirements
-\chapter{Specific Requirements}\label{ch:section3}
-\input{./files/specificRequirements.tex}
+%User Interface Design
+\chapter{User Interface Design}
 \clearpage
 
-%Alloy
-\chapter{Alloy}
-\input{./files/alloy.tex}
+%Requirements Traceability
+\chapter{Requirements Traceability}
+\clearpage
+
+%Implementation, Integration and Test Plan
+\chapter{Implementation, Integration and Test Plan}
 \clearpage
 
 %Effort Spent
 \chapter{Effort Spent}
-\input{./files/effort.tex}
+
 \clearpage
 
 
