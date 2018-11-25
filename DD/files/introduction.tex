@@ -1,11 +1,42 @@
 \section{Purpose}
-
+The goal of the Design Document (DD) is to provide a more technical functional description of the system-to-be, in particular it wants to describe the main architectural components, their communication interfaces and their interactions. Moreover it will also present the implementation, integration and testing plan.
+This type of document is mainly addressed to developers because it provides an accurate vision of all parts of the software which can be taken as a guide during the developement process.
 \section{Scope}
-
+The \textit{TrackMe} project, as explaind in the RASD, has three different but connected goals to achieve:
+\begin{itemize}
+  \item \textbf{Data4Help}: a service that allows third parties to monitor the location and health status of individuals. Through this service third parties can request the access both to the data of some specific individuals, who can accept or refuse sharing their information , and to anonymized data of group of individuals, which will be given only if the number of the members of the group is higher than 1000, according to privacy rules.
+  \item \textbf{AutomatedSOS}: a service addressed to elderly people which monitors the health status of the subscribed customers and, when such parameters are below a certain threshold (personalized for every user using the data from Data4Help), sends to the location of the customer an ambulance, guaranteeing a reaction time less than 5 second from the time the parameters are below the threshold.
+  \item \textbf{Track4Run}: a service to track athletes participating in a run. It allows organizers to define the path for a run, participants to enroll to a run and spectators to see on a map the position of all runners during the run. This service will exploit the features offered by Data4Help.
+\end{itemize}
+The system-to-be is structured in a four-layered architecture, which will be described in depth in this document and which is designed with the purpose of being maintainable and extensible.
+\\--TO DO: SPIEGARE BREVEMENTE MOTIVO SCELTE FATTE PER INTEGRAZIONE ECC (DECOUPLING,..), E SE USATI DESIGN PATTERNS ECC
 \section{Definitions, Acronyms, Abbreviations}
-
+\begin{itemize}
+  \setlength{\itemindent}{-.4in}
+  \item[] \textbf{ACID}: Atomicity, Consistency, Isolation and Durability (Set of properties of database transactions):
+  \item[] \textbf{API}: Application Programming Interface;
+  \item[] \textbf{DB}: Database;
+  \item[] \textbf{DMBS}: Database Management System;
+  \item[] \textbf{DD}: Design Document;
+  \item[] \textbf{GPS}: Global Positioning System;
+  \item[] \textbf{GUI}: Graphical User Interface;
+  \item[] \textbf{RASD}: Requirement Analysis and Specification Document;
+  \item[] \textbf{UML}: Unified Modeling Language;
+  \item[] \textbf{UX}: User eXperience;
+\end{itemize}
 \section{Revision History}
 
 \section{Reference Documents}
 
 \section{Document Structure}
+This document is structured as follows:
+\begin{itemize}
+  \setlength{\itemindent}{-.4in}
+  \item[] \textbf{Section 1: Introduction}. A general introduction and overview of the Design Document. It aims giving general but exaustive information about what this document is going explain.
+  \item[] \textbf{Section 2: Architectural Design}. This section contains an overview of the high level components of the system-to-be and then a more detailed description of three architecture views: component view, deployment view and runtime view. Finally it shows the chosen architecture styles and patterns.
+  \item[] \textbf{Section 3: User Interface Design}. This section refers to the mockups already preseneted in the RASD.
+  \item[] \textbf{Section 4: Requirements Traceability}. This section explains how the requirements defined in the RASD map to the design elements defined in this document.
+  \item[] \textbf{Section 5: implementation, Integration and Test Plan}. This section identifies the order in which it is planned to implement the subcomponents of the system, the integration of such subcomponents and test the integration.
+  \item[] \textbf{Section 6: Effort Spent}. A summary of the worked time by each member of the group.
+\end{itemize}
+At the end there is a \textbf{Bibliography}.
