@@ -1,7 +1,37 @@
 \section{Overview}
-% -- TODO --
+The main high-level components of the system that will be taken into account are structured in four layers, as shown in Figure \ref{img:layeredStructure} below.
 
+\begin{figure}[H]
+  \begin{center}
+  	\includegraphics[width=\textwidth]{./img/LayeredStructure.png}
+    \hspace{0.05\linewidth}
+    \centering
+    \caption{\textit{Layered Structure} of the system.}
+		\label{img:layeredStructure}
+    \end{center}
+\end{figure}
 
+The considered high-level components are:
+\begin{itemize}
+  \setlength{\itemindent}{-.4in}
+  \item[] \textbf{Mobile Applications:} The \textit{Presentation Layer} dedicated to mobile devices; it communicates with the Application Server.
+  \item[] \textbf{Web Browsers:} The \textit{Presentation Layer} dedicated to web browsers; it communicates directly with the Web Server.
+  \item[] \textbf{Web Server:} This is the layer that provides web-pages for the web-based applications; it communicates with the Application Server and with the Web Browsers.
+  \item[] \textbf{Application Server:} This is the layer in which is contained all the \textit{logic} for the application; it communicates with the Web Server and with the Database. Moreover it manages the communication with External Services.
+  \item[] \textbf{Database:}  The \textit{Data Layer} of the system; it includes all structures and entities responsible for data storage and management. It communicates with the Application Server.
+\end{itemize}
+It has been taken the decision to separate the Application and Web Server in order to allow greater scalability. In the figure above it is also shown the interaction between the Application Server and External Systems.
+A more detailed description of the intereactions between the described system components is shown in Figure \ref{img:highLevelComponents}.
+
+\begin{figure}[H]
+  \begin{center}
+  	\includegraphics[width=\textwidth]{./img/HighLevelComponents.png}
+    \hspace{0.05\linewidth}
+    \centering
+    \caption{\textit{High Level Components} of the system.}
+		\label{img:highLevelComponents}
+    \end{center}
+\end{figure}
 \section{Component View}
 % -- TODO --
 
