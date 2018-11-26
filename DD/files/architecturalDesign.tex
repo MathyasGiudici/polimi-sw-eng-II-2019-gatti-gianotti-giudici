@@ -49,14 +49,14 @@ The use of a Relational DBMS guarantees the fundamental properties for a databas
 The database will offer to the Application Server an interface that it can use to interact with the database.
 The data stored in the database must be considered personal and confidential, therefore, procedures must be implemented to safeguard the stored information.\\
 Particular attention must be paid to the reading permissions granted to users and to the encryption of passwords used to access the services offered.
-Below is the designed E-R diagram:
+Below is the designed E-R diagram.(Figure \ref{img:ER_Diagram})
 
 \begin{figure}[H]
   \begin{center}
   	\includegraphics[height=0.68\paperheight]{./img/ER.png}
     \hspace{0.05\linewidth}
     \centering
-    \caption{\textit{E-R} Diagram.}
+    \caption{\textit{E-R} Diagram}
 		\label{img:ER_Diagram}
     \end{center}
 \end{figure}
@@ -65,20 +65,68 @@ Below is the designed E-R diagram:
 This is the crucial layer of the system to be. The main feature of the \textit{Application Server} is to describe rules and work-flows of all the functionalities provided by the application.\\
 The \textit{Application Server} must have intefaces to communicate with the \textit{Web Server} and the \textit{Mobile Apps}, it has also to communicate through interfaces with all the \textit{External Services} (Maps Service, SOS Service and Payment Service).\\
 Moreover, the \textit{Application Server} is the only entity of the system that is granted to communicate with the DBMS.
-Following this brief introduction there are the logic modules and their descriptions.
+Following this brief introduction there are the logic modules and their descriptions, moreover all connections among components could be seen in the \textit{Global Component View} in Figure \ref{img:GlobalComponent}.
+
+\paragraph{Data Collector Service}
+This module offers the a service to the \textit{Standard User Manager} in order to maange user's data and store it into the \textit{Data4Help} database. Data storage is done through \textit{Stored Data Manager}.
+
+\paragraph{Group Request Manager}
+This module manages the third party requests of \textit{Group Data Requirement}.
+
+\paragraph{Health Service}
+This module checks status of health data that it receives. If an SOS call must be done it call \textit{SOS Handler}.
+
+\paragraph{Maps Manager}
+This module is an handler providing an interface to the external service of maps.
+
+\paragraph{Payment Handler}
+This module is an handler providing an interface to the external service of payment.
+
+\paragraph{Persistence Unit}
+This module is the unique interface to the database's DBMS.
+
+\paragraph{Run Manager}
+This module manages \textit{Runs} in all their functionalities, like creation, deletion and enrolment.
 
 \paragraph{Server Access Point}
 This module provides the access point to the \textit{Application Server} for the \textit{Web Server} and the \textit{Mobile Apps}. It routes different users in the correct \textit{User Manger} module.
+
+\paragraph{Single Request Manager}
+This module manages the third party requests of \textit{Single Data Requirement}.
+
+\paragraph{SOS Handler}
+This module is an handler providing an interface to the external service of SOS.
+
+\paragraph{Special User Manager}
+This module provides all functionalities related to the \textit{Special User}.
+
+\paragraph{Standard User Manager}
+This module provides all functionalities related to the \textit{Standard User}.
+
+\paragraph{Stored Data Manager}
+This module provides data to \textit{Group Request Manage} and \textit{Single Request Manage}. It has also to manage all privacy checks and provide data without any type of personal information of the users for \textit{Group Data Requirement}.
+
+\subsection{Mobile App}
+The \textit{Mobile App} must communicate to the \textit{Application Server} through APIs that have to be defined in order to describe the interactions between the two layers and they must be indipendent from the implementation both side.\\
+The App UI must be designed user friendly and it has to follow the guidelines provided by the Android and iOS producer.
+The application must provide a software module that manages the GPS connection of the device and keeps track of locations data, it has also to manage the Health data from the devices connected to the phone.\\
+The application must provide all collected data to the \textit{Application Server} in order to process them.
+
+\subsection{Web Server}
+The \textit{Web Server} must communicate to the \textit{Application Server} through HTTPS protocol.\\
+The \textit{GUI} of the \textit{}{Web Server} must be designed user friendly and it has to follow the guidelines provided by W3C standard (using HTML5, CSS and JS).\\
+The \textit{Control Unit} manages all actions played by a user and it must communicate to the \textit{Application Server} through APIs, that are already explained for the \textit{Mobile App}.
 
 \begin{figure}[H]
   \begin{center}
   	\includegraphics[width=\textwidth]{./img/GlobalComponent.png}
     \hspace{0.05\linewidth}
     \centering
-    \caption{\textit{Global Component} Diagram.}
+    \caption{\textit{Global Component View}}
 		\label{img:GlobalComponent}
     \end{center}
 \end{figure}
+
 \section{Deployment View}
 
 \section{Runtime View}
