@@ -73,9 +73,6 @@ This module offers the a service to the \textit{Standard User Manager} in order 
 \paragraph{Group Request Manager}
 This module manages the third party requests of \textit{Group Data Requirement}.
 
-\paragraph{Health Service}
-This module checks status of health data that it receives. If an SOS call must be done it call \textit{SOS Handler}.
-
 \paragraph{Maps Manager}
 This module is an handler providing an interface to the external service of maps.
 
@@ -88,14 +85,8 @@ This module is the unique interface to the database's DBMS.
 \paragraph{Run Manager}
 This module manages \textit{Runs} in all their functionalities, like creation, deletion and enrolment.
 
-\paragraph{Server Access Point}
-This module provides the access point to the \textit{Application Server} for the \textit{Web Server} and the \textit{Mobile Apps}. It routes different users in the correct \textit{User Manger} module.
-
 \paragraph{Single Request Manager}
 This module manages the third party requests of \textit{Single Data Requirement}.
-
-\paragraph{SOS Handler}
-This module is an handler providing an interface to the external service of SOS.
 
 \paragraph{Special User Manager}
 This module provides all functionalities related to the \textit{Special User}.
@@ -105,6 +96,11 @@ This module provides all functionalities related to the \textit{Standard User}.
 
 \paragraph{Stored Data Manager}
 This module provides data to \textit{Group Request Manage} and \textit{Single Request Manage}. It has also to manage all privacy checks and provide data without any type of personal information of the users for \textit{Group Data Requirement}.
+
+\paragraph{User Access Point}
+This module provides the access point to the \textit{Application Server} for the \textit{Web Server} and the \textit{Mobile Apps}.
+It routes different users in the correct \textit{User Manger} module: Special User and Standard User; in order to manage guest users that visit a Run the system to be has to create Standard User that has the property to only have the possibility to watch a Run.
+
 
 \subsection{Mobile App}
 The \textit{Mobile App} must communicate to the \textit{Application Server} through APIs that have to be defined in order to describe the interactions between the two layers and they must be indipendent from the implementation both side.\\
