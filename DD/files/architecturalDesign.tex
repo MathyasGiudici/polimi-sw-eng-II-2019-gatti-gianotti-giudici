@@ -73,6 +73,9 @@ This module offers the a service to the \textit{Standard User Manager} in order 
 \paragraph{Group Request Manager}
 This module manages the third party requests of \textit{Group Data Requirement}.
 
+\paragraph{Mail Manager}
+This module is a tool for other modules that allow the system to send e-mail, for instance in the registration and enrolment phase.
+
 \paragraph{Maps Manager}
 This module is an handler providing an interface to the external service of maps.
 
@@ -83,7 +86,8 @@ This module is an handler providing an interface to the external service of paym
 This module is the unique interface to the database's DBMS.
 
 \paragraph{Run Manager}
-This module manages \textit{Runs} in all their functionalities, like creation, deletion and enrolment.
+This module manages \textit{Runs} in all their functionalities, like creation, deletion and enrolment.\\
+In order to manage guest users that visit a Run the system this module provides an access point to the \textit{Application Server} for the \textit{Web Server} and the \textit{Mobile Apps}.
 
 \paragraph{Single Request Manager}
 This module manages the third party requests of \textit{Single Data Requirement}.
@@ -98,8 +102,9 @@ This module provides all functionalities related to the \textit{Standard User}.
 This module provides data to \textit{Group Request Manage} and \textit{Single Request Manage}. It has also to manage all privacy checks and provide data without any type of personal information of the users for \textit{Group Data Requirement}.
 
 \paragraph{User Access Point}
-This module provides the access point to the \textit{Application Server} for the \textit{Web Server} and the \textit{Mobile Apps}.
-It routes different users in the correct \textit{User Manger} module: Special User and Standard User; in order to manage guest users that visit a Run the system to be has to create Standard User that has the property to only have the possibility to watch a Run.
+This module provides an access point to the \textit{Application Server} for the \textit{Web Server} and the \textit{Mobile Apps}.
+It routes different users in the correct \textit{User Manger} module: Special User and Standard User.
+
 
 
 \subsection{Mobile App}
@@ -107,6 +112,25 @@ The \textit{Mobile App} must communicate to the \textit{Application Server} thro
 The App UI must be designed user friendly and it has to follow the guidelines provided by the Android and iOS producer.
 The application must provide a software module that manages the GPS connection of the device and keeps track of locations data, it has also to manage the Health data from the devices connected to the phone.\\
 The application must provide all collected data to the \textit{Application Server} in order to process them.
+
+\subsection{AutomatedSOS App}
+In this Section we want to specify in detail the modules that compose the \textit{AutomatedSOS} application in order to better explain the important activity of detection of possible \textit{Critical Situation}.\\
+All connections among components could be seen in the \textit{AutomatedSOS Component View} in Figure \ref{img:AutomatedComponent}.
+
+\paragraph{Application Server Handler}
+This module is an handler providing an interface to the \textit{Application Server}.
+
+\paragraph{Background Health Monitor}
+This module checks status of health data that it receives. If an SOS call must be done it call \textit{SOS Handler}.
+
+\paragraph{GUI}
+This module is the \textit{Graphical} interface to the smartphone.
+
+\paragraph{Health Status Service}
+This module manage data detected and produce statistic for the \textit{User}.
+
+\paragraph{SOS Handler}
+This module is an handler providing an interface to the external service of SOS.
 
 \subsection{Web Server}
 The \textit{Web Server} must communicate to the \textit{Application Server} through HTTPS protocol.\\
@@ -123,9 +147,83 @@ The \textit{Control Unit} manages all actions played by a user and it must commu
     \end{center}
 \end{figure}
 
+\begin{figure}[H]
+  \begin{center}
+  	\includegraphics[width=\textwidth]{./img/Automated_Component.png}
+    \hspace{0.05\linewidth}
+    \centering
+    \caption{\textit{AutomatedSOS Component View}}
+		\label{img:AutomatedComponent}
+    \end{center}
+\end{figure}
+
 \section{Deployment View}
 
 \section{Runtime View}
+In this Section we want to specify the behaviour of our system. Some relevant cases are selected and explained using Sequence Diagrams.
+
+\begin{figure}[H]
+  \begin{center}
+  	\includegraphics[width=\textwidth]{./img/sequence/webSignIn.png}
+    \hspace{0.05\linewidth}
+    \centering
+    \caption{\textit{Third Party Sign In} sequence diagram}
+		\label{img:webSignIn}
+    \end{center}
+\end{figure}
+
+\begin{figure}[H]
+  \begin{center}
+  	\includegraphics[width=\textwidth]{./img/sequence/appLogIn.png}
+    \hspace{0.05\linewidth}
+    \centering
+    \caption{\textit{Standard User Log In} sequence diagram}
+		\label{img:appLogIn}
+    \end{center}
+\end{figure}
+
+\begin{figure}[H]
+  \begin{center}
+  	\includegraphics[width=\textwidth]{./img/sequence/criticalSituation.png}
+    \hspace{0.05\linewidth}
+    \centering
+    \caption{\textit{Critical Situation} sequence diagram}
+		\label{img:criticalSituation}
+    \end{center}
+\end{figure}
+
+\begin{figure}[H]
+  \begin{center}
+  	\includegraphics[width=\textwidth]{./img/sequence/createRun.png}
+    \hspace{0.05\linewidth}
+    \centering
+    \caption{\textit{Create a Run} sequence diagram}
+		\label{img:createRun}
+    \end{center}
+\end{figure}
+
+\begin{figure}[H]
+  \begin{center}
+  	\includegraphics[width=\textwidth]{./img/sequence/enrolRun.png}
+    \hspace{0.05\linewidth}
+    \centering
+    \caption{\textit{Enrol in a Run} sequence diagram}
+		\label{img:enrolRun}
+    \end{center}
+\end{figure}
+
+\begin{figure}[H]
+  \begin{center}
+  	\includegraphics[width=\textwidth]{./img/sequence/watchRun.png}
+    \hspace{0.05\linewidth}
+    \centering
+    \caption{\textit{Run Watching} sequence diagram}
+		\label{img:watchRun}
+    \end{center}
+\end{figure}
+
+
+\clearpage
 
 \section{Component Interfaces}
 
