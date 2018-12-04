@@ -157,18 +157,22 @@ The \textit{Control Unit} manages all actions played by a user and it must commu
     \end{center}
 \end{figure}
 
+\clearpage
+
 \section{Deployment View}
 Below is the deployment diagram of the system to be (Figure \ref{img:Deployment_Diagram}).
 
 \begin{figure}[H]
   \begin{center}
-  	\includegraphics[height=0.68\paperheight]{./img/Deployment_Diagram.png}
+  	\includegraphics[height=0.59\paperheight]{./img/Deployment_Diagram.png}
     \hspace{0.05\linewidth}
     \centering
     \caption{Deployment Diagram of the system to be}
 		\label{img:Deployment_Diagram}
     \end{center}
 \end{figure}
+
+\clearpage
 
 \section{Runtime View}
 In this Section we want to specify the behaviour of our system. Some relevant cases are selected and explained using Sequence Diagrams.
@@ -258,6 +262,77 @@ In this Section we want to specify the behaviour of our system. Some relevant ca
 
 \section{Component Interfaces}
 
+\clearpage
+
 \section{Selected Architectural Styles and Patterns}
+Following are the choices made regarding architectural styles and patterns.
+
+\subsection{Client and Server}
+A client server architecture was chosen for system implementation.
+This allows the exchange of information between Internet-connected devices used by users and the centralized server that collects data and offers Data4Help services.
+In particular:
+\begin{itemize}
+  \item The AutomatedSOS and Track4Run applications installed on users' devices are clients connected to the application server that receives and processes data.
+  \item The desktop web browsers used by users (both standard and special) to access the services offered by Data4Help are clients that communicate with the Web Server that provides an HTTPS interface.
+  \item The application server is seen as a server by the web browser and as a client by the application server that allows it to process requests.
+  \item The application server is seen as a server from the web server and applications installed on smartphones and as a client from the database that receives and processes its requests (queries).
+  \item The database is seen as a server by the application server that sends the requests and waits for the answers.
+\end{itemize}
+
+\subsection{Multi-tiered architecture}
+A multi-tiered client-server architecture is used to ensure the separation between the MVC model levels (model, view, controller).
+In this way a greater stability of the system is also guaranteed:
+\begin{itemize}
+  \item In case of failure of the application server, the applications installed on users' devices continue to work and collect data. However, AutomatedSOS is able to make an emergency call. This also applies if the device is temporarily without an Internet connection (but with emergency calls available). Once the application server or Internet connection has been restored, the device will reconnect and send the data collected during the period of absence of the service to the server.
+  \item In case of failure of the web server, the application server remains active and the applications installed on users' devices continue to work correctly (and to send data correctly to the server). The services offered through the use of the web browser will not be available.
+\end{itemize}
+
+\subsection{Thin Client}
+The services accessible through web browsers are considered thin clients because the software used does not install software belonging to Data4Help.
+All the necessary information required to use the service is offered by the Web Server through HTTPS, including a graphical interface and application logic.
+Also, the Track4Run app is considered thin client because the application that provides the graphical user interface is installed on the phone but most of the application logic (and in particular the one used to manage the races) is based on the application server to which it connects.
+
+\subsection{Thick Client}
+The Automated SOS app is to be considered as a thick client in fact in the app in addition to the graphical interface and the logic related to the acquisition of user data, there is also the logic that allows the phone to make a call to the external service used for handling emergency calls.
+Thanks to this the app is able to detect a state of emergency and alert the ambulance even if the connection with the server is not available.
+
+\subsection{Model-View-Control}
+The MVC model allows to identify three main components in the management of a client-server application. They are the Model, the View and the Controller.
+The following diagram shows the management of these three levels according to the use of thin or thick clients (\ref{img:client_server}).
+
+\begin{figure}[H]
+  \begin{center}
+  	\includegraphics[width=0.4\textwidth]{./img/client_server.png}
+    \hspace{0.05\linewidth}
+    \centering
+    \caption{Possible management of the client-server connection according to the MVC model. Thin or thick client.}
+		\label{img:client_server}
+    \end{center}
+\end{figure}
+
 
 \section{Other Design Decisions}
+\subsection{User authentication}
+In order to guarantee the confidentiality of user data, access to the system, both for standard users and for special users, takes place by entering a username and password.
+The username used for access coincides with the email address used during registration.
+
+\subsection{Password storing}
+The passwords chosen by the users are saved in the database after being encrypted using a SHA512 algorithm.
+In this way, the password to be used for accessing Data4Help services is not stored in plaintext in the user database, but it is a transformation from which, even with very powerful computers, it is very difficult to trace the original password.
+In this way even using the normal Internet connection, if an intruder could pick up the string containing the password, he would not be able to trace the password used to access the service.
+
+\subsection{Security in the transfer of information}
+The transfer of data between the clients and the server is done using the most modern data encryption systems.
+For example, the Web Server offers an HTTPS interface to the Web Browser.
+
+\subsection{Maps}
+In order to manage the rides offered by Track4Run, the external Google Maps service is used.
+Longitude and latitude are used to locate a position within the map.
+To ensure a better service to the user who is responsible for creating the race, it is also given the opportunity to create the route using the features provided by Google Maps such as search by address, search for places of public interest, and so on. In the database the race course will still be saved as a sequence of positions in terms of longitude and latitude.
+
+\subsection{Emergency call}
+Emergency calls are handled using an external service.
+This ensures that even in the event that the data network is not available, or the application server is out of service, it is still possible to call for help.
+In fact, the external service works via the Internet or, in the absence of a connection, via SMS.
+When the Automated SOS application detects an anomaly, it invokes the external service and sends it the location of the device and a precompiled text containing information related to the health of the user.
+This information is then sent to the rescue service by the external service.
