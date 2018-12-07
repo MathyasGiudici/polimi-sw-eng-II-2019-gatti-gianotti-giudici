@@ -4,9 +4,9 @@ Any user can manage his personal profile both from \textit{Data4Help} web site a
   \item The user can change some of his personal informations: his/her city of residence, his/her address and his/her occupation.
   \item The user can see the data acquired on him/her until this moment;
   \item The user can see the past received requests about seeing his/her personal data;
-  \item The user can see the pending received requests about seeing his/her personal data;
+  \item The user can see the pending received requests about seeing his/her personal data and accept/refuse them;
   \item The user can change his/her password;
-  \item The user can change the device associated to his/her profile;
+  \item The user can change the device associated to his/her profile (only from \textit{AutomatedSOS} or \textit{Track4Run} applications);
   \item The user can delete his/her profile.
 \end{itemize}
 
@@ -20,7 +20,7 @@ Matteo has just finished the registration process, but he doesn't like the passw
 Aldo moved to USA and so he decides to delete his profile on \textit{Track4Run} because he was used to use it to organize amateur runs with his friends, but now he won't be able to do it anymore. He opens \textit{Track4Run} application on his smartphone, logs in and accesses to his "\textit{Edit profile}" area. Now he clicks on the "\textit{Delete profile}" button and confirms his choice. The system removes all Aldo's information from the database.
 
 \myparagraph{Scenario 4}
-Franco has just received a new smartwatch for his birthday and so he wants to change the device associated to his \textit{Data4Help} profile. He opens \textit{Track4Run} application on his smartphone, logs in and accesses to his "\textit{Edit profile}" area. Then he clicks on "\textit{Change device}" button and turns on the bluetooth of the new smartwatch and of his smartphone. He inerts correctly on his smartphone the six digits number that appears on the new smartwatch and clicks on "\textit{Done}" button. Now he can use his new smartwatch;
+Franco has just received a new smartwatch for his birthday and so he wants to change the device associated to his \textit{Data4Help} profile. He opens \textit{Track4Run} application on his smartphone, logs in and accesses to his "\textit{Edit profile}" area. Then he clicks on "\textit{Change device}" button and turns on the bluetooth of the new smartwatch and of his smartphone. He selects the new smartwatch among those that appears on the smartphone's screen and clicks on "\textit{Done}" button. Now he can use his new smartwatch;
 
 \myparagraph{Use Case}
 The \textit{Profile Visualization} use case is analyzed in Table \ref{table:profileVisualizationTable}. \\
@@ -51,7 +51,7 @@ The \textit{Manage Profile} mocukp is shown in Figure \ref{img:manageProfileMock
   \item The system must not delete a profile if the choice isn't confirmed by the user;
   \item The system must let the user leave the editing profile process at anytime;
   \item The system must delete all user's personal information from its database when the user decides to delete his/her profile;
-  \item The system must let the user change the connected device only if he/she inserts correctly on his/her smartphone the six digits number that is required;
+  \item The system must let the user accept/refuse an individual data request at anytime.
 \end{enumerate}
 
 \begin{center}
@@ -187,16 +187,15 @@ The \textit{Manage Profile} mocukp is shown in Figure \ref{img:manageProfileMock
     Input Condition & A \textbf{User} wants to change the associated device\\ \hline
     Event Flow & \begin{minipage}[t]{0.7\textwidth}
       \begin{enumerate}
-        \item The \textbf{User} opens \textit{Data4Help} web site or \textit{AutomatedSOS} or \textit{Track4Run} applications;
+        \item The \textbf{User} opens \textit{AutomatedSOS} or \textit{Track4Run} applications;
         \item The \textbf{User} logs in;
         \item The \textbf{User} accesses to his personal area;
         \item The \textbf{User} goes in "\textit{Edit profile}" area;
         \item The \textbf{User} clicks on the "\textit{Change device}" button;
-        \item The system asks the \textbf{User} to turn on the bluetooth of the smartwatch and of the smartphone (Unless the \textbf{User} hasn't already done it);
+        \item The system asks the \textbf{User} to turn on the bluetooth of the smartwatch and of the smartphone;
+        \item The \textbf{User} turns on the bluethooth;
         \item The system shows on the smartphone display the associable devices that it finds with the bluetooth connection;
         \item The \textbf{User} selects the device he wants to associate.
-        \item The system shows a six digits number on the device display;
-        \item The \textbf{User} inserts the six digits number in the field appeared on his smartphone;
         \item The \textbf{User} clicks on "\textit{Done}" button.
       \end{enumerate}
     \smallskip
@@ -205,7 +204,6 @@ The \textit{Manage Profile} mocukp is shown in Figure \ref{img:manageProfileMock
   Exceptions & \begin{minipage}[t]{0.7\textwidth}
     \begin{itemize}
       \smallskip
-      \item If functional requirement 11 is not satisfied the process goes back to step 9;
       \item If the \textbf{User} decides to leave the changing device process this one is aborted.
     \end{itemize}
     \smallskip

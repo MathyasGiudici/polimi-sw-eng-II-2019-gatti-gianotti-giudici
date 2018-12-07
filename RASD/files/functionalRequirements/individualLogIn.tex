@@ -9,7 +9,8 @@ Francesca loves running. When she has heard about \textit{Track4Run} application
 One year ago Tommaso, Aldo's grandchild, installed \textit{AutomatedSOS} on Aldo’s phone. Yesterday Aldo bought a new phone, he downloaded the app but he forgot his password so he couldn’t log in the application. He clicked on the "\textit{Forgot password?}" button, he inserted his e-mail address and clicked on the  "\textit{Restore my password}" button. He received an e-mail with a new password and he became able to access to the system.
 
 \myparagraph{Scenario 3}
-After that Sara helped her grandmother to register to \textit{Data4Help}, that we esplained in Section \ref{aSOSsignin}, now she also helps her to do the first log in \textit{AutomatedSOS}. After a succesfull login, Sara has to match the grandma's smartwatch with the application. \textit{AutomatedSOS} has a wizard to help users: Sara turns on the bluetooth in each devices (smartwatch and phone); after the phone matching with the smartwatch via bluetooth (system matching), Sara has to do the matching with \textit{AutomatedSOS}. On the smartwatch's screen there is a six digits number and Sara puts this number in \textit{AutomatedSOS} application and she clicks on \textit{Done} button. After that smartwatch and phone are matched and \textit{AutomatedSOS} is able to watch the health status of Sara's grandmother.
+After that Sara helped her grandmother to register to \textit{Data4Help}, that we esplained in Section \ref{aSOSsignin}, now she also helps her to do the first log in \textit{AutomatedSOS}. After a succesfull login, Sara has to match the grandma's smartwatch with the application. \textit{AutomatedSOS} has a wizard to help users: the system first asks her to turn on the bluethooth on both devices (smartphone and phone), then it shows on the screen the associable devices. Sara selects the device she wants to connect and clicks on the \textit{Done} button.
+After that smartwatch and phone are matched and \textit{AutomatedSOS} is able to watch the health status of Sara's grandmother.
 
 \myparagraph{Use Case}
 The \textit{Generic Individual Log In} use case is analyzed in Table \ref{table:genericIndividualLogInInTable}.\\
@@ -31,7 +32,6 @@ The \textit{First Log In} mockup is shown in Figure \ref{img:firstLogInMockup}.
   \item If the \textbf{Individual user} inserts wrong credential could not be able to access to the system;
   \item If the \textbf{Individual user} clicks on the "\textit{Forgot password?}" button, the system sends a new password to the \textbf{Individual user} e-mail address if and only if the e-mail address is valid and registered to the system;
   \item The system must let the \textbf{Individual user} leave the login process at anytime;
-  \item (First access only) The inserted matching number by the \textbf{Individual user} must correspond with the visualized on the device's screen.
 \end{enumerate}
 
 \begin{center}
@@ -97,11 +97,10 @@ The \textit{First Log In} mockup is shown in Figure \ref{img:firstLogInMockup}.
       The first part of the event flow is already explained in Table \ref{table:genericIndividualLogInInTable}.
       \smallskip
       \begin{enumerate}
-        \item The system asks the \textbf{Individual user} to turn on the bluetooth of the smartwatch and of the smartphone (Unless the \textbf{Individual user} hasn't already done it);
+        \item The system asks the \textbf{Individual user} to turn on the bluetooth of the smartwatch and of the smartphone;
+        \item The \textbf{Individual user} turns on the bluethooth;
         \item The system shows on the smartphone display the associable devices that it finds with the bluetooth connection;
         \item The \textbf{Individual user} selects the device he wants to associate.
-        \item The system shows a six digits number on the device display;
-        \item The \textbf{Individual user} inserts the six digits number in the field appeared on his smartphone;
         \item The \textbf{Individual user} clicks on "\textit{Done}" button.
       \end{enumerate}
     \smallskip
@@ -111,7 +110,6 @@ The \textit{First Log In} mockup is shown in Figure \ref{img:firstLogInMockup}.
     All already explained exceptions in Table \ref{table:genericIndividualLogInInTable} are still valid.
     \begin{itemize}
       \smallskip
-      \item If functional requirement 7 is not satisfied the system notifies the \textbf{Individual user} with an error message and the process goes back to step 4;
       \item If the \textbf{Individual user} decides to leave the connecting device process this one is aborted.
     \end{itemize}
     \smallskip
@@ -124,7 +122,7 @@ The \textit{First Log In} mockup is shown in Figure \ref{img:firstLogInMockup}.
 
 \begin{figure}
 \begin{center}
-  \includegraphics[height=0.6\paperheight]{img/activity/FirstIndividualLogin.png}
+  \includegraphics[width=\textwidth]{img/activity/FirstIndividualLogin.png}
   \hspace{0.05\linewidth}
   \centering
   \caption{\textit{First Log In} activity diagram}
