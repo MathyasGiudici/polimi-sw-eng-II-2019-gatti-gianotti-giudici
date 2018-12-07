@@ -1,0 +1,39 @@
+\section{Functional Requirements}
+In the table \ref{table:functionalRequirements} below it is highlighted the mapping between DD components and RASD goals and functional requirements. Notice that it is missing the component \textit{Persistence Unit} because the aim of the table is to focus on application logic components while the \textit{Persistence Unit} is only an interface with the database's DBMS.
+
+\section{AutomatedSOS Functional Requirements}
+Since there is a part of logic in the \textit{AutomatedSOS} application (explained in section \ref{architecturalStyle}) there is an additional table below (\ref{table:automatedFunctionalRequirements}), dedicated to \textit{AutomatedSOS} specific components with the correspondig achived goals and requirements.
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|p{0.07\textwidth} | p{0.43\textwidth} | p{0.5\textwidth}|}
+  \hline
+    \textbf{Goal} & \textbf{DD Component} & \textbf{RASD Requirements} \\ \hline
+     1 \newline 2 \newline 3 & Special User Manager & 3.2.2 Third Party Sign In \newline 3.2.4 Third Party Log In \newline 3.2.6 Manage Third Party Profile \\ \hline
+     1 \newline 2 \newline 3 & Standard User Manager & 3.2.1 Individual Sign In \newline 3.2.3 Individual Log In \newline 3.2.5 Manage Profile \newline 3.2.7 Individual Data Requirement\\ \hline
+     4 & Single Request Manager & 3.2.7 Individual Data Requirement\\ \hline
+     5 & Group Request Manager & 3.2.8 Group Data Requirement\\ \hline
+     6 & Data Collector Service Manager & 3.2.7 Individual Data Requirement \newline 3.2.8 Group Data Requirement \\ \hline
+     9 \newline  10 \newline 11 \newline 12 \newline 13 \newline 14 \newline 15 & Run Manager & 3.2.11 Create a Run \newline 3.2.12 Delete a Run \newline 3.2.13 Enrol in a Run \newline 3.2.14 Delete an Enrolment in a Run \newline 3.2.15 Run Watching\\ \hline
+     10 \newline 15 & Maps Manager & 3.2.11 Create a Run \newline 3.2.15 Run Watching \\ \hline
+     1 \newline 4 \newline 10 \newline 11 \newline 12 \newline 13 & Mail Manager &  3.2.1 Individual Sign In \newline 3.2.2 Third Party Sign In \newline 3.2.7 Individual Data Requirement \newline 3.2.11 Create a Run \newline 3.2.12 Delete a Run \newline 3.2.13 Enrol in a Run \newline 3.2.14 Delete an Enrolment in a Run\\ \hline
+     4 \newline 5 & Payment Handler Manager & 3.2.7 Individual Data Requirement \newline 3.2.8 Group Data Requirement\\ \hline
+\end{tabular}
+\caption{Mapping between DD components and RASD goals and functional requirements}
+\label{table:functionalRequirements}
+\end{table}
+\end{center}
+
+\begin{center}
+\begin{table}[H]
+\begin{tabular}{|p{0.07\textwidth} | p{0.43\textwidth} | p{0.5\textwidth}|}
+  \hline
+    \textbf{Goal} & \textbf{DD Component} & \textbf{RASD Requirements} \\ \hline
+     7 \newline 8 & Background Health Monitor & 3.2.9 Health Status Visualization \newline 3.2.10 Critical Situation \\ \hline
+     8 & SOS Handler & 3.2.10 Critical Situation\\ \hline
+     7 & Health Status Manager & 3.2.9 Health Status Visualization\\ \hline
+\end{tabular}
+\caption{Mapping between DD components of \textit{AutomatedSOS} and RASD goals and functional requirements}
+\label{table:automatedFunctionalRequirements}
+\end{table}
+\end{center}
