@@ -1,7 +1,21 @@
 open util/boolean
 
+
 //As in UNIX, time is represented as an offset in seconds
 //from midnight (UTC) on January 1, 1970.
+
+
+//Prices are int values because the number of cents paid is
+//represented. (Just divide the value by 100 to find the
+//cost in euros).
+
+
+//SmartphoneID is an Int. It does not match the serial
+//number of the smartphone but it is a value assigned 
+//by the system to recognize a device.
+//If a smartphone is sold to others, it will be assigned a
+//new SmartphoneID.
+
 
 //String abstraction
 sig StringTM {}
@@ -43,6 +57,7 @@ sig Position
 //Abstract data request
 abstract sig DataRequest
 {
+	requestID: one Int,
 	accepted: one Bool,
 	date: one Int,
 	nDownload: one Int,
@@ -179,6 +194,7 @@ sig HealthStatus
 //Payment
 sig Payment
 {
+	paymentID: one Int,
 	amount: one Int,
 	date: one Int,
 }
@@ -233,6 +249,18 @@ fact usersCannotHaveTheSameEmailAddress
 fact noRunsSameID
 {
 	no r1, r2 : Run | r1.runID=r2.runID and r1!=r2
+}
+
+//No requests with same requestID
+fact noRequestsSameID
+{
+	no r1, r2 : DataRequest | r1.requestID=r2.requestID and r1!=r2
+}
+
+//No payments with same paymentID
+fact noPaymentsSameID
+{
+	no p1, p2 : Payment | p1.paymentID=p2.paymentID and p1!=p2
 }
 
 //Bad health status implies a SOSCall within 5 seconds
