@@ -222,7 +222,7 @@ In this Section we want to specify the behaviour of our system. Some relevant ca
 
 \begin{figure}[H]
   \begin{center}
-  	\includegraphics[width=\textwidth]{./img/sequence/createRun.png}
+  	\includegraphics[height=.6\paperheight]{./img/sequence/createRun.png}
     \hspace{0.05\linewidth}
     \centering
     \caption{\textit{Create a Run} sequence diagram: it is described the process through which a standard user can create a new run.}
@@ -255,34 +255,36 @@ In this Section we want to specify the behaviour of our system. Some relevant ca
 
 \section{Component Interfaces}
 This section contains some detailed informations about interfaces between components of the system.\\
-A detailed description focuses the attention over the actions of a procedure of a certain component called by other components. These actions could be seen in the \textit{Sequence Diagrams} (Section \ref{runtimeViewSection}).
+A detailed description focuses the attention over the actions of a procedure of a certain component called by other components.\\
+These actions could be seen in the \textit{Sequence Diagrams} (Section \ref{runtimeViewSection}).
 
 \subsection{Application Server}
 
+\subsubsection{Mail Manager}
+Following procedure is called by other components:
+\begin{itemize}
+  \item \textbf{confirmationEmail}\quad This procedure sends a confirmation e-mail to the \textit{User}.
+\end{itemize}
+
+\subsubsection{Maps Manager}
+Following procedure is called by other components:
+\begin{itemize}
+  \item \textbf{getMap}\quad This procedure retrives a map from the external service.
+\end{itemize}
+
 \subsubsection{Run Manger}
-\myparagraph{}
 Following procedures are called by other components:
 \begin{itemize}
   \item \textbf{checkCreationForm}\quad This procedure checks all the fields of a creation for \textit{Create a Run} form.
-
   \item \textbf{definePath} \quad This procedure is called to open the path definition interface and to prepare the system to manage avoiding of maps duplications.
-
   \item \textbf{enrolRun} \quad This procedure allow a \textit{User} to enrol in a \textit{Run}.
-
   \item \textbf{getProposedRuns} \quad This procedure is called to retrive \textit{Runs} to propose to the \textit{Users}.
-
   \item \textbf{getRunInfo} \quad This procedure is called to retrive information of a particular \textit{Run}.
-
   \item \textbf{insertPin} \quad This procedure is called to insert a \textit{Pin} on a map during hte definition of a path.
-
   \item \textbf{makePlacingsTable} \quad This procedure is called to create the \textit{Placings Table} of a given \textit{Run} knowing path and runners' position.
-
   \item \textbf{searchRun} \quad This produce is called to search a given \textit{Run}.
-
   \item \textbf{sendData} \quad This procedure is used to submit data informations of a \textit{Run} and these data are used to compute functional requirement expecially for the \textit{Create a Run} use case (for instance avoiding 50\% of map duplication).
-
   \item \textbf{submitRun} \quad This produce is called when a \textit{User} has defined a \textit{Run} and wants to publish it.
-
   \item \textbf{watchRun} \quad This procedure is called to watch a given \textit{Run}.
 \end{itemize}
 
@@ -290,10 +292,56 @@ Following procedures are called by other components:
 Following procedures are called internally to the component.
 \begin{itemize}
   \item \textbf{checkMapDuplication} \quad This procedure is called to check the duplication of a given path with the compatible ones.
-
   \item \textbf{getDate} \quad This procedure is used to get the inserted \textit{Date} during the \textit{Create a Run} phase.
 \end{itemize}
 
+\subsubsection{Persistence Unit}
+Following procedures are called by other components:
+\begin{itemize}
+  \item \textbf{getRun}\quad This procedure queries required \textit{Run} on the DB through the DBMS.
+  \item \textbf{getRuns}\quad This procedure queries required \textit{Runs} on the DB through the DBMS.
+  \item \textbf{getRunInfo}\quad This procedure queries required \textit{Run}'s information on the DB through the DBMS.
+  \item \textbf{enrolRun}\quad This procedure posts an enrolment of a \textit{User} on the DB through the DBMS.
+  \item \textbf{saveRun}\quad This procedure posts a new \textit{Run} on the DB through the DBMS.
+  \item \textbf{getRunMapPoints}\quad This procedure queries required \textit{Run path} on the DB through the DBMS.
+  \item \textbf{getRunnersPosition}\quad This procedure queries \textit{Runners} position of a certain \textit{Run }on the DB through the DBMS.
+\end{itemize}
+
+\subsection{AutomatedSOS}
+\subsubsection{Background Health Monitor}
+Following procedures are called by other components:
+\begin{itemize}
+  \item \textbf{pushData}\quad This procedure is called to send data that \textit{AutomatedSOS} has to evaluate.
+  \item \textbf{sendPosition}\quad This procedure is called to send \textit{User}'s position to \textit{AutomatedSOS}.
+  \item \textbf{lastPosition}\quad This procedure is called to send the last \textit{User}'s position to \textit{AutomatedSOS}.
+\end{itemize}
+
+\myparagraph{}
+Following procedures are called internally to the component.
+\begin{itemize}
+  \item \textbf{evaluateStatus}\quad This procedure evaluates the data received from the \textit{User}'s device.
+  \item \textbf{evaluateBadStatus}\quad This procedure is called when the system is in an \textit{Alerted Status} and has to evaluate if it has to call an ambulance or the \textit{Alerted Status} was generated from an abnormal measure.
+  \item \textbf{increaseMonitor}\quad This procedure is called at the \textit{Alerted Status} beginning to increase the life paramethers detection.
+\end{itemize}
+
+\subsubsection{Application Server Handler}
+Following procedures are called by other components:
+\begin{itemize}
+  \item \textbf{sendData}\quad This procedure is called to send data information of the \textit{User} to the \textit{Application Server} and store them into the DB.
+\end{itemize}
+
+\subsubsection{SOS Handler}
+Following procedures are called by other components:
+\begin{itemize}
+  \item \textbf{call}\quad This produce call an ambulance and send it the \textit{User}'s position.
+  \item \textbf{callWrongPosition}\quad This produce call an ambulance notifying that there is an error in getting the \textit{User}'s position and the lastone is sended.
+\end{itemize}
+
+\subsubsection{GUI}
+Following procedures are called by other components:
+\begin{itemize}
+  \item \textbf{displayAlertStatus}\quad This procedure shows on the smartphone's screen the emergency call in progress.
+\end{itemize}
 
 \section{Selected Architectural Styles and Patterns}\label{architecturalStyle}
 Following are the choices made regarding architectural styles and patterns.
