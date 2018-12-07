@@ -24,12 +24,10 @@ The second most relevant part of the system that must be developed is the \texti
 \begin{itemize}
   \item \textbf{Persistence Unit} is the first component of this part that must be implemented because it manages all communication with the DBMS and communicates with a large part of the components in this part of the system.
   \item \textbf{Maps Manager}, \textbf{Mail Manger} and \textbf{Payment Handler} are components the provides the majority of services in common among other components and \textit{Maps Manager} and \textit{Payment Handler} also are the components that interfaces with the external services.
-  \item \textbf{Stored Data Manager} is a critical component: it allows to manage data about users, it receives and sends data. It has an important role in data request; it provides interface for other components, for these reasons it must be developed alone.
   \item \textbf{Group Request Manager} and \textbf{Data Collector Service} provides some of the services provides by \textit{Data4Help}. They are at the base of other components so their implementation must be done keeping attention.
   \item \textbf{Run Manager} is the component that allows our system to manage the \textit{Run}'s services, fault tollerance must be guarantee. It is the core of this service and its implementation is crucial. It also provides an interface to the \textit{Standard User Manager} components and it use the \textit{Maps Manager}. component.
   \item \textbf{Standard User Manager} and \textbf{Special User Manager} are the core all actions performed by a \textit{Generic User} of \textit{Data4Help}. They communicate with most of the components described before and their implementation has to guarantee very high tolerance to fault and good performance because they represent a possible bottleneck of the application.
   \item \textbf{Single Request Manager} like some previous components it provides one of the core service of \textit{Data4Help}. Its implementation is inserted at this point because it requires some important functionalities of \textit{Standard User Manager} and \textit{Special User Manager}.
-  \item \textbf{User Access Point} main function is to redirect users and their requests. It provides a way to communicate with the the internal components.
 \end{itemize}
 
 \myparagraph{}
@@ -84,26 +82,23 @@ Huge part of the integration component/component must be done in the \textit{App
 \begin{tabular}{ | l | p{0.4\textwidth} | p{0.4\textwidth} |}
   \hline
     \textbf{\#} & \textbf{Component} & \textbf{Integrated with} \\ \hline
-    I01  & Stored Data Manager  & Persistence Unit \\ \hline
-    I02  & Data Collector Service  & Stored Data Manager \\ \hline
-    I03  & Group Request Manager  & Stored Data Manager \\ \hline
-    I04  & Group Request Manager  & Payment Handler \\ \hline
-    I05  & Run Manager & Persistence Unit \\ \hline
-    I06  & Run Manager & Maps Manager \\ \hline
-    I07  & Run Manager & Mail Manager \\ \hline
-    I08  & Standard User Manager & Persistence Unit \\ \hline
-    I09  & Special User Manager & Persistence Unit \\ \hline
-    I10  & Standard User Manager & Mail Manager \\ \hline
-    I11  & Special User Manager & Mail Manager \\ \hline
-    I12  & Standard User Manager & Data Collector Service \\ \hline
-    I13  & Special User Manager & Group Request Manager \\ \hline
-    I14  & Standard User Manager & Run Manager \\ \hline
-    I15  & Single Request Manager & Stored Data Manager \\ \hline
-    I16  & Single Request Manager & Payment Handler \\ \hline
-    I17  & Special User Manager & Single Request Manager \\ \hline
-    I18  & Standard User Manager & Single Request Manager \\ \hline
-    I19  & User Access Point & Standard User Manager \\ \hline
-    I20  & User Access Point & Special User Manager \\ \hline
+    I01  & Data Collector Service  & Persistence Unit \\ \hline
+    I02  & Group Request Manager  & Persistence Unit \\ \hline
+    I03  & Group Request Manager  & Payment Handler \\ \hline
+    I04  & Run Manager & Persistence Unit \\ \hline
+    I05  & Run Manager & Maps Manager \\ \hline
+    I06  & Run Manager & Mail Manager \\ \hline
+    I07  & Standard User Manager & Persistence Unit \\ \hline
+    I08  & Special User Manager & Persistence Unit \\ \hline
+    I09  & Standard User Manager & Mail Manager \\ \hline
+    I10  & Special User Manager & Mail Manager \\ \hline
+    I11  & Standard User Manager & Data Collector Service \\ \hline
+    I12  & Special User Manager & Group Request Manager \\ \hline
+    I13  & Standard User Manager & Run Manager \\ \hline
+    I14  & Single Request Manager & Persistence Unit \\ \hline
+    I15  & Single Request Manager & Payment Handler \\ \hline
+    I16  & Special User Manager & Single Request Manager \\ \hline
+    I17  & Standard User Manager & Single Request Manager \\ \hline
 \end{tabular}
 \caption{\textit{Application Server} components integration table}
 \label{table:appServerIntegrationTable}
@@ -161,11 +156,12 @@ Now we present the integration sequence of subsystems. As we mentioned before a 
     I01 & Database, Application Server & Persistence Unit & DBMS \\ \hline
     I02 & Application Server, External Servicies & Maps Handler & Maps Service \\ \hline
     I03 & Application Server, External Servicies & Payment Hendler & Payment Service \\ \hline
-    I04 & Application Server, Web Server & User Access Point & Control Unit \\ \hline
-    I05 & Application Server, Web Server & Run Manager & Control Unit \\ \hline
-    I06 & Application Server, Mobile Client & User Access Point & Application Server Handler \\ \hline
-    I07 & Application Server, Mobile Client & Run Manager & Application Server Handler \\ \hline
-    I08\textsuperscript{*} & Mobile Client, External Services & SOS Handler & SOS Service \\ \hline
+    I04 & Application Server, Web Server & Special User Manager & Control Unit \\ \hline
+    I05 & Application Server, Web Server & Standard User Manager & Control Unit \\ \hline
+    I06 & Application Server, Web Server & Run Manager & Control Unit \\ \hline
+    I07 & Application Server, Mobile Client & Standard User Manager & Application Server Handler \\ \hline
+    I08 & Application Server, Mobile Client & Run Manager & Application Server Handler \\ \hline
+    I09\textsuperscript{*} & Mobile Client, External Services & SOS Handler & SOS Service \\ \hline
 \end{tabular}
 \caption{\textit{Subsystems integration} table.
 \text{*}:this integration activity is valid only for \textit{AutomatedSOS} application}

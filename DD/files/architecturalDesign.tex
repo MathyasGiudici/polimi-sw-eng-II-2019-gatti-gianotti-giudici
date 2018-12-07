@@ -1,4 +1,4 @@
-\section{Overview}
+ \section{Overview}
 The main high-level components of the system that will be taken into account are structured in four layers, as shown in Figure \ref{img:layeredStructure} below.
 
 \begin{figure}[H]
@@ -69,7 +69,7 @@ Moreover, the \textit{Application Server} is the only entity of the system that 
 Following this brief introduction there are the logic modules and their descriptions, moreover all connections among components could be seen in the \textit{Global Component View} in Figure \ref{img:GlobalComponent}.
 
 \paragraph{Data Collector Service}
-This module offers the a service to the \textit{Standard User Manager} in order to maange user's data and store it into the \textit{Data4Help} database. Data storage is done through \textit{Stored Data Manager}.
+This module offers the a service to the \textit{Standard User Manager} in order to maange user's data and store it into the \textit{Data4Help} database.
 
 \paragraph{Group Request Manager}
 This module manages the third party requests of \textit{Group Data Requirement}.
@@ -98,14 +98,6 @@ This module provides all functionalities related to the \textit{Special User}.
 
 \paragraph{Standard User Manager}
 This module provides all functionalities related to the \textit{Standard User}.
-
-\paragraph{Stored Data Manager}
-This module provides data to \textit{Group Request Manage} and \textit{Single Request Manage}. It has also to manage all privacy checks and provide data without any type of personal information of the users for \textit{Group Data Requirement}.
-
-\paragraph{User Access Point}
-This module provides an access point to the \textit{Application Server} for the \textit{Web Server} and the \textit{Mobile Apps}.
-It routes different users in the correct \textit{User Manger} module: Special User and Standard User.
-
 
 
 \subsection{Mobile App}
@@ -175,7 +167,7 @@ Below is the deployment diagram of the system to be (Figure \ref{img:Deployment_
 
 \clearpage
 
-\section{Runtime View}
+\section{Runtime View}\label{runtimeViewSection}
 In this Section we want to specify the behaviour of our system. Some relevant cases are selected and explained using Sequence Diagrams.
 
 \begin{figure}[H]
@@ -262,10 +254,46 @@ In this Section we want to specify the behaviour of our system. Some relevant ca
 \clearpage
 
 \section{Component Interfaces}
+This section contains some detailed informations about interfaces between components of the system.\\
+A detailed description focuses the attention over the actions of a procedure of a certain component called by other components. These actions could be seen in the \textit{Sequence Diagrams} (Section \ref{runtimeViewSection}).
 
-% TODO bisogna guardare quello che viene chiamato nei sequene
+\subsection{Application Server}
 
-\clearpage
+\subsubsection{Run Manger}
+\myparagraph{}
+Following procedures are called by other components:
+\begin{itemize}
+  \item \textbf{checkCreationForm}\quad This procedure checks all the fields of a creation for \textit{Create a Run} form.
+
+  \item \textbf{definePath} \quad This procedure is called to open the path definition interface and to prepare the system to manage avoiding of maps duplications.
+
+  \item \textbf{enrolRun} \quad This procedure allow a \textit{User} to enrol in a \textit{Run}.
+
+  \item \textbf{getProposedRuns} \quad This procedure is called to retrive \textit{Runs} to propose to the \textit{Users}.
+
+  \item \textbf{getRunInfo} \quad This procedure is called to retrive information of a particular \textit{Run}.
+
+  \item \textbf{insertPin} \quad This procedure is called to insert a \textit{Pin} on a map during hte definition of a path.
+
+  \item \textbf{makePlacingsTable} \quad This procedure is called to create the \textit{Placings Table} of a given \textit{Run} knowing path and runners' position.
+
+  \item \textbf{searchRun} \quad This produce is called to search a given \textit{Run}.
+
+  \item \textbf{sendData} \quad This procedure is used to submit data informations of a \textit{Run} and these data are used to compute functional requirement expecially for the \textit{Create a Run} use case (for instance avoiding 50\% of map duplication).
+
+  \item \textbf{submitRun} \quad This produce is called when a \textit{User} has defined a \textit{Run} and wants to publish it.
+
+  \item \textbf{watchRun} \quad This procedure is called to watch a given \textit{Run}.
+\end{itemize}
+
+\myparagraph{}
+Following procedures are called internally to the component.
+\begin{itemize}
+  \item \textbf{checkMapDuplication} \quad This procedure is called to check the duplication of a given path with the compatible ones.
+
+  \item \textbf{getDate} \quad This procedure is used to get the inserted \textit{Date} during the \textit{Create a Run} phase.
+\end{itemize}
+
 
 \section{Selected Architectural Styles and Patterns}\label{architecturalStyle}
 Following are the choices made regarding architectural styles and patterns.
