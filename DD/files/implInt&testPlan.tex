@@ -1,7 +1,35 @@
+\section{Software Development Process}
+Given the detailed specifications available for the development of this software, the life cycle that is most suitable to choose is the \textit{Waterfall} model.\\
+In fact, this life cycle involves the sequential execution of the main steps from the collection of information to the maintenance of the software.
+The steps to follow according to this life cycle are shown in figure \ref{img:waterfall}.\\
+It is very easy to couple the steps carried out up to now with those foreseen by the chosen life cycle.
+\begin{itemize}
+  \item Concept Exploration coincides with the analysis of the project assignment document.
+  \item Requirements Analysis coincides with what has been done for the production of the Requirements Analysis and Specification Document.
+  \item System Design coincides with what has been done for the production of this document.
+\end{itemize}
+Next steps:
+\begin{itemize}
+  \item Implementation
+  \item Testing
+  \item Deployment
+  \item Maintenance
+\end{itemize}
+
+\begin{figure}[H]
+  \begin{center}
+  	\includegraphics[width=0.69\paperwidth]{./img/waterfall.png}
+    \hspace{0.05\linewidth}
+    \centering
+    \caption{\textit{Waterfall} Model}
+		\label{img:waterfall}
+    \end{center}
+\end{figure}
+
 \section{Implementation Plan}
 The Architectural Styles and Patterns of the system to be are huge explained in Section \ref{architecturalStyle}.\\
 The implementation of our system will be done module by module and component by component, most relevant and complex part of the system to be is the \textit{Controller} of the MVC model.\\
-The developing of the modules must be done keeping attention in writing good \textit{Documentation of the Code}, doing \textit{Unit Test} and
+The development of the modules must be done keeping attention in writing good \textit{Documentation of the Code}, doing \textit{Unit Test} and
 finally making \textit{Code Inspection and Analysis}; these topics are explained in the Section \ref{int_test}.\\
 Below there is a Figure in order to explain the implementation flow, several detailed on the \textit{Application Server} components that are the huge part of the \textit{Controller}.
 
@@ -17,7 +45,7 @@ Below there is a Figure in order to explain the implementation flow, several det
 
 \subsection{Implementation Plan Discussion}
 \myparagraph{}
-The \textit{Model} is the first part of the system the must be implemented. This choice is supported by the facts that the \textit{Model} is used by most of the components in the \textit{Application Server} and some part of it are represented in the \textit{Database} avoiding any type of duplication or confusion between what we consider \textit{Model} and \textit{Controller} is the main motivation of this choice.
+The \textit{Model} is the first part of the system that must be implemented. This choice is supported by the facts that the \textit{Model} is used by most of the components in the \textit{Application Server} and some part of it are represented in the \textit{Database} avoiding any type of duplication or confusion between what we consider \textit{Model} and \textit{Controller} is the main motivation of this choice.
 
 \myparagraph{}
 The second most relevant part of the system that must be developed is the \textit{Controller}, and we find in it components of the \textit{Application Server}.
@@ -67,7 +95,7 @@ Our system is structured in a multi-tiered client-server architecture and we can
 The integration of the different components in a layer must be done component by component and then when issues of internal integration will be fixed, layers integration that concerns communication between components must be performed.
 
 \subsection{Integration Testing Strategy}
-To avoid any possible of complex problems during the integration phase, like testing phase the integration phase must be performed incrementally when is possible during the growing of the system.\\
+To avoid any possibility of complex problems during the integration phase, like testing phase the integration phase must be performed incrementally when is possible during the growing of the system.\\
 Where integration test is not possible during the developing phase, in the integration phase a bottom-up approach of integration must be follow, in order to avoid any possible of failure of the core components of the system.
 
 \subsection{Integration Sequence}
