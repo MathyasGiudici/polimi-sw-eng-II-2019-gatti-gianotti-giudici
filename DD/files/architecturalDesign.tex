@@ -256,43 +256,43 @@ In this Section we want to specify the behaviour of our system. Some relevant ca
 \section{Component Interfaces}
 This section contains some detailed informations about interfaces between components of the system.\\
 A detailed description focuses the attention over the actions of a procedure of a certain component called by other components.\\
-These actions could be seen in the \textit{Sequence Diagrams} (Section \ref{runtimeViewSection}).
+Huge part of these actions could be seen played in the \textit{Sequence Diagrams} (Section \ref{runtimeViewSection}).
 
 \subsection{Application Server}
 
 \subsubsection{Standard User Manager}
 Following procedures are called by other components:
 \begin{itemize}
-  \item \textbf{newStandardAccountRequest}\quad This procedure is called to start a standard user registration process that can be then accepted or refused.
-  \item \textbf{submitStandardUserCredentials}\quad This procedure is called to let (or not) a standard user log in into one of \textit{Track Me} services.
-  \item \textbf{requireAssociableDevices}\quad This procedure is used to induce the system to load the list of associable devices.
   \item \textbf{associateDevice}\quad This procedure is used to associate a selected device with the smartphone in use.
-  \item \textbf{modifyPersonalInformations}\quad This procedure is called to modify personal informations (among the modifiable ones:  city of residence, address and occupation.)
-  \item \textbf{changePassowrd}\quad This procedure is called to change the password of the user's account.
   \item \textbf{changeDevice}\quad This procedure is called to start the process of changing the associated device.
+  \item \textbf{changePassowrd}\quad This procedure is called to change the password of the user's account.
   \item \textbf{deleteProfile}\quad This procedure is called to delete the user's profile.
+  \item \textbf{modifyPersonalInformations}\quad This procedure is called to modify personal informations (among the modifiable ones:  city of residence, address and occupation.)
+  \item \textbf{newStandardAccountRequest}\quad This procedure is called to start a standard user registration process that can be then accepted or refused.
+  \item \textbf{requireAssociableDevices}\quad This procedure is used to induce the system to load the list of associable devices.
+  \item \textbf{submitStandardUserCredentials}\quad This procedure is called to let (or not) a standard user log in into one of \textit{Track Me} services.
 \end{itemize}
 
 \myparagraph{}
 Following procedures are called internally to the component:
 \begin{itemize}
   \item \textbf{checkCredentials}\quad This procedure is called to check whether the credentials inserted by the user during the login match with the ones saved in the system's database.
-  \item \textbf{loadAssociableDevices}\quad This procedure is called to load the list of associable devices.
   \item \textbf{checkData}\quad This procedure is called to check if the user has inserted correctly all the required data.
   \item \textbf{generatePassword}\quad This procedure is called to generate a random password to be assigned to the newly created standard user.
+  \item \textbf{loadAssociableDevices}\quad This procedure is called to load the list of associable devices.
 \end{itemize}
 
 \subsubsection{Special User Manager}
 Following procedures are called by other components:
 \begin{itemize}
-  \item \textbf{newSpecialAccountRequest}\quad This procedure is called to start a special user registration process that can be then accepted or refused.
-  \item \textbf{submitSpecialUserCredentials}\quad This procedure is called to let (or not) a special user log in into one of \textit{Track Me} services.
-  \item \textbf{modifyPersonalInformations}\quad This procedure is called to modify personal informations (among the modifiable ones:  legal address, billing address, corporate e-mail address, sector and all the data regarding the legal representative)
   \item \textbf{changePassowrd}\quad This procedure is called to change the password of the special user's account.
   \item \textbf{deleteProfile}\quad This procedure is called to delete the user's profile.
+  \item \textbf{modifyPersonalInformations}\quad This procedure is called to modify personal informations (among the modifiable ones:  legal address, billing address, corporate e-mail address, sector and all the data regarding the legal representative)
   \item \textbf{newGroupDataRequest}\quad This procedure is called to start the process of requiring data of a group of people and to send the useful data to the specialized component (\textit{Group Request Manager}).
-  \item \textbf{newPaymentRequest}\quad This procedure is called to start the process of paying some required data calling the corresponding procedure on the more specialized component (\textit{Group Request Manager}).
   \item \textbf{newIndividualDataRequest}\quad This procedure is called to start the process of requiring to an individual user the sharing of his/her data and to send the useful data to the specialized component (\textit{Single Request Manager}).
+  \item \textbf{newPaymentRequest}\quad This procedure is called to start the process of paying some required data calling the corresponding procedure on the more specialized component (\textit{Group Request Manager}).
+  \item \textbf{newSpecialAccountRequest}\quad This procedure is called to start a special user registration process that can be then accepted or refused.
+  \item \textbf{submitSpecialUserCredentials}\quad This procedure is called to let (or not) a special user log in into one of \textit{Track Me} services.
 \end{itemize}
 
 \myparagraph{}
@@ -313,8 +313,8 @@ Following procedures are called by other components:
 \myparagraph{}
 Following procedures are called internally to the component:
 \begin{itemize}
-  \item \textbf{checkGroupSize}\quad This procedure is called to check whether the size of the required group of people is over 10000 or not.
   \item \textbf{calculateAmountDue}\quad This procedure is called to calculate the amount due to download some required available data.
+  \item \textbf{checkGroupSize}\quad This procedure is called to check whether the size of the required group of people is over 10000 or not.
 \end{itemize}
 
 \subsubsection{Single Request Manager}
@@ -327,17 +327,17 @@ Following procedures are called by other components:
 \myparagraph{}
 Following procedures are called internally to the component:
 \begin{itemize}
-  \item \textbf{createRequest}\quad This procedure is called to generate a sharing data request that has to be sent to an individual user.
   \item \textbf{calculateAmountDue}\quad This procedure is called to calculate the amount due to download some required available data.
+  \item \textbf{createRequest}\quad This procedure is called to generate a sharing data request that has to be sent to an individual user.
 \end{itemize}
 
 \subsubsection{Mail Manager}
 Following procedure is called by other components:
 \begin{itemize}
-  \item \textbf{confirmationEmail}\quad This procedure sends a confirmation e-mail to the \textit{User}.
-  \item \textbf{sendRequestEmail}\quad This procedure is called to send a sharing data request to an individual user.
-  \item \textbf{sendRefusedEmail}\quad This procedure is called to inform a third party that an individual user, of which it has required the data , has refused its request.
+  \item \textbf{confirmationEmail}\quad This procedure sends a confirmation e-mail to the user.
   \item \textbf{sendAcceptedEmail}\quad This procedure is called to inform a third party that an individual user, of which it has required the data, has accepted its request and so data will be immediatly available after completing the payment.
+  \item \textbf{sendRefusedEmail}\quad This procedure is called to inform a third party that an individual user, of which it has required the data , has refused its request.
+  \item \textbf{sendRequestEmail}\quad This procedure is called to send a sharing data request to an individual user.
 \end{itemize}
 
 \subsubsection{Maps Manager}
@@ -351,8 +351,10 @@ Following procedures are called by other components:
 \begin{itemize}
   \item \textbf{checkCreationForm}\quad This procedure checks all the fields of a creation for \textit{Create a Run} form.
   \item \textbf{definePath} \quad This procedure is called to open the path definition interface and to prepare the system to manage avoiding of maps duplications.
-  \item \textbf{enrolRun} \quad This procedure allow a \textit{User} to enrol in a \textit{Run}.
-  \item \textbf{getProposedRuns} \quad This procedure is called to retrive \textit{Runs} to propose to the \textit{Users}.
+  \item \textbf{deleteEnrolement} \quad This procedure allow a user to delete an enrolment in a \textit{Run}.
+  \item \textbf{deleteRun} \quad This procedure allow a user to delete a \textit{Run}.
+  \item \textbf{enrolRun} \quad This procedure allow a user to enrol in a \textit{Run}.
+  \item \textbf{getProposedRuns} \quad This procedure is called to retrive \textit{Runs} to propose to the users.
   \item \textbf{getRunInfo} \quad This procedure is called to retrive information of a particular \textit{Run}.
   \item \textbf{insertPin} \quad This procedure is called to insert a \textit{Pin} on a map during hte definition of a path.
   \item \textbf{makePlacingsTable} \quad This procedure is called to create the \textit{Placings Table} of a given \textit{Run} knowing path and runners' position.
@@ -373,21 +375,23 @@ Following procedures are called internally to the component.
 Following procedures are called by other components:
 \begin{itemize}
   \item \textbf{checkExistingUser}\quad This procedure queries the credentials of a specific user to check whether they are already present in the database or not.
-  \item \textbf{insertNewUser}\quad This procedure posts a new user on the DB through the DBMS.
-  \item \textbf{requireStandardUserCredentials}\quad This procedure queries the credentials of a standard user (his/her email-password) to check if they correspond with the ones inserted during the login.
-  \item \textbf{requireSpecialUserCredentials}\quad This procedure queries the credentials of a special user (its email-password) to check if they correspond with the ones inserted during the login.
-  \item \textbf{insertAssociationPhoneDevice}\quad This procedure posts a new association phone-device on the DB through the DBMS.
-  \item \textbf{newIndividualDataRequest}\quad This procedure posts a new individual data request on the DB through the DBMS.
-  \item \textbf{individualDataRequestAnswer}\quad This procedure posts the answer recieved by an individual user for an individual data request on the DB through the DBMS.
-  \item \textbf{groupData}\quad This procedure queries the data of a specified group of people on the DB through the DBMS.
-  \item \textbf{newGroupDataRequest}\quad This procedure posts a new group data request on the DB through the DBMS.
+  \item \textbf{deleteEnrolement} \quad This procedure deletes an enrolment of a user on the DB through the DBMS.
+  \item \textbf{deleteRun} \quad This procedure deletes a \textit{Run} on the DB through the DBMS.
+  \item \textbf{enrolRun}\quad This procedure posts an enrolment of a user on the DB through the DBMS.
   \item \textbf{getRun}\quad This procedure queries required \textit{Run} on the DB through the DBMS.
-  \item \textbf{getRuns}\quad This procedure queries required \textit{Runs} on the DB through the DBMS.
   \item \textbf{getRunInfo}\quad This procedure queries required \textit{Run}'s information on the DB through the DBMS.
-  \item \textbf{enrolRun}\quad This procedure posts an enrolment of a \textit{User} on the DB through the DBMS.
-  \item \textbf{saveRun}\quad This procedure posts a new \textit{Run} on the DB through the DBMS.
   \item \textbf{getRunMapPoints}\quad This procedure queries required \textit{Run path} on the DB through the DBMS.
-  \item \textbf{getRunnersPosition}\quad This procedure queries \textit{Runners} position of a certain \textit{Run }on the DB through the DBMS.
+  \item \textbf{getRunnersPosition}\quad This procedure queries \textit{Runners} position of a certain \textit{Run} on the DB through the DBMS.
+  \item \textbf{getRuns}\quad This procedure queries required \textit{Runs} on the DB through the DBMS.
+  \item \textbf{groupData}\quad This procedure queries the data of a specified group of people on the DB through the DBMS.
+  \item \textbf{individualDataRequestAnswer}\quad This procedure posts the answer recieved by an individual user for an individual data request on the DB through the DBMS.
+  \item \textbf{insertAssociationPhoneDevice}\quad This procedure posts a new association phone-device on the DB through the DBMS.
+  \item \textbf{insertNewUser}\quad This procedure posts a new user on the DB through the DBMS.
+  \item \textbf{newGroupDataRequest}\quad This procedure posts a new group data request on the DB through the DBMS.
+  \item \textbf{newIndividualDataRequest}\quad This procedure posts a new individual data request on the DB through the DBMS.
+  \item \textbf{requireSpecialUserCredentials}\quad This procedure queries the credentials of a special user (its email-password) to check if they correspond with the ones inserted during the login.
+  \item \textbf{requireStandardUserCredentials}\quad This procedure queries the credentials of a standard user (his/her email-password) to check if they correspond with the ones inserted during the login.
+  \item \textbf{saveRun}\quad This procedure posts a new \textit{Run} on the DB through the DBMS.
 \end{itemize}
 
 \subsubsection{Payment Handler}
@@ -397,40 +401,59 @@ Following procedures is called by other components:
 \end{itemize}
 
 \subsection{AutomatedSOS}
+\subsubsection{Application Server Handler}
+Following procedures are called by other components:
+\begin{itemize}
+  \item \textbf{getData}\quad This procedure is called to get data information of the user from the DB via \textit{Application Server}.
+  \item \textbf{login}\quad This procedure is called to log in \textit{AutomatedSOS}.
+  \item \textbf{sendData}\quad This procedure is called to send data information of the user to the \textit{Application Server} and store them into the DB.
+\end{itemize}
+
 \subsubsection{Background Health Monitor}
 Following procedures are called by other components:
 \begin{itemize}
-  \item \textbf{pushData}\quad This procedure is called to send data that \textit{AutomatedSOS} has to evaluate.
-  \item \textbf{sendPosition}\quad This procedure is called to send \textit{User}'s position to \textit{AutomatedSOS}.
   \item \textbf{lastPosition}\quad This procedure is called to send the last \textit{User}'s position to \textit{AutomatedSOS}.
+  \item \textbf{pushData}\quad This procedure is called to send data that \textit{AutomatedSOS} has to evaluate.
+  \item \textbf{sendPosition}\quad This procedure is called to send user's position to \textit{AutomatedSOS}.
 \end{itemize}
 
 \myparagraph{}
 Following procedures are called internally to the component.
 \begin{itemize}
-  \item \textbf{evaluateStatus}\quad This procedure evaluates the data received from the \textit{User}'s device.
   \item \textbf{evaluateBadStatus}\quad This procedure is called when the system is in an \textit{Alerted Status} and has to evaluate if it has to call an ambulance or the \textit{Alerted Status} was generated from an abnormal measure.
+  \item \textbf{evaluateStatus}\quad This procedure evaluates the data received from the user's device.
+
   \item \textbf{increaseMonitor}\quad This procedure is called at the \textit{Alerted Status} beginning to increase the life paramethers detection.
 \end{itemize}
 
-\subsubsection{Application Server Handler}
+\subsubsection{Health Status Manager}
 Following procedures are called by other components:
 \begin{itemize}
-  \item \textbf{sendData}\quad This procedure is called to send data information of the \textit{User} to the \textit{Application Server} and store them into the DB.
-\end{itemize}
-
-\subsubsection{SOS Handler}
-Following procedures are called by other components:
-\begin{itemize}
-  \item \textbf{call}\quad This produce call an ambulance and send it the \textit{User}'s position.
-  \item \textbf{callWrongPosition}\quad This produce call an ambulance notifying that there is an error in getting the \textit{User}'s position and the lastone is sended.
+  \item \textbf{makeStatistics}\quad This procedure is called to get data informations of the user and makes weekly and monthly statistics to visualize.
 \end{itemize}
 
 \subsubsection{GUI}
 Following procedures are called by other components:
 \begin{itemize}
   \item \textbf{displayAlertStatus}\quad This procedure shows on the smartphone's screen the emergency call in progress.
+  \item \textbf{displayDashboard}\quad This procedure shows on the smartphone's screen the dashboard of a logged user.
+  \item \textbf{displayLogin}\quad This procedure shows on the smartphone's screen the login page.
+  \item \textbf{displayStatistics}\quad This procedure shows on the smartphone's screen the statistics' page of a logged user.
 \end{itemize}
+
+\myparagraph{}
+Following procedures are called internally to the component.
+\begin{itemize}
+  \item \textbf{logout}\quad This procedure logs out the user and gets back to the \textit{Login} page of the application.
+\end{itemize}
+
+\subsubsection{SOS Handler}
+Following procedures are called by other components:
+\begin{itemize}
+  \item \textbf{call}\quad This produce call an ambulance and send it the user's position.
+  \item \textbf{callWrongPosition}\quad This produce call an ambulance notifying that there is an error in getting the user's position and the lastone is sended.
+\end{itemize}
+
 
 \section{Selected Architectural Styles and Patterns}\label{architecturalStyle}
 Following are the choices made regarding architectural styles and patterns.
