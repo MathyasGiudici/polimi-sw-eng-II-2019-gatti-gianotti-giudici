@@ -8,8 +8,12 @@ The \textit{TrackMe} project, as explaind in the RASD, has three different but c
   \item \textbf{AutomatedSOS}: a service addressed to elderly people which monitors the health status of the subscribed customers and, when such parameters are below a certain threshold (personalized for every user using the data from Data4Help), sends to the location of the customer an ambulance, guaranteeing a reaction time less than 5 second from the time the parameters are below the threshold.
   \item \textbf{Track4Run}: a service to track athletes participating in a run. It allows organizers to define the path for a run, participants to enrol to a run and spectators to see on a map the position of all runners during the run. This service will exploit the features offered by Data4Help.
 \end{itemize}
-The system-to-be is structured in a four-layered architecture, which will be described in depth in this document and which is designed with the purpose of being maintainable and extensible.
-%%--TO DO: SPIEGARE BREVEMENTE MOTIVO SCELTE FATTE PER INTEGRAZIONE ECC (DECOUPLING,..), E SE USATI DESIGN PATTERNS ECC
+The system-to-be is structured in a four-layered architecture, which will be described in depth in this document and which is designed with the purpose of being maintainable and extensible.\\
+In order to maximize software extensibility and upgradeability, development has been divided into smaller parts, which are as independent as possible.
+This causes the need to integrate and cooperate the different parts between them and to test their reliability.
+An important goal that has been taken into account for software design is also to ensure very high security standards as the software collects users' health data. This data must not be accessible by unauthorized persons.
+In order to guarantee this, in this document there is also an explanation of the choices made to ensure data security and a summary of the tests to be implemented and performed.
+
 \section{Definitions, Acronyms, Abbreviations}
 \begin{itemize}
   \setlength{\itemindent}{-.4in}
