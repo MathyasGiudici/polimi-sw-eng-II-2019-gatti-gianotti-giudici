@@ -260,47 +260,49 @@ Huge part of these actions could be seen played in the \textit{Sequence Diagrams
 
 \subsection{Application Server}
 
+\subsubsection{Data Collector Service}
+
 \subsubsection{Standard User Manager}
 Following procedures are called by other components:
 \begin{itemize}
   \item \textbf{associateDevice}\quad This procedure is used to associate a selected device with the smartphone in use.
   \item \textbf{changeDevice}\quad This procedure is called to start the process of changing the associated device.
-  \item \textbf{changePassowrd}\quad This procedure is called to change the password of the user's account.
-  \item \textbf{deleteProfile}\quad This procedure is called to delete the user's profile.
+  \item \textbf{changePassowrd}\quad This procedure is called to change the password of the \textit{Standard User}'s account.
+  \item \textbf{deleteProfile}\quad This procedure is called to delete the \textit{Standard User}'s profile.
   \item \textbf{modifyPersonalInformations}\quad This procedure is called to modify personal informations (among the modifiable ones:  city of residence, address and occupation.)
-  \item \textbf{newStandardAccountRequest}\quad This procedure is called to start a standard user registration process that can be then accepted or refused.
+  \item \textbf{newStandardAccountRequest}\quad This procedure is called to start a \textit{Standard User} registration process that can be then accepted or refused.
   \item \textbf{requireAssociableDevices}\quad This procedure is used to induce the system to load the list of associable devices.
-  \item \textbf{submitStandardUserCredentials}\quad This procedure is called to let (or not) a standard user log in into one of \textit{Track Me} services.
+  \item \textbf{submitStandardUserCredentials}\quad This procedure is called to let (or not) a \textit{Standard User} log in into one of \textit{Track Me} services.
 \end{itemize}
 
 \myparagraph{}
 Following procedures are called internally to the component:
 \begin{itemize}
-  \item \textbf{checkCredentials}\quad This procedure is called to check whether the credentials inserted by the user during the login match with the ones saved in the system's database.
-  \item \textbf{checkData}\quad This procedure is called to check if the user has inserted correctly all the required data.
-  \item \textbf{generatePassword}\quad This procedure is called to generate a random password to be assigned to the newly created standard user.
+  \item \textbf{checkCredentials}\quad This procedure is called to check whether the credentials inserted by the \textit{Standard User} during the login match with the ones saved in the system's database.
+  \item \textbf{checkData}\quad This procedure is called to check if the \textit{Standard User} has inserted correctly all the required data.
+  \item \textbf{generatePassword}\quad This procedure is called to generate a random password to be assigned to the newly created \textit{Standard User}.
   \item \textbf{loadAssociableDevices}\quad This procedure is called to load the list of associable devices.
 \end{itemize}
 
 \subsubsection{Special User Manager}
 Following procedures are called by other components:
 \begin{itemize}
-  \item \textbf{changePassowrd}\quad This procedure is called to change the password of the special user's account.
-  \item \textbf{deleteProfile}\quad This procedure is called to delete the user's profile.
+  \item \textbf{changePassowrd}\quad This procedure is called to change the password of the \textit{Special User}'s account.
+  \item \textbf{deleteProfile}\quad This procedure is called to delete the \textit{Special User}'s profile.
   \item \textbf{modifyPersonalInformations}\quad This procedure is called to modify personal informations (among the modifiable ones:  legal address, billing address, corporate e-mail address, sector and all the data regarding the legal representative)
   \item \textbf{newGroupDataRequest}\quad This procedure is called to start the process of requiring data of a group of people and to send the useful data to the specialized component (\textit{Group Request Manager}).
-  \item \textbf{newIndividualDataRequest}\quad This procedure is called to start the process of requiring to an individual user the sharing of his/her data and to send the useful data to the specialized component (\textit{Single Request Manager}).
+  \item \textbf{newIndividualDataRequest}\quad This procedure is called to start the process of requiring to a \textit{Individual User} the sharing of his/her data and to send the useful data to the specialized component (\textit{Single Request Manager}).
   \item \textbf{newPaymentRequest}\quad This procedure is called to start the process of paying some required data calling the corresponding procedure on the more specialized component (\textit{Group Request Manager}).
-  \item \textbf{newSpecialAccountRequest}\quad This procedure is called to start a special user registration process that can be then accepted or refused.
-  \item \textbf{submitSpecialUserCredentials}\quad This procedure is called to let (or not) a special user log in into one of \textit{Track Me} services.
+  \item \textbf{newSpecialAccountRequest}\quad This procedure is called to start a \textit{Special User} registration process that can be then accepted or refused.
+  \item \textbf{submitSpecialUserCredentials}\quad This procedure is called to let (or not) a \textit{Special User} log in into one of \textit{Track Me} services.
 \end{itemize}
 
 \myparagraph{}
 Following procedures are called internally to the component:
 \begin{itemize}
-  \item \textbf{checkCredentials}\quad This procedure is called to check whether the credentials inserted by the special user during the login match with the ones saved in the system's database.
-  \item \textbf{checkData}\quad This procedure is called to check if the special user has inserted correctly all the required data.
-  \item \textbf{generatePassword}\quad This procedure is called to generate a random password to be assigned to the newly created special user.
+  \item \textbf{checkCredentials}\quad This procedure is called to check whether the credentials inserted by the \textit{Special User} during the login match with the ones saved in the system's database.
+  \item \textbf{checkData}\quad This procedure is called to check if the \textit{Special User} has inserted correctly all the required data.
+  \item \textbf{generatePassword}\quad This procedure is called to generate a random password to be assigned to the newly created \textit{Special User}.
 \end{itemize}
 
 \subsubsection{Group Request Manager}
@@ -320,7 +322,7 @@ Following procedures are called internally to the component:
 \subsubsection{Single Request Manager}
 Following procedures are called by other components:
 \begin{itemize}
-  \item \textbf{newIndividualDataRequest}\quad This procedure is called to start the process of requiring to an individual user the sharing of his/her data.
+  \item \textbf{newIndividualDataRequest}\quad This procedure is called to start the process of requiring to an \textit{Individual User} the sharing of his/her data.
   \item \textbf{newPaymentRequest}\quad This procedure is called to start the process of paying some required data calling the corresponding procedure on the dedicated component (\textit{Payment Handler}).
 \end{itemize}
 
@@ -334,10 +336,11 @@ Following procedures are called internally to the component:
 \subsubsection{Mail Manager}
 Following procedure is called by other components:
 \begin{itemize}
-  \item \textbf{confirmationEmail}\quad This procedure sends a confirmation e-mail to the user.
-  \item \textbf{sendAcceptedEmail}\quad This procedure is called to inform a third party that an individual user, of which it has required the data, has accepted its request and so data will be immediatly available after completing the payment.
-  \item \textbf{sendRefusedEmail}\quad This procedure is called to inform a third party that an individual user, of which it has required the data , has refused its request.
-  \item \textbf{sendRequestEmail}\quad This procedure is called to send a sharing data request to an individual user.
+  \item \textbf{confirmationEmail}\quad This procedure sends a confirmation e-mail to the \textit{User}.
+  \item \textbf{sendAcceptedEmail}\quad This procedure is called to inform a \textit{Special User} that an \textit{Individual User}, of which it has required the data, has accepted its request and so data will be immediatly available after completing the payment.
+  \item \textbf{sendConfirmationRegEmail}\quad This procedure is called to give the \textit{User} his/her/its password for the newly created account and to confirm the creation it.
+  \item \textbf{sendRefusedEmail}\quad This procedure is called to inform a \textit{Special User} that an \textit{Individual User}, of which it has required the data , has refused its request.
+  \item \textbf{sendRequestEmail}\quad This procedure is called to send a sharing data request to an \textit{Individual User}.
 \end{itemize}
 
 \subsubsection{Maps Manager}
@@ -374,7 +377,7 @@ Following procedures are called internally to the component.
 \subsubsection{Persistence Unit}
 Following procedures are called by other components:
 \begin{itemize}
-  \item \textbf{checkExistingUser}\quad This procedure queries the credentials of a specific user to check whether they are already present in the database or not.
+  \item \textbf{checkExistingUser}\quad This procedure queries the credentials of a specific \textit{User} to check whether they are already present in the database or not.
   \item \textbf{deleteEnrolement} \quad This procedure deletes an enrolment of a user on the DB through the DBMS.
   \item \textbf{deleteRun} \quad This procedure deletes a \textit{Run} on the DB through the DBMS.
   \item \textbf{enrolRun}\quad This procedure posts an enrolment of a user on the DB through the DBMS.
@@ -384,13 +387,14 @@ Following procedures are called by other components:
   \item \textbf{getRunnersPosition}\quad This procedure queries \textit{Runners} position of a certain \textit{Run} on the DB through the DBMS.
   \item \textbf{getRuns}\quad This procedure queries required \textit{Runs} on the DB through the DBMS.
   \item \textbf{groupData}\quad This procedure queries the data of a specified group of people on the DB through the DBMS.
-  \item \textbf{individualDataRequestAnswer}\quad This procedure posts the answer recieved by an individual user for an individual data request on the DB through the DBMS.
+  \item \textbf{groupDataRequestPayment}\quad This procedure post the state of the payment of a certain group data request on the DB through the DBMS.
+  \item \textbf{individualDataRequestAnswer}\quad This procedure posts the answer recieved by an \textit{Individual User} for an individual data request on the DB through the DBMS.
   \item \textbf{insertAssociationPhoneDevice}\quad This procedure posts a new association phone-device on the DB through the DBMS.
-  \item \textbf{insertNewUser}\quad This procedure posts a new user on the DB through the DBMS.
+  \item \textbf{insertNewUser}\quad This procedure posts a new \textit{User} on the DB through the DBMS.
   \item \textbf{newGroupDataRequest}\quad This procedure posts a new group data request on the DB through the DBMS.
   \item \textbf{newIndividualDataRequest}\quad This procedure posts a new individual data request on the DB through the DBMS.
-  \item \textbf{requireSpecialUserCredentials}\quad This procedure queries the credentials of a special user (its email-password) to check if they correspond with the ones inserted during the login.
-  \item \textbf{requireStandardUserCredentials}\quad This procedure queries the credentials of a standard user (his/her email-password) to check if they correspond with the ones inserted during the login.
+  \item \textbf{requireSpecialUserCredentials}\quad This procedure queries the credentials of a \textit{Special User} (its email-password) to check if they correspond with the ones inserted during the login.
+  \item \textbf{requireStandardUserCredentials}\quad This procedure queries the credentials of a \textit{Standard User} (his/her email-password) to check if they correspond with the ones inserted during the login.
   \item \textbf{saveRun}\quad This procedure posts a new \textit{Run} on the DB through the DBMS.
 \end{itemize}
 
