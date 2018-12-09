@@ -336,7 +336,11 @@ Following procedures are called internally to the component:
 \subsubsection{Mail Manager}
 Following procedure is called by other components:
 \begin{itemize}
-  \item \textbf{confirmationEmail}\quad This procedure sends a confirmation e-mail to the \textit{User}.
+  \item \textbf{confirmationCreateRun}\quad This procedure sends a confirmation e-mail to the \textit{User} that successfully has created a \textit{Run}.
+  \item \textbf{confirmationDeleteEnrolment}\quad This procedure sends a confirmation e-mail to the \textit{User} that successfully has delete an enrolment in a \textit{Run}.
+  \item \textbf{confirmationDeleteRun}\quad This procedure sends a confirmation e-mail to the \textit{User} that successfully has deleted a \textit{Run}.
+  \item \textbf{confirmationEnrolRun}\quad This procedure sends a confirmation e-mail to the \textit{User} that successfully has enrolled in a \textit{Run}.
+  \item \textbf{notyifyDeleteRun}\quad This procedure sends a notification e-mail to the \textit{Users} that previously have enrolled in a \textit{Run} that has been deleted.
   \item \textbf{sendAcceptedEmail}\quad This procedure is called to inform a \textit{Special User} that an \textit{Individual User}, of which it has required the data, has accepted its request and so data will be immediatly available after completing the payment.
   \item \textbf{sendConfirmationRegEmail}\quad This procedure is called to give the \textit{User} his/her/its password for the newly created account and to confirm the creation it.
   \item \textbf{sendRefusedEmail}\quad This procedure is called to inform a \textit{Special User} that an \textit{Individual User}, of which it has required the data , has refused its request.
