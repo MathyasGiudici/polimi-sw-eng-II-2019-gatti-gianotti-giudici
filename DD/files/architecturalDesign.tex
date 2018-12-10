@@ -33,11 +33,11 @@ A more detailed description of the intereactions between the described system co
     \end{center}
 \end{figure}
 
+\clearpage
 \section{Component View}
 In this section the system will be described in term of its components:  their functionalities will be discussed and detailed.\\
 Moreover interfaces among components and among external services will be shown.
 
-\clearpage
 \subsection{Database}
 The application database will be managed using a Relational DBMS. \\
 It will allow the reading of data, ensuring to the users the possibility to log in, access the application of interest and check the stored data.
@@ -392,7 +392,6 @@ Following procedures are called by other components:
   \item \textbf{deleteRun} \quad This procedure deletes a \textit{Run} on the DB through the DBMS.
   \item \textbf{enrolRun}\quad This procedure posts an enrolment of a user on the DB through the DBMS.
   \item \textbf{getRun}\quad This procedure queries required \textit{Run} on the DB through the DBMS.
-  \item \textbf{getRunInfo}\quad This procedure queries required \textit{Run}'s information on the DB through the DBMS.
   \item \textbf{getRunMapPoints}\quad This procedure queries required \textit{Run path} on the DB through the DBMS.
   \item \textbf{getRunnersPosition}\quad This procedure queries \textit{Runners} position of a certain \textit{Run} on the DB through the DBMS.
   \item \textbf{getRuns}\quad This procedure queries required \textit{Runs} on the DB through the DBMS.
@@ -405,6 +404,7 @@ Following procedures are called by other components:
   \item \textbf{newIndividualDataRequest}\quad This procedure posts a new individual data request on the DB through the DBMS.
   \item \textbf{requireSpecialUserCredentials}\quad This procedure queries the credentials of a \textit{Special User} (its email-password) to check if they correspond with the ones inserted during the login.
   \item \textbf{requireStandardUserCredentials}\quad This procedure queries the credentials of a \textit{Standard User} (his/her email-password) to check if they correspond with the ones inserted during the login.
+  \item \textbf{savePath}\quad This procedure posts a new path for a \textit{Run} on the DB through the DBMS.
   \item \textbf{saveRun}\quad This procedure posts a new \textit{Run} on the DB through the DBMS.
 \end{itemize}
 
@@ -500,6 +500,7 @@ Also the \textit{Track4Run} app is considered thin client because, even if the a
 The \textit{AutomatedSOS} app has to be considered a thick client: in the app, in addition to the graphical interface and the logic related to the acquisition of user data, there is also the logic that allows the phone to make a call to the external service used for handling emergency calls.
 Thanks to this, the app is able to detect a state of emergency and alert the ambulance even if the connection with the server is not available.
 
+\clearpage
 \subsection{Model-View-Control}
 The MVC model identifies three main components in the management of a client-server application. They are the Model, the View and the Controller.
 The following diagram shows the management of these three levels according to the use of thin or thick clients (\ref{img:client_server}).
@@ -522,7 +523,7 @@ The username used for the access coincides with the email address used during re
 
 \subsection{Password storing}
 The passwords given to the users are saved in the database after being encrypted using a SHA512 algorithm.
-This way, the passwords that have to be used to access to Data4Help services are not stored in plaintext in the user's database, but they are the result of a transformation from which, even with very powerful computers, it is very difficult to trace the original ones.
+This way, the passwords that have to be used to access to \textit{Data4Help} services are not stored in plaintext in the user's database, but they are the result of a transformation from which, even with very powerful computers, it is very difficult to trace the original ones.
 This way even using the normal Internet connection, if an intruder succedes in picking up the string containing the password, he won't be able to trace the password used to access the service.
 
 \subsection{Security in the transfer of information}
@@ -530,13 +531,13 @@ The transfer of data between the clients and the server is done using the most m
 For example, the Web Server offers an HTTPS interface to the web browser.
 
 \subsection{Maps}
-In order to manage the \textit{Runs} offered by Track4Run, the external Google Maps service is used.
+In order to manage the \textit{Runs} offered by \textit{Track4Run}, the external Google Maps service is used.
 Longitude and latitude are used to locate a position within the map.
 To ensure a better service to the user who is responsible for creating the \textit{Run}, it is also given to him/her the opportunity to create the route using the features provided by Google Maps (such as search by address, search for places of public interest, and so on). In the database the \textit{Run} path will still be saved as a sequence of positions in terms of longitude and latitude.
 
 \subsection{Emergency call}
 Emergency calls are handled using an external service.
 This ensures that even in the case that the data network is not available, or the application server is out of service, it is still possible to call for help.
-In fact, the external service works via the Internet connection or, in the absence of a connection, via SMS.
-When the Automated SOS application detects an anomaly, it invokes the external service and sends it the location of the device and a precompiled text containing information related to the health status of the user.
-Finally this information is sent to the rescue service by the external service.
+In fact, the External Service works via the Internet connection or, in the absence of a connection, via SMS.
+When the \textit{AutomatedSOS} application detects an anomaly, it invokes the external service and sends it the location of the device and a precompiled text containing information related to the health status of the user.
+Finally this information is sent to the rescue service by the External Service.

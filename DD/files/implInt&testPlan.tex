@@ -55,6 +55,7 @@ The second most relevant part of the system that must be developed is the \texti
   \item \textbf{Group Request Manager} and \textbf{Data Collector Service} provides some of the services provides by \textit{Data4Help}. They are at the base of other components so their implementation must be done keeping attention.
   \item \textbf{Run Manager} is the component that allows our system to manage the \textit{Run}'s services, fault tollerance must be guarantee. It is the core of this service and its implementation is crucial. It also provides an interface to the \textit{Standard User Manager} components and it use the \textit{Maps Manager} component.
   \item \textbf{Standard User Manager} and \textbf{Special User Manager} are the core of all actions performed by a \textit{Generic User} of \textit{Data4Help}. They communicate with most of the components described before and their implementation has to guarantee very high tolerance to fault and good performance since they represent a possible bottleneck of the application.
+  \clearpage
   \item \textbf{Single Request Manager} like some previous components it provides one of the core service of \textit{Data4Help}. Its implementation is inserted at this point because it requires some important functionalities of \textit{Standard User Manager} and \textit{Special User Manager}.
 \end{itemize}
 
