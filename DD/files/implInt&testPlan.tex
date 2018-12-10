@@ -1,7 +1,7 @@
 \section{Software Development Process}
 Given the detailed specifications available for the development of this software, the life cycle that is most suitable to choose is the \textit{Waterfall} model.\\
 In fact, this life cycle involves the sequential execution of the main steps from the collection of information to the maintenance of the software.
-The steps to follow according to this life cycle are shown in figure \ref{img:waterfall}.\\
+The steps that must be followed according to this life cycle are shown in figure \ref{img:waterfall}.\\
 It is very easy to couple the steps carried out up to now with those foreseen by the chosen life cycle.
 \begin{itemize}
   \item Concept Exploration coincides with the analysis of the project assignment document.
@@ -28,7 +28,7 @@ Next steps:
 
 \section{Implementation Plan}
 The Architectural Styles and Patterns of the system to be are huge explained in Section \ref{architecturalStyle}.\\
-The implementation of our system will be done module by module and component by component, most relevant and complex part of the system to be is the \textit{Controller} of the MVC model.\\
+The implementation of our system will be done module by module and component by component, the most relevant and complex part of the system to be is the \textit{Controller} of the MVC model.\\
 The development of the modules must be done keeping attention in writing good \textit{Documentation of the Code}, doing \textit{Unit Test} and
 finally making \textit{Code Inspection and Analysis}; these topics are explained in the Section \ref{int_test}.\\
 Below there is a Figure in order to explain the implementation flow, several detailed on the \textit{Application Server} components that are the huge part of the \textit{Controller}.
@@ -45,30 +45,30 @@ Below there is a Figure in order to explain the implementation flow, several det
 
 \subsection{Implementation Plan Discussion}
 \myparagraph{}
-The \textit{Model} is the first part of the system that must be implemented. This choice is supported by the facts that the \textit{Model} is used by most of the components in the \textit{Application Server} and some part of it are represented in the \textit{Database} avoiding any type of duplication or confusion between what we consider \textit{Model} and \textit{Controller} is the main motivation of this choice.
+The \textit{Model} is the first part of the system that must be implemented. This choice is supported by the facts that the \textit{Model} is used by most of the components in the \textit{Application Server} and that some part of it are represented in the \textit{Database}. Moreover, this way it is avoided any type of duplication or confusion between what we consider \textit{Model} and what \textit{Controller}.
 
 \myparagraph{}
 The second most relevant part of the system that must be developed is the \textit{Controller}, and we find in it components of the \textit{Application Server}.
 \begin{itemize}
   \item \textbf{Persistence Unit} is the first component of this part that must be implemented because it manages all communication with the DBMS and communicates with a large part of the components in this part of the system.
-  \item \textbf{Maps Manager}, \textbf{Mail Manger} and \textbf{Payment Handler} are components the provides the majority of services in common among other components and \textit{Maps Manager} and \textit{Payment Handler} also are the components that interfaces with the external services.
+  \item \textbf{Maps Manager}, \textbf{Mail Manger} and \textbf{Payment Handler} are components the provides the majority of services in common among other components and \textit{Maps Manager} and \textit{Payment Handler} are also the components that interfaces with the external services.
   \item \textbf{Group Request Manager} and \textbf{Data Collector Service} provides some of the services provides by \textit{Data4Help}. They are at the base of other components so their implementation must be done keeping attention.
-  \item \textbf{Run Manager} is the component that allows our system to manage the \textit{Run}'s services, fault tollerance must be guarantee. It is the core of this service and its implementation is crucial. It also provides an interface to the \textit{Standard User Manager} components and it use the \textit{Maps Manager}. component.
-  \item \textbf{Standard User Manager} and \textbf{Special User Manager} are the core all actions performed by a \textit{Generic User} of \textit{Data4Help}. They communicate with most of the components described before and their implementation has to guarantee very high tolerance to fault and good performance because they represent a possible bottleneck of the application.
+  \item \textbf{Run Manager} is the component that allows our system to manage the \textit{Run}'s services, fault tollerance must be guarantee. It is the core of this service and its implementation is crucial. It also provides an interface to the \textit{Standard User Manager} components and it use the \textit{Maps Manager} component.
+  \item \textbf{Standard User Manager} and \textbf{Special User Manager} are the core of all actions performed by a \textit{Generic User} of \textit{Data4Help}. They communicate with most of the components described before and their implementation has to guarantee very high tolerance to fault and good performance since they represent a possible bottleneck of the application.
   \item \textbf{Single Request Manager} like some previous components it provides one of the core service of \textit{Data4Help}. Its implementation is inserted at this point because it requires some important functionalities of \textit{Standard User Manager} and \textit{Special User Manager}.
 \end{itemize}
 
 \myparagraph{}
-It is the last part of the system to be that must be implemented and needs the main functionalities of the \textit{Controller}.\\
-The flow of implementation of the internal components \textit{AutomatedSOS} is specified to avoid any possible problems, being a critical service.
+The \textit{View} is the last part of the system to be that must be implemented because it needs most of the functionalities of the \textit{Controller}.\\
+The implementation flow of the internal components of \textit{AutomatedSOS} is specified in Figure \ref{img:implementationFlow} to avoid any possible problems, being a critical service.
 
 \subsection{Implementation Choices}
 
 \subsubsection{Database}
-The choice of the \textit{Database} is MySQL 5.7 as relational DBMS and InnoDB as Database Engine. This last choice is to manage concurrency accessing same tables.
+The choices that have been taken for the \textit{Database} are MySQL 5.7 as relational DBMS and InnoDB as Database Engine. This last choice has been taken to manage concurrency while accessing same tables.
 
 \subsubsection{Application Server}
-The implementation of this important layer is the use of Java Enterprise Edition 7 (JEE) with a GlassFish Server. Java Persistence API (JPA) is used to interface with the DBMS, JAX-RS to implement RESTful APIs to interface with mobile application, \textit{Web Server} and also with the \textit{External Servicies}.
+The implementation of this important layer is done with Java Enterprise Edition 7 (JEE) using a GlassFish Server. Java Persistence API (JPA) is used to interface with the DBMS, JAX-RS to implement RESTful APIs to interface with mobile application, \textit{Web Server} and also with the \textit{External Servicies}.
 
 \subsubsection{Mobile App}
 The mobile applications must be implemented in two different architecture respecting native languages, Swift for iOS application and Java for Android ones. The communication with the device must be done using the default frameworks of the respective system, moreover the communication with the \textit{Application Server} and \textit{External Services} must be performed with RESTful APIs.
@@ -79,24 +79,24 @@ As we decided to implement the \textit{Application Server} with JEE, that choice
 %TODO Implementation Tree
 
 \section{Integration and Testing}\label{int_test}
-The Integration and Testing Section provides the main guidelines to explain the integration test phase, describe which tools will be used and planning integration phase in a detailed way.
+The Integration and Testing Section provides the main guidelines to explain the integration test phase, describing which tools will be used and planning integration phase in a detailed way.
 
 \subsection{Entry Criteria}
 This section describes which are the prerequisites needed before approach the integration phase. We can find three main topics the must be done before starting:
 \begin{itemize}
-  \item \textbf{Documentation of the Code}: Sometimes the code's documentation is understimate. Good documentation provides tools to review the code and its mean; moreover it is important in huge project, like \textit{Data4Help} one, where more people will develop the system. It makes easier the understanding of the classes functionalities and behaviour and also makes easier their reusing.\\
-  Where only text documentation is not sufficient to explain a certain functionality a formal language of specification like JML (Java Modelling Language) is required
-  \item \textbf{Unit Test}: All classes of the project must be tested with Unit Test that checks for each one their behaviour. Unit Test must be done using JUnit tool and line coverage of 90\% is required. Only exception of line covarge constraint must be done for the \textit{View} part of our project.
-  \item \textbf{Code Inspection and Analysis}: Code Inspection and Analysis is an important phase of the testing one because with an automated tool such as SonarQube we can look for code smell possible bugs of the classes. Solving issues in this phase provides less probability of complex and big problems in the integration phase.
+  \item \textbf{Documentation of the Code}: Sometimes the code's documentation is understimate. Good documentation provides tools to review the code and its mean; moreover it is important in huge project, like the \textit{TrackMe} one, where more people will develop the system. It makes easier the understanding of the classes' functionalities and behaviour and it also makes easier their reusing.\\
+  Where only text documentation is not sufficient to explain a certain functionality a formal language of specification like JML (Java Modelling Language) is required.
+  \item \textbf{Unit Test}: All classes of the project must be tested with Unit Tests that check for each one its behaviour. Unit Test must be done using JUnit tool and line coverage of 90\% is required. Only the \textit{View} part of our project is authorized not to respect the line covarge constraint.
+  \item \textbf{Code Inspection and Analysis}: Code Inspection and Analysis is an important phase of the testing part because with an automated tool, such as SonarQube, we can look for code smell and possible bugs of the classes. Solving issues in this phase provides less probability of complex and big problems in the integration phase.
 \end{itemize}
-%Functional and non functional requirements, behaviour and purpose of the system are available in this document (\textit{DD}) and in the \textit{RASD} document.
+
 \subsection{Elements to be Integrated}
 Our system is structured in a multi-tiered client-server architecture and we can divide our system in four main layers (according to Figure \ref{img:layeredStructure}).\\
 The integration of the different components in a layer must be done component by component and then when issues of internal integration will be fixed, layers integration that concerns communication between components must be performed.
 
 \subsection{Integration Testing Strategy}
-To avoid any possibility of complex problems during the integration phase, like testing phase the integration phase must be performed incrementally when is possible during the growing of the system.\\
-Where integration test is not possible during the developing phase, in the integration phase a bottom-up approach of integration must be follow, in order to avoid any possible of failure of the core components of the system.
+To avoid any possibility of complex problems during the integration phase, it must be performed incrementally, when it is possible, during the growing of the system (As it has been done for the implementation phase).\\
+Where integration test is not possible during the developing phase a bottom-up approach of integration must be followed in order to avoid any possible failure of the core components of the system.
 
 \subsection{Integration Sequence}
 In this Section the integration flow is explained.\\

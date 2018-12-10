@@ -10,14 +10,14 @@ The \textit{TrackMe} project, as explaind in the RASD, has three different but c
 \end{itemize}
 The system-to-be is structured in a four-layered architecture, which will be described in depth in this document and which is designed with the purpose of being maintainable and extensible.\\
 In order to maximize software flexibility and upgradeability, development has been divided into smaller parts, which are as independent as possible.
-This causes the need to integrate and cooperate the different parts between them and to test their reliability.
-An important goal that has been taken into account for software design is also to ensure very high security standards as the software collects users' health data. This data must not be accessible by unauthorized persons.
+This causes the need to integrate and cooperate the different parts between them and to test their reliability.\\
+An important goal that has been taken into account for software design is also to ensure very high security standards as the software collects users' health data. This data must not be accessible by unauthorized persons.\\
 In order to guarantee this, in this document there is also an explanation of the choices made to ensure data security and a summary of the tests to be implemented and performed.
 
 \section{Definitions, Acronyms, Abbreviations}
 \begin{itemize}
   \setlength{\itemindent}{-.4in}
-  \item[] \textbf{ACID}: Atomicity, Consistency, Isolation and Durability (Set of properties of database transactions):
+  \item[] \textbf{ACID}: Atomicity, Consistency, Isolation and Durability (Set of properties of database transactions);
   \item[] \textbf{API}: Application Programming Interface;
   \item[] \textbf{DB}: Database;
   \item[] \textbf{DMBS}: Database Management System;
@@ -28,9 +28,6 @@ In order to guarantee this, in this document there is also an explanation of the
   \item[] \textbf{UML}: Unified Modeling Language;
   \item[] \textbf{UX}: User eXperience;
 \end{itemize}
-\section{Revision History}
-This is the first version of this document.\\
-Further details are available in Appendix \ref{Changelog}.
 
 \section{Reference Documents}
 This document follows the EEE Standard 1016:2009 \textit{System design - Software design descriptions} \cite{ieee-1016} and complies with the instructions contained in the project assignment document \cite{se-assignments}.\\
@@ -43,9 +40,9 @@ This document is structured as follows:
   \setlength{\itemindent}{-.4in}
   \item[] \textbf{Section 1: Introduction}. A general introduction and overview of the Design Document. It aims giving general but exaustive information about what this document is going explain.
   \item[] \textbf{Section 2: Architectural Design}. This section contains an overview of the high level components of the system-to-be and then a more detailed description of three architecture views: component view, deployment view and runtime view. Finally it shows the chosen architecture styles and patterns.
-  \item[] \textbf{Section 3: User Interface Design}. This section refers to the mockups already preseneted in the RASD.
+  \item[] \textbf{Section 3: User Interface Design}. This section contains the UX Diagrams of the system to be according to the mockups given in the RASD.
   \item[] \textbf{Section 4: Requirements Traceability}. This section explains how the requirements defined in the RASD map to the design elements defined in this document.
-  \item[] \textbf{Section 5: implementation, Integration and Test Plan}. This section identifies the order in which it is planned to implement the subcomponents of the system, the integration of such subcomponents and test the integration.
+  \item[] \textbf{Section 5: Implementation, Integration and Test Plan}. This section identifies the order in which it is planned to implement the subcomponents of the system, the integration of such subcomponents and test the integration.
   \item[] \textbf{Section 6: Effort Spent}. A summary of the worked time by each member of the group.
 \end{itemize}
 At the end there are an \textbf{Appendix} and a \textbf{Bibliography}.

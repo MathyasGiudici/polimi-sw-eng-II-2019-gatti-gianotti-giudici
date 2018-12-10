@@ -6,7 +6,7 @@ The main high-level components of the system that will be taken into account are
   	\includegraphics[width=\textwidth]{./img/LayeredStructure.png}
     \hspace{0.05\linewidth}
     \centering
-    \caption{\textit{Layered Structure} of the system.}
+    \caption{\textit{Layered Structure} of the system}
 		\label{img:layeredStructure}
     \end{center}
 \end{figure}
@@ -14,13 +14,13 @@ The main high-level components of the system that will be taken into account are
 The considered high-level components are:
 \begin{itemize}
   \setlength{\itemindent}{-.4in}
-  \item[] \textbf{Mobile Applications:} The \textit{Presentation Layer} dedicated to mobile devices; it communicates with the Application Server.
+  \item[] \textbf{Mobile Applications:} The \textit{Presentation Layer} dedicated to mobile devices; it communicates with the Application Server. Notice that in the specific case of \textit{AutomatedSOS} application it comumunicates also with an External Service and has a little part of logic inside of it.
   \item[] \textbf{Web Browsers:} The \textit{Presentation Layer} dedicated to web browsers; it communicates directly with the Web Server.
   \item[] \textbf{Web Server:} This is the layer that provides web-pages for the web-based applications; it communicates with the Application Server and with the Web Browsers.
-  \item[] \textbf{Application Server:} This is the layer in which is contained all the \textit{logic} for the application; it communicates with the Web Server and with the Database. Moreover it manages the communication with External Services.
+  \item[] \textbf{Application Server:} This is the layer in which is contained almost all the \textit{logic} for the application (except for the little part contained in \textit{AutomatedSOS} mentioned before); it communicates with the Web Server and with the Database. Moreover it manages almost all the communications with External Services.
   \item[] \textbf{Database:}  The \textit{Data Layer} of the system; it includes all structures and entities responsible for data storage and management. It communicates with the Application Server.
 \end{itemize}
-It has been taken the decision to separate the Application and Web Server in order to allow greater scalability. In the figure above it is also shown the interaction between the Application Server and External Systems.
+It has been taken the decision to separate the Application and Web Server in order to allow greater scalability.
 A more detailed description of the intereactions between the described system components is shown in Figure \ref{img:highLevelComponents}.
 
 \begin{figure}[H]
@@ -28,29 +28,31 @@ A more detailed description of the intereactions between the described system co
   	\includegraphics[width=\textwidth]{./img/HighLevelComponents.png}
     \hspace{0.05\linewidth}
     \centering
-    \caption{\textit{High Level Components} of the system.}
+    \caption{\textit{High Level Components} of the system}
 		\label{img:highLevelComponents}
     \end{center}
 \end{figure}
 
 \section{Component View}
-In this section the system will be described in term of its components. Functionalities of the components will be discussed and detailed will be shown the interfaces among components and among external services.
+In this section the system will be described in term of its components:  their functionalities will be discussed and detailed.\\
+Moreover interfaces among components and among external services will be shown.
 
+\clearpage
 \subsection{Database}
-The application database will be managed using a Relational DBMS.
-It allows the reading of data, ensuring users the ability to log in and access the applications of interest and check the stored data.
-It is also used for data manipulation (insertion, modification and deletion).
+The application database will be managed using a Relational DBMS. \\
+It will allow the reading of data, ensuring to the users the possibility to log in, access the application of interest and check the stored data.
+It will also be used for data manipulation (insertion, modification and deletion).
 The use of a Relational DBMS guarantees the fundamental properties for a database of this type:
 \begin{itemize}
-  \item \textit{Atomicity}: no partial executions of operations.
-  \item \textit{Consistency}: the database is always in a consistent state.
-  \item \textit{Isolation}: each transaction is executed in an isolated and independent way.
+  \item \textit{Atomicity}: no partial executions of operations;
+  \item \textit{Consistency}: the database is always in a consistent state;
+  \item \textit{Isolation}: each transaction is executed in an isolated and independent way;
   \item \textit{Durability / Persistence}: changes made are not lost.
 \end{itemize}
-The database will offer to the Application Server an interface that it can use to interact with the database.
+The database will offer to the Application Server an interface that it can use to interact with it.
 The data stored in the database must be considered personal and confidential, therefore, procedures must be implemented to safeguard the stored information.\\
-Particular attention must be paid to the reading permissions granted to users and to the encryption of passwords used to access the services offered.
-Below is the designed E-R diagram.(Figure \ref{img:ER_Diagram})
+Particular attention must be paid to the reading permissions granted to users and to the encryption of passwords used to access to the offered services.
+Below is the designed E-R diagram (Figure \ref{img:ER_Diagram}).
 
 \begin{figure}[H]
   \begin{center}
@@ -63,19 +65,19 @@ Below is the designed E-R diagram.(Figure \ref{img:ER_Diagram})
 \end{figure}
 
 \subsection{Application Server}
-This is the crucial layer of the system to be. The main feature of the \textit{Application Server} is to describe rules and work-flows of all the functionalities provided by the application.\\
-The \textit{Application Server} must have intefaces to communicate with the \textit{Web Server} and the \textit{Mobile Apps}, it has also to communicate through interfaces with all the \textit{External Services} (Maps Service, SOS Service and Payment Service).\\
-Moreover, the \textit{Application Server} is the only entity of the system that is granted to communicate with the DBMS.
-Following this brief introduction there are the logic modules and their descriptions, moreover all connections among components could be seen in the \textit{Global Component View} in Figure \ref{img:GlobalComponent}.
+This is the crucial layer of the system to be. The main feature of the \textit{Application Server} is to define rules and work-flows of all the functionalities provided by the applications.\\
+The \textit{Application Server} must have intefaces to communicate with the \textit{Web Server}, with \textit{Mobile Apps} and also with some \textit{External Services} (Maps Service and Payment Service).\\
+Moreover, the \textit{Application Server} must be the only entity of the system that will be granted to communicate with the DBMS.\\
+In the brief introduction given below logic modules and their descriptions are presented, while all the connections among them can be seen in the \textit{Global Component View} in Figure \ref{img:GlobalComponent}.
 
 \paragraph{Data Collector Service}
-This module offers the a service to the \textit{Standard User Manager} in order to maange user's data and store it into the \textit{Data4Help} database.
+This module offers a specific service to the \textit{Standard User Manager} that allow it to store its acquired data into the \textit{Data4Help} database.
 
 \paragraph{Group Request Manager}
-This module manages the third party requests of \textit{Group Data Requirement}.
+This module manages the third party requests for \textit{Group Data Requirement}.
 
 \paragraph{Mail Manager}
-This module is a tool for other modules that allow the system to send e-mail, for instance in the registration and enrolment phase.
+This module is a tool for other modules that allow the system to send e-mail (For instance in the registration and enrolment phase).
 
 \paragraph{Maps Manager}
 This module is an handler providing an interface to the external service of maps.
@@ -87,11 +89,10 @@ This module is an handler providing an interface to the external service of paym
 This module is the unique interface to the database's DBMS.
 
 \paragraph{Run Manager}
-This module manages \textit{Runs} in all their functionalities, like creation, deletion and enrolment.\\
-In order to manage guest users that visit a Run the system this module provides an access point to the \textit{Application Server} for the \textit{Web Server} and the \textit{Mobile Apps}.
+This module manages \textit{Runs} in all their functionalities, like creation, deletion and enrolment.
 
 \paragraph{Single Request Manager}
-This module manages the third party requests of \textit{Single Data Requirement}.
+This module manages the third party requests for \textit{Single Data Requirement}.
 
 \paragraph{Special User Manager}
 This module provides all functionalities related to the \textit{Special User}.
@@ -101,34 +102,34 @@ This module provides all functionalities related to the \textit{Standard User}.
 
 
 \subsection{Mobile App}
-The \textit{Mobile App} must communicate to the \textit{Application Server} through APIs that have to be defined in order to describe the interactions between the two layers and they must be indipendent from the implementation both side.\\
+The \textit{Mobile App} must communicate with the \textit{Application Server} through APIs that have to be defined in order to describe the interactions between the two layers and that must be independent from the two implementations.\\
 The App UI must be designed user friendly and it has to follow the guidelines provided by the Android and iOS producer.
-The application must provide a software module that manages the GPS connection of the device and keeps track of locations data, it has also to manage the Health data from the devices connected to the phone.\\
+The application must manage the GPS connection of the device and keep track of locations data, moreover it has also to manage the health data recieved from the devices connected to the phone.\\
 The application must provide all collected data to the \textit{Application Server} in order to process them.
 
 \subsection{AutomatedSOS App}
-In this Section we want to specify in detail the modules that compose the \textit{AutomatedSOS} application in order to better explain the important activity of detection of possible \textit{Critical Situation}.\\
-All connections among components could be seen in the \textit{AutomatedSOS Component View} in Figure \ref{img:AutomatedComponent}.
+In this Section we want to specify in a more detailed way the modules that compose \textit{AutomatedSOS} application in order to explain better the important activity of detection of possible \textit{Critical Situation}.\\
+All connections among components can be seen in the \textit{AutomatedSOS Component View} in Figure \ref{img:AutomatedComponent}.
 
 \paragraph{Application Server Handler}
 This module is an handler providing an interface to the \textit{Application Server}.
 
 \paragraph{Background Health Monitor}
-This module checks status of health data that it receives. If an SOS call must be done it call \textit{SOS Handler}.
+This module checks the health status data that it receives. If an SOS call must be done it calls \textit{SOS Handler}.
 
 \paragraph{GUI}
 This module is the \textit{Graphical} interface to the smartphone.
 
 \paragraph{Health Status Service}
-This module manage data detected and produce statistic for the \textit{User}.
+This module manage detected data and produce statistic for the \textit{User}.
 
 \paragraph{SOS Handler}
 This module is an handler providing an interface to the external service of SOS.
 
 \subsection{Web Server}
-The \textit{Web Server} must communicate to the \textit{Application Server} through HTTPS protocol.\\
+The \textit{Web Server} must communicate with the \textit{Application Server} through HTTPS protocol.\\
 The \textit{GUI} of the \textit{}{Web Server} must be designed user friendly and it has to follow the guidelines provided by W3C standard (using HTML5, CSS and JS).\\
-The \textit{Control Unit} manages all actions played by a user and it must communicate to the \textit{Application Server} through APIs, that are already explained for the \textit{Mobile App}.
+The \textit{Control Unit} must manage all the actions played by a user and it must communicate with the \textit{Application Server} through APIs, that are already explained in the \textit{Mobile App} Section.
 
 \begin{figure}[H]
   \begin{center}
@@ -175,7 +176,7 @@ In this Section we want to specify the behaviour of our system. Some relevant ca
   	\includegraphics[width=\textwidth]{./img/sequence/webSignIn.png}
     \hspace{0.05\linewidth}
     \centering
-    \caption{\textit{Third Party Sign In} sequence diagram: it is described the process through which a third party can register itself to \textit{Data4Help} services, obviously using \textit{Data4Help}'s web site, since it is the only available platform for third parties.}
+    \caption{\textit{Third Party Sign In} sequence diagram: it is described the process through which a third party can register itself to \textit{Data4Help} services, obviously using \textit{Data4Help}'s web site, since it is the only available platform for third parties}
 		\label{img:webSignIn}
     \end{center}
 \end{figure}
@@ -185,7 +186,7 @@ In this Section we want to specify the behaviour of our system. Some relevant ca
   	\includegraphics[width=\textwidth]{./img/sequence/appLogIn.png}
     \hspace{0.05\linewidth}
     \centering
-    \caption{\textit{Standard User Log In} sequence diagram: it is described the process through which a standard user can access to \textit{AutomatedSOS} or \textit{Track4Run} applications.}
+    \caption{\textit{Standard User Log In} sequence diagram: it is described the process through which a standard user can access to \textit{AutomatedSOS} application. (Obviosly the process is exactly the same for \textit{Track4Run} application)}
 		\label{img:appLogIn}
     \end{center}
 \end{figure}
@@ -195,7 +196,7 @@ In this Section we want to specify the behaviour of our system. Some relevant ca
   	\includegraphics[width=\textwidth]{./img/sequence/groupDataRequest.png}
     \hspace{0.05\linewidth}
     \centering
-    \caption{\textit{Group Data Request} sequence diagram: it is described the process through which a third party can require data of a group of people and then pay them.}
+    \caption{\textit{Group Data Request} sequence diagram: it is described the process through which a third party can require data of a group of people and then pay them}
 		\label{img:groupDataRequest}
     \end{center}
 \end{figure}
@@ -205,7 +206,7 @@ In this Section we want to specify the behaviour of our system. Some relevant ca
   	\includegraphics[width=\textwidth]{./img/sequence/individualDataRequest.png}
     \hspace{0.05\linewidth}
     \centering
-    \caption{\textit{Individual Data Request} sequence diagram: it is described the process through which a third party can require data of an individual user and wait for a response. It is not described the way in which the targeted user answers to the request because it is not the topic of this sequence diagram. It is not even described the way in which the third party pays and eventually downloads the data because it is not considerable and it has just been explained in the \textit{Group Data Requst} sequence diagram.}
+    \caption{\textit{Individual Data Request} sequence diagram: it is described the process through which a third party can require data of an individual user and wait for a response. It is not described the way in which the targeted user answers to the request because it is not the topic of this sequence diagram. It is not even described the way in which the third party pays and eventually downloads the data because it is not considerable and it has just been explained in the \textit{Group Data Requst} sequence diagram}
 		\label{img:individualDataRequest}
     \end{center}
 \end{figure}
@@ -215,7 +216,7 @@ In this Section we want to specify the behaviour of our system. Some relevant ca
   	\includegraphics[width=\textwidth]{./img/sequence/criticalSituation.png}
     \hspace{0.05\linewidth}
     \centering
-    \caption{\textit{Critical Situation} sequence diagram: it is described the process through which a critical situation is detected by \textit{AutomatedSOS} application + device. It is not described the way in which \textit{AutomatedSOS} application stored the acquired data because it is not considerable for this topic.}
+    \caption{\textit{Critical Situation} sequence diagram: it is described the process through which a critical situation is detected by \textit{AutomatedSOS} application + device. It is not described the way in which \textit{AutomatedSOS} application stored the acquired data because it is not considerable for this topic}
 		\label{img:criticalSituation}
     \end{center}
 \end{figure}
@@ -225,7 +226,7 @@ In this Section we want to specify the behaviour of our system. Some relevant ca
   	\includegraphics[height=.6\paperheight]{./img/sequence/createRun.png}
     \hspace{0.05\linewidth}
     \centering
-    \caption{\textit{Create a Run} sequence diagram: it is described the process through which a standard user can create a new run.}
+    \caption{\textit{Create a Run} sequence diagram: it is described the process through which a standard user can create a new run}
 		\label{img:createRun}
     \end{center}
 \end{figure}
@@ -235,7 +236,7 @@ In this Section we want to specify the behaviour of our system. Some relevant ca
   	\includegraphics[width=\textwidth]{./img/sequence/enrolRun.png}
     \hspace{0.05\linewidth}
     \centering
-    \caption{\textit{Enrol in a Run} sequence diagram: it is described the process through which a standard user can enrol himself/herself in a run. }
+    \caption{\textit{Enrol in a Run} sequence diagram: it is described the process through which a standard user can enrol himself/herself in a run}
 		\label{img:enrolRun}
     \end{center}
 \end{figure}
@@ -245,7 +246,7 @@ In this Section we want to specify the behaviour of our system. Some relevant ca
   	\includegraphics[width=\textwidth]{./img/sequence/watchRun.png}
     \hspace{0.05\linewidth}
     \centering
-    \caption{\textit{Run Watching} sequence diagram: it is described the process through which a not registered user can watch a run. Notice that he/she can access directly to part of the \textit{Run Manager} services without any log in.}
+    \caption{\textit{Run Watching} sequence diagram: it is described the process through which a not registered user can watch a run. Notice that he/she can access directly to part of the services offered by \textit{Run Manager} without any log in}
 		\label{img:watchRun}
     \end{center}
 \end{figure}
@@ -254,13 +255,17 @@ In this Section we want to specify the behaviour of our system. Some relevant ca
 \clearpage
 
 \section{Component Interfaces}
-This section contains some detailed informations about interfaces between components of the system.\\
-A detailed description focuses the attention over the actions of a procedure of a certain component called by other components.\\
+This section contains some detailed informations about the interfaces between the components of the system.\\
+The following description focuses the attention over the actions performed by a procedure of a certain component after that it is called by other components.\\
 Huge part of these actions could be seen played in the \textit{Sequence Diagrams} (Section \ref{runtimeViewSection}).
 
 \subsection{Application Server}
 
 \subsubsection{Data Collector Service}
+Following procedure is called by other components:
+\begin{itemize}
+  \item \textbf{pushData}\quad This procedure is called by \textit{AutomatedSOS} or by \textit{Track4Run} to send the newly acquired data, that will be sent, as soon as possibile, to the \textit{Persistence Unit}.
+\end{itemize}
 
 \subsubsection{Standard User Manager}
 Following procedures are called by other components:
@@ -322,6 +327,7 @@ Following procedures are called internally to the component:
 \subsubsection{Single Request Manager}
 Following procedures are called by other components:
 \begin{itemize}
+  \item \textbf{newAnswerRequest}\quad This procedure is called when the answer given by the targeted \textit{Standard User} is recieved.
   \item \textbf{newIndividualDataRequest}\quad This procedure is called to start the process of requiring to an \textit{Individual User} the sharing of his/her data.
   \item \textbf{newPaymentRequest}\quad This procedure is called to start the process of paying some required data calling the corresponding procedure on the dedicated component (\textit{Payment Handler}).
 \end{itemize}
@@ -340,7 +346,7 @@ Following procedure is called by other components:
   \item \textbf{confirmationDeleteEnrolment}\quad This procedure sends a confirmation e-mail to the \textit{User} that successfully has delete an enrolment in a \textit{Run}.
   \item \textbf{confirmationDeleteRun}\quad This procedure sends a confirmation e-mail to the \textit{User} that successfully has deleted a \textit{Run}.
   \item \textbf{confirmationEnrolRun}\quad This procedure sends a confirmation e-mail to the \textit{User} that successfully has enrolled in a \textit{Run}.
-  \item \textbf{notyifyDeleteRun}\quad This procedure sends a notification e-mail to the \textit{Users} that previously have enrolled in a \textit{Run} that has been deleted.
+  \item \textbf{notifyDeleteRun}\quad This procedure sends a notification e-mail to the \textit{Users} that previously have enrolled in a \textit{Run} that has been deleted.
   \item \textbf{sendAcceptedEmail}\quad This procedure is called to inform a \textit{Special User} that an \textit{Individual User}, of which it has required the data, has accepted its request and so data will be immediatly available after completing the payment.
   \item \textbf{sendConfirmationRegEmail}\quad This procedure is called to give the \textit{User} his/her/its password for the newly created account and to confirm the creation it.
   \item \textbf{sendRefusedEmail}\quad This procedure is called to inform a \textit{Special User} that an \textit{Individual User}, of which it has required the data , has refused its request.
@@ -462,41 +468,40 @@ Following procedures are called by other components:
   \item \textbf{callWrongPosition}\quad This produce call an ambulance notifying that there is an error in getting the user's position and the lastone is sended.
 \end{itemize}
 
-
+\clearpage
 \section{Selected Architectural Styles and Patterns}\label{architecturalStyle}
-Following are the choices made regarding architectural styles and patterns.
+Following there are the choices made regarding architectural styles and patterns.
 
 \subsection{Client and Server}
-A client server architecture was chosen for system implementation.
-This allows the exchange of information between Internet-connected devices used by users and the centralized server that collects data and offers Data4Help services.
+A Client Server architecture has been chosen for the system implementation: it allows the exchange of information between Internet-connected devices used by users and the centralized server that collects data and offers \textit{Data4Help services}.
 In particular:
 \begin{itemize}
-  \item The AutomatedSOS and Track4Run applications installed on users' devices are clients connected to the application server that receives and processes data.
-  \item The desktop web browsers used by users (both standard and special) to access the services offered by Data4Help are clients that communicate with the Web Server that provides an HTTPS interface.
-  \item The application server is seen as a server by the web browser and as a client by the application server that allows it to process requests.
-  \item The application server is seen as a server from the web server and applications installed on smartphones and as a client from the database that receives and processes its requests (queries).
+  \item The \textit{AutomatedSOS} and \textit{Track4Run} applications installed on users' devices are connected to the Application Server that receives and processes data.
+  \item The desktop eb browsers used by users (both standard and special) to access the services offered by Data4Help communicate with the Web Server that provides an HTTPS interface.
+  \item The Web Server is seen as a server by the web browser and as a client by the application server that allows it to process requests.
+  \item The Application Server is seen as a server by the web server and applications installed on smartphones and as a client from the database that receives and processes its requests (queries).
   \item The database is seen as a server by the application server that sends the requests and waits for the answers.
 \end{itemize}
 
 \subsection{Multi-tiered architecture}
-A multi-tiered client-server architecture is used to ensure the separation between the MVC model levels (model, view, controller).
+A multi-tiered client-server architecture is used to ensure the separation between the MVC model levels (Model, View, Controller).
 In this way a greater stability of the system is also guaranteed:
 \begin{itemize}
-  \item In case of failure of the application server, the applications installed on users' devices continue to work and collect data. However, AutomatedSOS is able to make an emergency call. This also applies if the device is temporarily without an Internet connection (but with emergency calls available). Once the application server or Internet connection has been restored, the device will reconnect and send the data collected during the period of absence of the service to the server.
-  \item In case of failure of the web server, the application server remains active and the applications installed on users' devices continue to work correctly (and to send data correctly to the server). The services offered through the use of the web browser will not be available.
+  \item In case of failure of the application server, the applications installed on users' devices continue to work and collect data. In particular, \textit{AutomatedSOS} is still able to make an emergency call. This remains valid also in the case in which the device is temporarily without an Internet connection (but with emergency calls available). Once the Application Server or the Internet connection has been restored, the device will reconnect itself and send the data collected during the period of absence of the service to the server.
+  \item In case of failure of the Web Server, the Application Server remains active and the applications installed on users' devices continue to work correctly (and to send data correctly to the server). The services offered through the use of the web browser will not be available.
 \end{itemize}
 
 \subsection{Thin Client}
-The services accessible through web browsers are considered thin clients because the software used does not install software belonging to Data4Help.
-All the necessary information required to use the service is offered by the Web Server through HTTPS, including a graphical interface and application logic.
-Also, the Track4Run app is considered thin client because the application that provides the graphical user interface is installed on the phone but most of the application logic (and in particular the one used to manage the races) is based on the application server to which it connects.
+The services accessible through web browsers are considered thin clients because the \textit{User} doesn't have to install software belonging to \textit{Data4Help} on his personal computer.
+All the necessary information required to use the service are offered by the Web Server through HTTPS, including a graphical interface and the application logic.
+Also the \textit{Track4Run} app is considered thin client because, even if the application that provides the graphical user interface is installed on the phone, most of the application logic (and in particular the one used to manage the races) is based on the application server to which it connects.
 
 \subsection{Thick Client}
-The Automated SOS app is to be considered as a thick client in fact in the app in addition to the graphical interface and the logic related to the acquisition of user data, there is also the logic that allows the phone to make a call to the external service used for handling emergency calls.
-Thanks to this the app is able to detect a state of emergency and alert the ambulance even if the connection with the server is not available.
+The \textit{AutomatedSOS} app has to be considered a thick client: in the app, in addition to the graphical interface and the logic related to the acquisition of user data, there is also the logic that allows the phone to make a call to the external service used for handling emergency calls.
+Thanks to this, the app is able to detect a state of emergency and alert the ambulance even if the connection with the server is not available.
 
 \subsection{Model-View-Control}
-The MVC model allows to identify three main components in the management of a client-server application. They are the Model, the View and the Controller.
+The MVC model identifies three main components in the management of a client-server application. They are the Model, the View and the Controller.
 The following diagram shows the management of these three levels according to the use of thin or thick clients (\ref{img:client_server}).
 
 \begin{figure}[H]
@@ -504,7 +509,7 @@ The following diagram shows the management of these three levels according to th
   	\includegraphics[width=0.4\textwidth]{./img/client_server.png}
     \hspace{0.05\linewidth}
     \centering
-    \caption{Possible management of the client-server connection according to the MVC model. Thin or thick client.}
+    \caption{Possible management of the client-server connection according to the MVC model. Thin or thick client}
 		\label{img:client_server}
     \end{center}
 \end{figure}
@@ -512,26 +517,26 @@ The following diagram shows the management of these three levels according to th
 
 \section{Other Design Decisions}
 \subsection{User authentication}
-In order to guarantee the confidentiality of user data, access to the system, both for standard users and for special users, takes place by entering a username and password.
-The username used for access coincides with the email address used during registration.
+In order to guarantee the confidentiality of user data, the access to the system, both for standard users and for special users, takes place by entering a username and password.
+The username used for the access coincides with the email address used during registration.
 
 \subsection{Password storing}
-The passwords chosen by the users are saved in the database after being encrypted using a SHA512 algorithm.
-In this way, the password to be used for accessing Data4Help services is not stored in plaintext in the user database, but it is a transformation from which, even with very powerful computers, it is very difficult to trace the original password.
-In this way even using the normal Internet connection, if an intruder could pick up the string containing the password, he would not be able to trace the password used to access the service.
+The passwords given to the users are saved in the database after being encrypted using a SHA512 algorithm.
+This way, the passwords that have to be used to access to Data4Help services are not stored in plaintext in the user's database, but they are the result of a transformation from which, even with very powerful computers, it is very difficult to trace the original ones.
+This way even using the normal Internet connection, if an intruder succedes in picking up the string containing the password, he won't be able to trace the password used to access the service.
 
 \subsection{Security in the transfer of information}
 The transfer of data between the clients and the server is done using the most modern data encryption systems.
-For example, the Web Server offers an HTTPS interface to the Web Browser.
+For example, the Web Server offers an HTTPS interface to the web browser.
 
 \subsection{Maps}
-In order to manage the rides offered by Track4Run, the external Google Maps service is used.
+In order to manage the \textit{Runs} offered by Track4Run, the external Google Maps service is used.
 Longitude and latitude are used to locate a position within the map.
-To ensure a better service to the user who is responsible for creating the race, it is also given the opportunity to create the route using the features provided by Google Maps such as search by address, search for places of public interest, and so on. In the database the race course will still be saved as a sequence of positions in terms of longitude and latitude.
+To ensure a better service to the user who is responsible for creating the \textit{Run}, it is also given to him/her the opportunity to create the route using the features provided by Google Maps (such as search by address, search for places of public interest, and so on). In the database the \textit{Run} path will still be saved as a sequence of positions in terms of longitude and latitude.
 
 \subsection{Emergency call}
 Emergency calls are handled using an external service.
-This ensures that even in the event that the data network is not available, or the application server is out of service, it is still possible to call for help.
-In fact, the external service works via the Internet or, in the absence of a connection, via SMS.
-When the Automated SOS application detects an anomaly, it invokes the external service and sends it the location of the device and a precompiled text containing information related to the health of the user.
-This information is then sent to the rescue service by the external service.
+This ensures that even in the case that the data network is not available, or the application server is out of service, it is still possible to call for help.
+In fact, the external service works via the Internet connection or, in the absence of a connection, via SMS.
+When the Automated SOS application detects an anomaly, it invokes the external service and sends it the location of the device and a precompiled text containing information related to the health status of the user.
+Finally this information is sent to the rescue service by the external service.
